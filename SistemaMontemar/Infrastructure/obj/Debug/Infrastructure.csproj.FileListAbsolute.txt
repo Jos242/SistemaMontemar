@@ -1,0 +1,14 @@
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\Infrastructure.dll.config
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\Infrastructure.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\Infrastructure.pdb
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\EntityFramework.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\log4net.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\EntityFramework.xml
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\log4net.xml
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.pdb

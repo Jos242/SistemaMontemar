@@ -1,0 +1,15 @@
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\bin\Debug\ApplicationCore.dll.config
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\bin\Debug\ApplicationCore.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\bin\Debug\ApplicationCore.pdb
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\bin\Debug\Infrastructure.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\bin\Debug\log4net.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\bin\Debug\EntityFramework.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\bin\Debug\Infrastructure.pdb
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\bin\Debug\Infrastructure.dll.config
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\bin\Debug\log4net.xml
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\bin\Debug\EntityFramework.xml
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\obj\Debug\ApplicationCore.csproj.AssemblyReference.cache
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\obj\Debug\ApplicationCore.csproj.CoreCompileInputs.cache
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\obj\Debug\ApplicationCore.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\ApplicationCore\obj\Debug\ApplicationCore.pdb
