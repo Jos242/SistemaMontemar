@@ -12,7 +12,7 @@ namespace Web.Controllers
 {
     public class ResidenciaController : Controller
     {
-        // GET: Default
+        // GET: Residencia
         public ActionResult Index()
         {
             IEnumerable<Residencia> lista = null;
@@ -30,19 +30,19 @@ namespace Web.Controllers
             return View(lista);
         }
 
-        // GET: Default/Details/5
+        // GET: Residencia/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Default/Create
+        // GET: Residencia/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Default/Create
+        // POST: Residencia/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -58,13 +58,13 @@ namespace Web.Controllers
             }
         }
 
-        // GET: Default/Edit/5
+        // GET: Residencia/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Default/Edit/5
+        // POST: Residencia/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -80,13 +80,13 @@ namespace Web.Controllers
             }
         }
 
-        // GET: Default/Delete/5
+        // GET: Residencia/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Default/Delete/5
+        // POST: Residencia/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
