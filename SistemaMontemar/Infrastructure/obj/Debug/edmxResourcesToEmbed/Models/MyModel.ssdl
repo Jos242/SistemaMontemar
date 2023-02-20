@@ -93,9 +93,6 @@
     <Property Name="CantPersonas" Type="int" />
     <Property Name="CantCarros" Type="int" />
     <Property Name="FechaAlquiler" Type="date" Nullable="false" />
-    <Property Name="Cuartos" Type="int" Nullable="false" />
-    <Property Name="Banios" Type="int" Nullable="false" />
-    <Property Name="Pisos" Type="int" Nullable="false" />
     <Property Name="Estado" Type="int" />
   </EntityType>
   <EntityType Name="Rubro">

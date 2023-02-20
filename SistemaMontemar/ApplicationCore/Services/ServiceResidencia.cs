@@ -15,12 +15,6 @@ namespace Infrastructure.Repository
             return repository.GetResidenciaById(id);
         }
 
-        public Residencia GetResidenciaByUserId(int userId)
-        {
-            IRepositoryResidencia repository = new RepositoryResidencia();
-            return repository.GetResidenciaByUserId(userId);
-        }
-
         public IEnumerable<Residencia> GetResidencias()
         {
             IRepositoryResidencia repository = new RepositoryResidencia();

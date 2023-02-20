@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {
-    public interface IRepositoryResidencia
+    public interface IRepositoryUsuario
     {
-        IEnumerable<Residencia> GetResidencias();
-        Residencia GetResidenciaById(int id);
+        Usuario GetUsuarioById(int id);
     }
 }

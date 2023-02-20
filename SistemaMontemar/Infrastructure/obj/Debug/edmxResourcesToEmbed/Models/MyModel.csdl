@@ -97,9 +97,6 @@
     <Property Name="CantPersonas" Type="Int32" />
     <Property Name="CantCarros" Type="Int32" />
     <Property Name="FechaAlquiler" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Cuartos" Type="Int32" Nullable="false" />
-    <Property Name="Banios" Type="Int32" Nullable="false" />
-    <Property Name="Pisos" Type="Int32" Nullable="false" />
     <Property Name="Estado" Type="Int32" />
     <NavigationProperty Name="Incidentes" Relationship="Self.FK_Incidentes_Residencia" FromRole="Residencia" ToRole="Incidentes" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK_Residencia_Usuario" FromRole="Residencia" ToRole="Usuario" />

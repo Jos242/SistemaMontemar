@@ -11,6 +11,5 @@ namespace Infrastructure.Repository
     {
         IEnumerable<Residencia> GetResidencias();
         Residencia GetResidenciaById(int id);
-        Residencia GetResidenciaByUserId(int userId);
     }
 }

@@ -3,73 +3,27 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IdUsuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CantPersonas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CantCarros)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaAlquiler)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cuartos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Banios)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pisos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdUsuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CantPersonas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CantCarros)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaAlquiler)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cuartos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Banios)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pisos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+<h2>Listado de Residencias</h2>
+<div class="row">
+    <div class="col-lg-9">
+        <div id="resultado" class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-6">
+                    <div class="card">
+                        <a href="@Url.Action("Details", "Residencia", new { id = item.Id })" class="btn btn-primary">
+                            <div class="card-body">
+                                <h4 class="card-title">N° Condominio: @Html.DisplayFor(modelItem => item.Id)</h4>
+                                <h5 class="card-subtitle mb-2 text-muted"> <i class="fa-solid fa-circle-user"></i> @Html.DisplayFor(modelItem => item.Usuario.Nombre) @Html.DisplayFor(modelItem => item.Usuario.Apellido01)</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@(item.Estado == 0 ? "En Construcción" : item.Estado == 1 ? "Disponible" : "Habitada")</h6>
+                                <div class="card-body">
+                                    @* Accion Orden *@
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

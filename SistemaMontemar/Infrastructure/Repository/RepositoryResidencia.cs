@@ -13,12 +13,29 @@ namespace Infrastructure.Repository
     {
         public Residencia GetResidenciaById(int id)
         {
-            return null;
-        }
+            Residencia oResidencia = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
 
-        public Residencia GetResidenciaByUserId(int userId)
-        {
-            return null;
+                    oResidencia = ctx.Residencia.Where(r => r.Id == id).FirstOrDefault();
+                }
+                return oResidencia;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
         }
 
         public IEnumerable<Residencia> GetResidencias()
@@ -30,7 +47,7 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    lista = ctx.Residencia.ToList();
+                    lista = ctx.Residencia.Include("Usuario").ToList();
                 }
                 return lista;
             }

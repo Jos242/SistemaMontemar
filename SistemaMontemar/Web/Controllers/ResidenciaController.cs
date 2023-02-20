@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Models;
 using Infrastructure.Repository;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -20,6 +21,7 @@ namespace Web.Controllers
             {
                 IServiceResidencia _ServiceResidencia = new ServiceResidencia();
                 lista = _ServiceResidencia.GetResidencias();
+                return View(lista);
             }
             catch (Exception ex)
             {
@@ -27,13 +29,37 @@ namespace Web.Controllers
                 TempData["Message"] = "Error al procesar los datos!" + ex.Message;
                 return RedirectToAction("Default", "Error");
             }
-            return View(lista);
         }
 
         // GET: Residencia/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            ServiceResidencia _ServiceResidencia = new ServiceResidencia();
+            Residencia residencia = null;
+            try
+            {
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                residencia = _ServiceResidencia.GetResidenciaById(Convert.ToInt32(id));
+                if (residencia == null)
+                {
+                    TempData["Message"] = "No existe la residencia solicitada";
+                    TempData["Redirect"] = "Residencia";
+                    TempData["Redirect-Action"] = "Index";
+                    // Redireccion a la captura del Error
+                    return RedirectToAction("Default", "Error");
+                }
+                return View(residencia);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos!" + ex.Message;
+                return RedirectToAction("Default", "Error");
+            }
         }
 
         // GET: Residencia/Create

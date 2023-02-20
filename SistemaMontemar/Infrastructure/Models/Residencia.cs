@@ -11,9 +11,7 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(ResidenciaMetaData))]
+    
     public partial class Residencia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,9 +25,6 @@ namespace Infrastructure.Models
         public Nullable<int> CantPersonas { get; set; }
         public Nullable<int> CantCarros { get; set; }
         public System.DateTime FechaAlquiler { get; set; }
-        public int Cuartos { get; set; }
-        public int Banios { get; set; }
-        public int Pisos { get; set; }
         public Nullable<int> Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

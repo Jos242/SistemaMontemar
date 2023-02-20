@@ -98,9 +98,6 @@
           <Property Name="CantPersonas" Type="int" />
           <Property Name="CantCarros" Type="int" />
           <Property Name="FechaAlquiler" Type="date" Nullable="false" />
-          <Property Name="Cuartos" Type="int" Nullable="false" />
-          <Property Name="Banios" Type="int" Nullable="false" />
-          <Property Name="Pisos" Type="int" Nullable="false" />
           <Property Name="Estado" Type="int" />
         </EntityType>
         <EntityType Name="Rubro">
@@ -426,9 +423,6 @@
           <Property Name="CantPersonas" Type="Int32" />
           <Property Name="CantCarros" Type="Int32" />
           <Property Name="FechaAlquiler" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Cuartos" Type="Int32" Nullable="false" />
-          <Property Name="Banios" Type="Int32" Nullable="false" />
-          <Property Name="Pisos" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Int32" />
           <NavigationProperty Name="Incidentes" Relationship="Self.FK_Incidentes_Residencia" FromRole="Residencia" ToRole="Incidentes" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Residencia_Usuario" FromRole="Residencia" ToRole="Usuario" />
@@ -733,9 +727,6 @@
                 <ScalarProperty Name="CantPersonas" ColumnName="CantPersonas" />
                 <ScalarProperty Name="CantCarros" ColumnName="CantCarros" />
                 <ScalarProperty Name="FechaAlquiler" ColumnName="FechaAlquiler" />
-                <ScalarProperty Name="Cuartos" ColumnName="Cuartos" />
-                <ScalarProperty Name="Banios" ColumnName="Banios" />
-                <ScalarProperty Name="Pisos" ColumnName="Pisos" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
             </EntityTypeMapping>
