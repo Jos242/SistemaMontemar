@@ -102,6 +102,14 @@
           <Property Name="Imagen" Type="varbinary(max)" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Rubro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Cobro" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
             <PropertyRef Name="Id" />
@@ -196,6 +204,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PlanCobroRubro_Rubro">
+          <End Role="Rubro" Type="Self.Rubro" Multiplicity="1" />
+          <End Role="PlanCobroRubro" Type="Self.PlanCobroRubro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlanCobroRubro">
+              <PropertyRef Name="IdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reservacion_Area">
           <End Role="Area" Type="Self.Area" Multiplicity="1" />
           <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
@@ -255,6 +275,7 @@
           <EntitySet Name="PlanCobroRubro" EntityType="Self.PlanCobroRubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservacion" EntityType="Self.Reservacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Residencia" EntityType="Self.Residencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AsignacionPlan_PlanCobro" Association="Self.FK_AsignacionPlan_PlanCobro">
@@ -279,6 +300,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_PlanCobroRubro_PlanCobro" Association="Self.FK_PlanCobroRubro_PlanCobro">
             <End Role="PlanCobro" EntitySet="PlanCobro" />
+            <End Role="PlanCobroRubro" EntitySet="PlanCobroRubro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanCobroRubro_Rubro" Association="Self.FK_PlanCobroRubro_Rubro">
+            <End Role="Rubro" EntitySet="Rubro" />
             <End Role="PlanCobroRubro" EntitySet="PlanCobroRubro" />
           </AssociationSet>
           <AssociationSet Name="FK_Reservacion_Area" Association="Self.FK_Reservacion_Area">
@@ -376,16 +401,7 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cobro" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="AsignacionPlan" Relationship="Self.FK_AsignacionPlan_PlanCobro" FromRole="PlanCobro" ToRole="AsignacionPlan" />
-          <NavigationProperty Name="PlanCobroRubro" Relationship="Self.FK_PlanCobroRubro_PlanCobro" FromRole="PlanCobro" ToRole="PlanCobroRubro" />
-        </EntityType>
-        <EntityType Name="PlanCobroRubro">
-          <Key>
-            <PropertyRef Name="IdPlan" />
-            <PropertyRef Name="IdRubro" />
-          </Key>
-          <Property Name="IdPlan" Type="Int32" Nullable="false" />
-          <Property Name="IdRubro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PlanCobro" Relationship="Self.FK_PlanCobroRubro_PlanCobro" FromRole="PlanCobroRubro" ToRole="PlanCobro" />
+          <NavigationProperty Name="Rubro" Relationship="Self.PlanCobroRubro" FromRole="PlanCobro" ToRole="Rubro" />
         </EntityType>
         <EntityType Name="Reservacion">
           <Key>
@@ -414,6 +430,15 @@
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Incidentes" Relationship="Self.FK_Incidentes_Residencia" FromRole="Residencia" ToRole="Incidentes" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Residencia_Usuario" FromRole="Residencia" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Rubro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cobro" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="PlanCobro" Relationship="Self.PlanCobroRubro" FromRole="Rubro" ToRole="PlanCobro" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
@@ -514,18 +539,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PlanCobroRubro_PlanCobro">
-          <End Role="PlanCobro" Type="Self.PlanCobro" Multiplicity="1" />
-          <End Role="PlanCobroRubro" Type="Self.PlanCobroRubro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlanCobro">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PlanCobroRubro">
-              <PropertyRef Name="IdPlan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Reservacion_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
@@ -562,6 +575,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="PlanCobroRubro">
+          <End Role="PlanCobro" Type="Self.PlanCobro" Multiplicity="*" />
+          <End Role="Rubro" Type="Self.Rubro" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="SistemaMontemarEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Area" EntityType="Self.Area" />
           <EntitySet Name="AsignacionPlan" EntityType="Self.AsignacionPlan" />
@@ -570,9 +587,9 @@
           <EntitySet Name="Informacion" EntityType="Self.Informacion" />
           <EntitySet Name="Pago" EntityType="Self.Pago" />
           <EntitySet Name="PlanCobro" EntityType="Self.PlanCobro" />
-          <EntitySet Name="PlanCobroRubro" EntityType="Self.PlanCobroRubro" />
           <EntitySet Name="Reservacion" EntityType="Self.Reservacion" />
           <EntitySet Name="Residencia" EntityType="Self.Residencia" />
+          <EntitySet Name="Rubro" EntityType="Self.Rubro" />
           <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Reservacion_Area" Association="Self.FK_Reservacion_Area">
@@ -599,10 +616,6 @@
             <End Role="Residencia" EntitySet="Residencia" />
             <End Role="Incidentes" EntitySet="Incidentes" />
           </AssociationSet>
-          <AssociationSet Name="FK_PlanCobroRubro_PlanCobro" Association="Self.FK_PlanCobroRubro_PlanCobro">
-            <End Role="PlanCobro" EntitySet="PlanCobro" />
-            <End Role="PlanCobroRubro" EntitySet="PlanCobroRubro" />
-          </AssociationSet>
           <AssociationSet Name="FK_Reservacion_Usuario" Association="Self.FK_Reservacion_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Reservacion" EntitySet="Reservacion" />
@@ -614,6 +627,10 @@
           <AssociationSet Name="FK_Usuario_TipoUsuario" Association="Self.FK_Usuario_TipoUsuario">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="PlanCobroRubro" Association="Self.PlanCobroRubro">
+            <End Role="PlanCobro" EntitySet="PlanCobro" />
+            <End Role="Rubro" EntitySet="Rubro" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -694,14 +711,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PlanCobroRubro">
-            <EntityTypeMapping TypeName="SistemaMontemarModel.PlanCobroRubro">
-              <MappingFragment StoreEntitySet="PlanCobroRubro">
-                <ScalarProperty Name="IdPlan" ColumnName="IdPlan" />
-                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Reservacion">
             <EntityTypeMapping TypeName="SistemaMontemarModel.Reservacion">
               <MappingFragment StoreEntitySet="Reservacion">
@@ -725,6 +734,15 @@
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rubro">
+            <EntityTypeMapping TypeName="SistemaMontemarModel.Rubro">
+              <MappingFragment StoreEntitySet="Rubro">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Cobro" ColumnName="Cobro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -752,6 +770,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="PlanCobroRubro" TypeName="SistemaMontemarModel.PlanCobroRubro" StoreEntitySet="PlanCobroRubro">
+            <EndProperty Name="PlanCobro">
+              <ScalarProperty Name="Id" ColumnName="IdPlan" />
+            </EndProperty>
+            <EndProperty Name="Rubro">
+              <ScalarProperty Name="Id" ColumnName="IdRubro" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

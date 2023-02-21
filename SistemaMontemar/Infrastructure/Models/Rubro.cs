@@ -12,13 +12,12 @@ namespace Infrastructure.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PlanCobro
+    public partial class Rubro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PlanCobro()
+        public Rubro()
         {
-            this.AsignacionPlan = new HashSet<AsignacionPlan>();
-            this.Rubro = new HashSet<Rubro>();
+            this.PlanCobro = new HashSet<PlanCobro>();
         }
     
         public int Id { get; set; }
@@ -26,8 +25,6 @@ namespace Infrastructure.Models
         public decimal Cobro { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AsignacionPlan> AsignacionPlan { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rubro> Rubro { get; set; }
+        public virtual ICollection<PlanCobro> PlanCobro { get; set; }
     }
 }
