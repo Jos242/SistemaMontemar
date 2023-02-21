@@ -94,10 +94,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdUsuario" Type="int" />
-          <Property Name="CantPersonas" Type="int" />
-          <Property Name="CantCarros" Type="int" />
-          <Property Name="FechaAlquiler" Type="date" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="CantPersonas" Type="int" Nullable="false" />
+          <Property Name="CantCarros" Type="int" Nullable="false" />
+          <Property Name="FechaAlquiler" Type="date" Nullable="false" />
           <Property Name="Tipo" Type="int" Nullable="false" />
           <Property Name="Imagen" Type="varbinary(max)" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
@@ -109,13 +109,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Cobro" Type="decimal" Precision="19" Scale="4" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TipoUsuario">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -241,7 +234,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Residencia_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Residencia" Type="Self.Residencia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
@@ -249,18 +242,6 @@
             </Principal>
             <Dependent Role="Residencia">
               <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Usuario_TipoUsuario">
-          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoUsuario">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="IdTipoUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -276,7 +257,6 @@
           <EntitySet Name="Reservacion" EntityType="Self.Reservacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Residencia" EntityType="Self.Residencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AsignacionPlan_PlanCobro" Association="Self.FK_AsignacionPlan_PlanCobro">
             <End Role="PlanCobro" EntitySet="PlanCobro" />
@@ -317,10 +297,6 @@
           <AssociationSet Name="FK_Residencia_Usuario" Association="Self.FK_Residencia_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Residencia" EntitySet="Residencia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Usuario_TipoUsuario" Association="Self.FK_Usuario_TipoUsuario">
-            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-            <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -421,10 +397,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUsuario" Type="Int32" />
-          <Property Name="CantPersonas" Type="Int32" />
-          <Property Name="CantCarros" Type="Int32" />
-          <Property Name="FechaAlquiler" Type="DateTime" Precision="0" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="CantPersonas" Type="Int32" Nullable="false" />
+          <Property Name="CantCarros" Type="Int32" Nullable="false" />
+          <Property Name="FechaAlquiler" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Tipo" Type="Int32" Nullable="false" />
           <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
@@ -439,14 +415,6 @@
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cobro" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="PlanCobro" Relationship="Self.PlanCobroRubro" FromRole="Rubro" ToRole="PlanCobro" />
-        </EntityType>
-        <EntityType Name="TipoUsuario">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_TipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -465,7 +433,6 @@
           <NavigationProperty Name="AsignacionPlan" Relationship="Self.FK_AsignacionPlan_Usuario" FromRole="Usuario" ToRole="AsignacionPlan" />
           <NavigationProperty Name="Reservacion" Relationship="Self.FK_Reservacion_Usuario" FromRole="Usuario" ToRole="Reservacion" />
           <NavigationProperty Name="Residencia" Relationship="Self.FK_Residencia_Usuario" FromRole="Usuario" ToRole="Residencia" />
-          <NavigationProperty Name="TipoUsuario" Relationship="Self.FK_Usuario_TipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
         </EntityType>
         <Association Name="FK_Reservacion_Area">
           <End Role="Area" Type="Self.Area" Multiplicity="1" />
@@ -552,7 +519,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Residencia_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Residencia" Type="Self.Residencia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
@@ -560,18 +527,6 @@
             </Principal>
             <Dependent Role="Residencia">
               <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Usuario_TipoUsuario">
-          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoUsuario">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="IdTipoUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -590,7 +545,6 @@
           <EntitySet Name="Reservacion" EntityType="Self.Reservacion" />
           <EntitySet Name="Residencia" EntityType="Self.Residencia" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" />
-          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Reservacion_Area" Association="Self.FK_Reservacion_Area">
             <End Role="Area" EntitySet="Area" />
@@ -623,10 +577,6 @@
           <AssociationSet Name="FK_Residencia_Usuario" Association="Self.FK_Residencia_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Residencia" EntitySet="Residencia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Usuario_TipoUsuario" Association="Self.FK_Usuario_TipoUsuario">
-            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-            <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
           <AssociationSet Name="PlanCobroRubro" Association="Self.PlanCobroRubro">
             <End Role="PlanCobro" EntitySet="PlanCobro" />
@@ -743,14 +693,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Cobro" ColumnName="Cobro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TipoUsuario">
-            <EntityTypeMapping TypeName="SistemaMontemarModel.TipoUsuario">
-              <MappingFragment StoreEntitySet="TipoUsuario">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -21,10 +21,10 @@ namespace Infrastructure.Models
         }
     
         public int Id { get; set; }
-        public Nullable<int> IdUsuario { get; set; }
-        public Nullable<int> CantPersonas { get; set; }
-        public Nullable<int> CantCarros { get; set; }
-        public Nullable<System.DateTime> FechaAlquiler { get; set; }
+        public int IdUsuario { get; set; }
+        public int CantPersonas { get; set; }
+        public int CantCarros { get; set; }
+        public System.DateTime FechaAlquiler { get; set; }
         public int Tipo { get; set; }
         public byte[] Imagen { get; set; }
         public int Estado { get; set; }

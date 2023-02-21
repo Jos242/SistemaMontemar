@@ -39,6 +39,5 @@ namespace Infrastructure.Models
         public virtual ICollection<Reservacion> Reservacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Residencia> Residencia { get; set; }
-        public virtual TipoUsuario TipoUsuario { get; set; }
     }
 }
