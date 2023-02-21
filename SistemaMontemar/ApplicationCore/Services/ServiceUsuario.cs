@@ -15,5 +15,11 @@ namespace ApplicationCore.Services
             IRepositoryUsuario repository = new RepositoryUsuario();
             return repository.GetUsuarioById(id);
         }
+
+        public IEnumerable<Usuario> GetUsuarios()
+        {
+            IRepositoryUsuario repository = new RepositoryUsuario();
+            return repository.GetUsuarios();
+        }
     }
 }

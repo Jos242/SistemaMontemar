@@ -13,9 +13,12 @@
                     <div class="card">
                         <a href="@Url.Action("Details", "Residencia", new { id = item.Id })" class="btn btn-primary">
                             <div class="card-body">
+                                <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(item.Imagen)"
+                                     alt="Libro @Html.DisplayFor(modelItem => item.Usuario.Nombre)"
+                                     class="img-fluid rounded-start" />
                                 <h4 class="card-title">N° Condominio: @Html.DisplayFor(modelItem => item.Id)</h4>
-                                <h5 class="card-subtitle mb-2 text-muted"> <i class="fa-solid fa-circle-user"></i>@(item.Tipo == 0 ? "Small" : item.Tipo == 1 ? "Average" : "Large")</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">@(item.Estado == 0 ? "In Construction" : item.Estado == 1 ? "Available" : "Inhabited")</h6>
+                                <h5 class="card-subtitle mb-2 text-muted"> <i class="fa-solid fa-circle-user"></i> @Html.DisplayFor(modelItem => item.Usuario.Nombre) @Html.DisplayFor(modelItem => item.Usuario.Apellido01)</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@(item.Estado == 0 ? "In Construction" : "Inhabited")</h6>
                                 <div class="card-body">
                                     @* Accion Orden *@
                                 </div>

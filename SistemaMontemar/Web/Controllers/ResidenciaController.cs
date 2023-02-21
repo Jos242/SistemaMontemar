@@ -1,4 +1,5 @@
-﻿using Infrastructure.Models;
+﻿using ApplicationCore.Services;
+using Infrastructure.Models;
 using Infrastructure.Repository;
 using System;
 using System.Collections;
@@ -65,7 +66,16 @@ namespace Web.Controllers
         // GET: Residencia/Create
         public ActionResult Create()
         {
+            ViewBag.idUsuario = listUsuarios();
+
             return View();
+        }
+
+        private SelectList listUsuarios(int idUsuario = 0)
+        {
+            IServiceUsuario _ServiceUsuario = new ServiceUsuario();
+            IEnumerable<Usuario> lista = _ServiceUsuario.GetUsuarios();
+            return new SelectList(lista, "Id", "Nombre " + "Apellido01", idUsuario);
         }
 
         // POST: Residencia/Create
