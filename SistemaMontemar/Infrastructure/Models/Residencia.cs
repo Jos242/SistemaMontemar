@@ -24,8 +24,10 @@ namespace Infrastructure.Models
         public Nullable<int> IdUsuario { get; set; }
         public Nullable<int> CantPersonas { get; set; }
         public Nullable<int> CantCarros { get; set; }
-        public System.DateTime FechaAlquiler { get; set; }
-        public Nullable<int> Estado { get; set; }
+        public Nullable<System.DateTime> FechaAlquiler { get; set; }
+        public int Tipo { get; set; }
+        public byte[] Imagen { get; set; }
+        public int Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Incidentes> Incidentes { get; set; }

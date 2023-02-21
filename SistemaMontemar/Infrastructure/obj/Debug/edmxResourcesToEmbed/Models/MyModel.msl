@@ -93,6 +93,8 @@
           <ScalarProperty Name="CantPersonas" ColumnName="CantPersonas" />
           <ScalarProperty Name="CantCarros" ColumnName="CantCarros" />
           <ScalarProperty Name="FechaAlquiler" ColumnName="FechaAlquiler" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
         </MappingFragment>
       </EntityTypeMapping>

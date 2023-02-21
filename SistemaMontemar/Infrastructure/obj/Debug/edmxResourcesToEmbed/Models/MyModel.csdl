@@ -96,8 +96,10 @@
     <Property Name="IdUsuario" Type="Int32" />
     <Property Name="CantPersonas" Type="Int32" />
     <Property Name="CantCarros" Type="Int32" />
-    <Property Name="FechaAlquiler" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Estado" Type="Int32" />
+    <Property Name="FechaAlquiler" Type="DateTime" Precision="0" />
+    <Property Name="Tipo" Type="Int32" Nullable="false" />
+    <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Incidentes" Relationship="Self.FK_Incidentes_Residencia" FromRole="Residencia" ToRole="Incidentes" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK_Residencia_Usuario" FromRole="Residencia" ToRole="Usuario" />
   </EntityType>

@@ -92,8 +92,10 @@
     <Property Name="IdUsuario" Type="int" />
     <Property Name="CantPersonas" Type="int" />
     <Property Name="CantCarros" Type="int" />
-    <Property Name="FechaAlquiler" Type="date" Nullable="false" />
-    <Property Name="Estado" Type="int" />
+    <Property Name="FechaAlquiler" Type="date" />
+    <Property Name="Tipo" Type="int" Nullable="false" />
+    <Property Name="Imagen" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Estado" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Rubro">
     <Key>
