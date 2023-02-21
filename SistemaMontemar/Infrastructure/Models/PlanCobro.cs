@@ -18,7 +18,7 @@ namespace Infrastructure.Models
         public PlanCobro()
         {
             this.AsignacionPlan = new HashSet<AsignacionPlan>();
-            this.Rubro = new HashSet<Rubro>();
+            this.PlanCobroRubro = new HashSet<PlanCobroRubro>();
         }
     
         public int Id { get; set; }
@@ -28,6 +28,6 @@ namespace Infrastructure.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AsignacionPlan> AsignacionPlan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rubro> Rubro { get; set; }
+        public virtual ICollection<PlanCobroRubro> PlanCobroRubro { get; set; }
     }
 }

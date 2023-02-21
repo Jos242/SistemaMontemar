@@ -12,19 +12,18 @@ namespace Infrastructure.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Rubro
+    public partial class TipoUsuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rubro()
+        public TipoUsuario()
         {
-            this.PlanCobro = new HashSet<PlanCobro>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
         public int Id { get; set; }
         public string Descripcion { get; set; }
-        public decimal Cobro { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlanCobro> PlanCobro { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }
