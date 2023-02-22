@@ -11,7 +11,9 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(AsignacionPlanMetaData))]
     public partial class AsignacionPlan
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,13 +24,13 @@ namespace Infrastructure.Models
         }
     
         public int Id { get; set; }
-        public int IdUsuario { get; set; }
+        public int IdResidencia { get; set; }
         public int IdPlan { get; set; }
         public int Mes { get; set; }
         public int Estado { get; set; }
     
         public virtual PlanCobro PlanCobro { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public virtual Residencia Residencia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Deuda> Deuda { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

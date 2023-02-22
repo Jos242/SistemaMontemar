@@ -22,11 +22,11 @@ namespace Infrastructure.Models
             this.AsignacionPlan = new HashSet<AsignacionPlan>();
             this.Rubro = new HashSet<Rubro>();
         }
-    
+
         public int Id { get; set; }
         public string Descripcion { get; set; }
         public decimal Cobro { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AsignacionPlan> AsignacionPlan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

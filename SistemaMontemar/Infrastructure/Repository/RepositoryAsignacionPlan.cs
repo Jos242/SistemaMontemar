@@ -10,21 +10,20 @@ using Web.Utils;
 
 namespace Infrastructure.Repository
 {
-    public class RepositoryDeuda : IRepositoryDeuda
+    public class RepositoryAsignacionPlan : IRepositoryAsignacionPlan
     {
-        public Deuda GetDeudaById(int id)
+        public AsignacionPlan GetAsignacionById(int id)
         {
-            Deuda oDeuda = null;
+            AsignacionPlan oAsignacionPlan = null;
             try
             {
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    oDeuda = ctx.Deuda.Where(d => d.Id == id).Include("AsignacionPago").FirstOrDefault();
+                    oAsignacionPlan = ctx.AsignacionPlan.Where(a => a.Id == id).Include("Residencia.Usuario").Include("PlanCobro").FirstOrDefault();
                 }
-
-                return oDeuda;
+                return oAsignacionPlan;
             }
             catch (DbUpdateException dbEx)
             {
@@ -40,19 +39,20 @@ namespace Infrastructure.Repository
             }
         }
 
-        public IEnumerable<Deuda> GetDeudas()
+        public IEnumerable<AsignacionPlan> GetEstadoCuentas()
         {
-            IEnumerable<Deuda> lista = null;
+            IEnumerable<AsignacionPlan> lista = null;
             try
             {
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    lista = ctx.Deuda.ToList();
+                    lista = ctx.AsignacionPlan.Include("Residencia.Usuario").ToList();
                 }
                 return lista;
             }
+
             catch (DbUpdateException dbEx)
             {
                 string mensaje = "";

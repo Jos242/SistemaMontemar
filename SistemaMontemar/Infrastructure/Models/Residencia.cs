@@ -19,16 +19,24 @@ namespace Infrastructure.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Residencia()
         {
+            this.AsignacionPlan = new HashSet<AsignacionPlan>();
             this.Incidentes = new HashSet<Incidentes>();
         }
-    
+
         public int Id { get; set; }
         public int IdUsuario { get; set; }
         public int CantPersonas { get; set; }
         public int CantCarros { get; set; }
-        public System.DateTime FechaAlquiler { get; set; }
+        public DateTime FechaAlquiler { get; set; }
+        public string Fecha
+        {
+            get
+            {
+                return FechaAlquiler.ToString("dd/MM/yyyy");
+            }
+            set { }
+        }
         public int Tipo { get; set; }
-
         public Dictionary<int, string> Tipos
         {
             get
@@ -39,7 +47,6 @@ namespace Infrastructure.Models
         }
         public byte[] Imagen { get; set; }
         public int Estado { get; set; }
-
         public Dictionary<int, string> Estados
         {
             get
@@ -49,6 +56,8 @@ namespace Infrastructure.Models
             set { }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AsignacionPlan> AsignacionPlan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Incidentes> Incidentes { get; set; }
         public virtual Usuario Usuario { get; set; }

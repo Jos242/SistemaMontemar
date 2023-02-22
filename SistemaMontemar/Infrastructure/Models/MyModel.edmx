@@ -20,7 +20,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdResidencia" Type="int" Nullable="false" />
           <Property Name="IdPlan" Type="int" Nullable="false" />
           <Property Name="Mes" Type="int" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
@@ -144,15 +144,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AsignacionPlan_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+        <Association Name="FK_AsignacionPlan_Residencia">
+          <End Role="Residencia" Type="Self.Residencia" Multiplicity="1" />
           <End Role="AsignacionPlan" Type="Self.AsignacionPlan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Residencia">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AsignacionPlan">
-              <PropertyRef Name="IdUsuario" />
+              <PropertyRef Name="IdResidencia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -282,8 +282,8 @@
             <End Role="PlanCobro" EntitySet="PlanCobro" />
             <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />
           </AssociationSet>
-          <AssociationSet Name="FK_AsignacionPlan_Usuario" Association="Self.FK_AsignacionPlan_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
+          <AssociationSet Name="FK_AsignacionPlan_Residencia" Association="Self.FK_AsignacionPlan_Residencia">
+            <End Role="Residencia" EntitySet="Residencia" />
             <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />
           </AssociationSet>
           <AssociationSet Name="FK_Deuda_AsignacionPlan" Association="Self.FK_Deuda_AsignacionPlan">
@@ -344,12 +344,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdResidencia" Type="Int32" Nullable="false" />
           <Property Name="IdPlan" Type="Int32" Nullable="false" />
           <Property Name="Mes" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PlanCobro" Relationship="Self.FK_AsignacionPlan_PlanCobro" FromRole="AsignacionPlan" ToRole="PlanCobro" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK_AsignacionPlan_Usuario" FromRole="AsignacionPlan" ToRole="Usuario" />
+          <NavigationProperty Name="Residencia" Relationship="Self.FK_AsignacionPlan_Residencia" FromRole="AsignacionPlan" ToRole="Residencia" />
           <NavigationProperty Name="Deuda" Relationship="Self.FK_Deuda_AsignacionPlan" FromRole="AsignacionPlan" ToRole="Deuda" />
           <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_AsignacionPlan" FromRole="AsignacionPlan" ToRole="Pago" />
         </EntityType>
@@ -428,6 +428,7 @@
           <Property Name="Tipo" Type="Int32" Nullable="false" />
           <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AsignacionPlan" Relationship="Self.FK_AsignacionPlan_Residencia" FromRole="Residencia" ToRole="AsignacionPlan" />
           <NavigationProperty Name="Incidentes" Relationship="Self.FK_Incidentes_Residencia" FromRole="Residencia" ToRole="Incidentes" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Residencia_Usuario" FromRole="Residencia" ToRole="Usuario" />
         </EntityType>
@@ -462,7 +463,6 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DiaPagar" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AsignacionPlan" Relationship="Self.FK_AsignacionPlan_Usuario" FromRole="Usuario" ToRole="AsignacionPlan" />
           <NavigationProperty Name="Reservacion" Relationship="Self.FK_Reservacion_Usuario" FromRole="Usuario" ToRole="Reservacion" />
           <NavigationProperty Name="Residencia" Relationship="Self.FK_Residencia_Usuario" FromRole="Usuario" ToRole="Residencia" />
           <NavigationProperty Name="TipoUsuario" Relationship="Self.FK_Usuario_TipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
@@ -491,15 +491,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AsignacionPlan_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+        <Association Name="FK_AsignacionPlan_Residencia">
+          <End Role="Residencia" Type="Self.Residencia" Multiplicity="1" />
           <End Role="AsignacionPlan" Type="Self.AsignacionPlan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Residencia">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AsignacionPlan">
-              <PropertyRef Name="IdUsuario" />
+              <PropertyRef Name="IdResidencia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -600,8 +600,8 @@
             <End Role="PlanCobro" EntitySet="PlanCobro" />
             <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />
           </AssociationSet>
-          <AssociationSet Name="FK_AsignacionPlan_Usuario" Association="Self.FK_AsignacionPlan_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
+          <AssociationSet Name="FK_AsignacionPlan_Residencia" Association="Self.FK_AsignacionPlan_Residencia">
+            <End Role="Residencia" EntitySet="Residencia" />
             <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />
           </AssociationSet>
           <AssociationSet Name="FK_Deuda_AsignacionPlan" Association="Self.FK_Deuda_AsignacionPlan">
@@ -654,7 +654,7 @@
             <EntityTypeMapping TypeName="SistemaMontemarModel.AsignacionPlan">
               <MappingFragment StoreEntitySet="AsignacionPlan">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdResidencia" ColumnName="IdResidencia" />
                 <ScalarProperty Name="IdPlan" ColumnName="IdPlan" />
                 <ScalarProperty Name="Mes" ColumnName="Mes" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />

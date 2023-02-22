@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Infrastructure.Models.AsignacionPlan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th style="font-size: 18px;">
+            @Html.DisplayNameFor(model => model.IdResidencia)
+        </th>
+        <th style="font-size: 18px;">
+            @Html.DisplayNameFor(model => model.Residencia.Usuario)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="font-size: 18px;">
+                @Html.DisplayFor(modelItem => item.IdResidencia)
+            </td>
+            <td style="font-size: 18px;">
+                @Html.DisplayFor(modelItem => item.Residencia.Usuario.FullName)
+            </td>
+            <td style="font-size: 18px;">
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

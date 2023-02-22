@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,12 @@ namespace Infrastructure.Repository
             Pago oPago = null;
             try
             {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+
+                    oPago = ctx.Pago.Where(p => p.Id == id).Include("AsignacionPago").FirstOrDefault();
+                }
 
                 return oPago;
             }

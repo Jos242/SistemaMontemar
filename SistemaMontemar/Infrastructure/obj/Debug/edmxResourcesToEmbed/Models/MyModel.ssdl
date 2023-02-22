@@ -15,7 +15,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdResidencia" Type="int" Nullable="false" />
     <Property Name="IdPlan" Type="int" Nullable="false" />
     <Property Name="Mes" Type="int" Nullable="false" />
     <Property Name="Estado" Type="int" Nullable="false" />
@@ -139,15 +139,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_AsignacionPlan_Usuario">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+  <Association Name="FK_AsignacionPlan_Residencia">
+    <End Role="Residencia" Type="Self.Residencia" Multiplicity="1" />
     <End Role="AsignacionPlan" Type="Self.AsignacionPlan" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Usuario">
+      <Principal Role="Residencia">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="AsignacionPlan">
-        <PropertyRef Name="IdUsuario" />
+        <PropertyRef Name="IdResidencia" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -277,8 +277,8 @@
       <End Role="PlanCobro" EntitySet="PlanCobro" />
       <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />
     </AssociationSet>
-    <AssociationSet Name="FK_AsignacionPlan_Usuario" Association="Self.FK_AsignacionPlan_Usuario">
-      <End Role="Usuario" EntitySet="Usuario" />
+    <AssociationSet Name="FK_AsignacionPlan_Residencia" Association="Self.FK_AsignacionPlan_Residencia">
+      <End Role="Residencia" EntitySet="Residencia" />
       <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />
     </AssociationSet>
     <AssociationSet Name="FK_Deuda_AsignacionPlan" Association="Self.FK_Deuda_AsignacionPlan">

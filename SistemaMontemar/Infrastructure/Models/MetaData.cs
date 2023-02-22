@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Infrastructure.Models
 {
     public partial class ResidenciaMetaData
-    { 
+    {
         [Display(Name = "House N°")]
         public int Id { get; set; }
 
@@ -57,7 +57,7 @@ namespace Infrastructure.Models
         public virtual Usuario Usuario { get; set; }
     }
 
-    public partial class PlanCobroMetaData 
+    public partial class PlanCobroMetaData
     {
         public int Id { get; set; }
 
@@ -76,7 +76,8 @@ namespace Infrastructure.Models
         public virtual ICollection<Rubro> Rubro { get; set; }
     }
 
-    public partial class RubroMetaData {
+    public partial class RubroMetaData
+    {
         public int Id { get; set; }
 
         [Display(Name = "Description")]
@@ -87,5 +88,27 @@ namespace Infrastructure.Models
         public decimal Cobro { get; set; }
         public virtual ICollection<PlanCobro> PlanCobro { get; set; }
 
+    }
+
+    public partial class AsignacionPlanMetaData
+    {
+        public int Id { get; set; }
+
+        [Display(Name = "House N°")]
+        public int IdResidencia { get; set; }
+
+        public int IdPlan { get; set; }
+
+        public int Mes { get; set; }
+
+        public int Estado { get; set; }
+
+        public virtual PlanCobro PlanCobro { get; set; }
+
+        public virtual Residencia Residencia { get; set; }
+
+        public virtual ICollection<Deuda> Deuda { get; set; }
+
+        public virtual ICollection<Pago> Pago { get; set; }
     }
 }
