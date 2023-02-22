@@ -1,7 +1,6 @@
 ﻿using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -10,23 +9,20 @@ using Web.Utils;
 
 namespace Infrastructure.Repository
 {
-    public class RepositoryPlanCobro : IRepositoryPlanCobro
+    public class RepositoryRubro : IRepositoryRubro
     {
-        public PlanCobro GetPlanCobroById(int id)
+        public Rubro GetRubroById(int id)
         {
-            PlanCobro oPlanCobro = null;
+            Rubro oRubro = null;
             try
             {
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
-                    //Obtener libro por ID incluyendo el autor y todas sus categorías
-                    oPlanCobro = ctx.PlanCobro.
-                        Where(l => l.Id == id).
-                        Include("Rubro").
-                        FirstOrDefault();
+
+                    oRubro = ctx.Rubro.Where(u => u.Id == id).FirstOrDefault();
                 }
-                return oPlanCobro;
+                return oRubro;
             }
             catch (DbUpdateException dbEx)
             {
@@ -42,16 +38,16 @@ namespace Infrastructure.Repository
             }
         }
 
-        public IEnumerable<PlanCobro> GetPlanCobros()
+        public IEnumerable<Rubro> GetRubros()
         {
-            IEnumerable<PlanCobro> lista = null;
+            IEnumerable<Rubro> lista = null;
             try
             {
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    lista = ctx.PlanCobro.ToList();
+                    lista = ctx.Rubro.ToList();
                 }
                 return lista;
             }

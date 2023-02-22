@@ -4,17 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Payment Plans</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
+        <th style="font-size: 18px;">
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
-        <th>
+        <th style="font-size: 18px;">
             @Html.DisplayNameFor(model => model.Cobro)
         </th>
         <th></th>
@@ -22,16 +19,14 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td style="font-size: 18px;">
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
-        <td>
+        <td style="font-size: 18px;">
             @Html.DisplayFor(modelItem => item.Cobro)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        <td style="font-size: 18px;">
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) 
         </td>
     </tr>
 }

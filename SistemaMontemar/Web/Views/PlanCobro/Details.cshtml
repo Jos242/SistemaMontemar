@@ -7,28 +7,46 @@
 <h2>Details</h2>
 
 <div>
-    <h4>PlanCobro</h4>
+    <h4>Payment Plans</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+    <dl class="dl-horizontal" >
+        <dt style="font-size: 18px;">
+            <i class="fa-solid fa-circle-info"></i>
+            @Html.DisplayNameFor(model => model.Descripcion):
         </dt>
 
-        <dd>
+        <dd style="font-size: 18px;">
             @Html.DisplayFor(model => model.Descripcion)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cobro)
+        <dt style="font-size: 18px;">
+            <i class="fa-solid fa-money-bill"></i>
+            @Html.DisplayNameFor(model => model.Cobro):
         </dt>
 
-        <dd>
+        <dd style="font-size: 18px;">
             @Html.DisplayFor(model => model.Cobro)
         </dd>
+        <dt style="font-size: 18px;">
+            <i class="fa-solid fa-circle-check"></i>
+            <b>@Html.DisplayNameFor(model => model.Rubro):</b>
+        </dt>
+        <dd style="font-size: 18px;">
+            <ul style="font-size: 18px;">
+                @foreach (var r in Model.Rubro)
+                {
+                    <li>
+                        <b>@r.Descripcion</b>  :
+                        @Html.DisplayFor(modelItem => r.Cobro)
+                    </li>
+                }
 
+            </ul>
+
+        </dd>
     </dl>
+
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
