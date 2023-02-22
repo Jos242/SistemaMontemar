@@ -48,7 +48,7 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    lista = ctx.AsignacionPlan.Include("Residencia.Usuario").ToList();
+                    lista = ctx.AsignacionPlan.GroupBy(h => h.IdResidencia).Select(g => g.FirstOrDefault()).Include(h => h.Residencia.Usuario).ToList();
                 }
                 return lista;
             }

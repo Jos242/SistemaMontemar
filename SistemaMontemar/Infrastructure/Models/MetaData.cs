@@ -111,4 +111,58 @@ namespace Infrastructure.Models
 
         public virtual ICollection<Pago> Pago { get; set; }
     }
+
+    public partial class DeudaMetaData
+    {
+        public int Id { get; set; }
+        public int IdAsignacion { get; set; }
+
+        [Display(Name = "Debt Date")]
+        public System.DateTime FechaPago { get; set; }
+        public string Fecha
+        {
+            get
+            {
+                return FechaPago.ToString("dd/MM/yyyy");
+            }
+            set { }
+        }
+
+        [Display(Name = "Status")]
+        public int Estado { get; set; }
+        public Dictionary<int, string> Estados
+        {
+            get
+            {
+                return new Dictionary<int, string> { { 0, "Not payed" }, { 1, "Payed" } };
+            }
+            set { }
+        }
+
+        public virtual AsignacionPlan AsignacionPlan { get; set; }
+    }
+
+    public partial class PagoMetaData
+    {
+        public int Id { get; set; }
+        public int IdAsignacion { get; set; }
+
+        [Display(Name = "Payment Date")]
+        public System.DateTime FechaPago { get; set; }
+
+        [Display(Name = "Status")]
+        public string Fecha
+        {
+            get
+            {
+                return FechaPago.ToString("dd/MM/yyyy");
+            }
+            set { }
+        }
+
+        [Display(Name = "Total")]
+        public decimal Total { get; set; }
+
+        public virtual AsignacionPlan AsignacionPlan { get; set; }
+    }
 }

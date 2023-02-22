@@ -7,11 +7,11 @@
 <h2>Details</h2>
 
 <div>
-    <h4>AsignacionPlan</h4>
+    <h4>Account Status</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt style="font-size: 18px;">
-            @Html.DisplayNameFor(model => model.IdResidencia)
+            <i class="fa-solid fa-house"></i> @Html.DisplayNameFor(model => model.IdResidencia)
         </dt>
 
         <dd style="font-size: 18px;">
@@ -19,7 +19,7 @@
         </dd>
 
         <dt style="font-size: 18px;">
-            @Html.DisplayNameFor(model => model.Residencia.Usuario)
+            <i class="fa-solid fa-user"></i> @Html.DisplayNameFor(model => model.Residencia.Usuario)
         </dt>
 
         <dd style="font-size: 18px;">
@@ -27,7 +27,7 @@
         </dd>
 
         <dt style="font-size: 18px;">
-            Pagos
+            <i class="fa-solid fa-money-bill"></i> Payments
         </dt>
 
         <dd style="font-size: 18px;">
@@ -48,7 +48,7 @@
         </dd>
 
         <dt style="font-size: 18px;">
-            Deudas
+            <i class="fa-solid fa-hand-holding-dollar"></i>  Debts
         </dt>
 
         <dd style="font-size: 18px;">
@@ -60,7 +60,7 @@
                         @Html.DisplayFor(modelItem => item.Fecha)
                          | 
                         <b>@Html.DisplayNameFor(modelItem => item.Estado):</b>
-                        @Html.DisplayFor(modelItem => item.Estado)
+                        @Html.DisplayFor(modelItem => item.Estados[item.Estado])
                     </li>
                 }
 
@@ -68,25 +68,8 @@
 
         </dd>
 
-        <dt style="font-size: 18px;">
-            @Html.DisplayNameFor(model => model.Mes)
-        </dt>
-
-        <dd style="font-size: 18px;">
-            @Html.DisplayFor(model => model.Mes)
-        </dd>
-
-        <dt style="font-size: 18px;">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-
-        <dd style="font-size: 18px;">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Back to List", "Index")</button>
 </p>

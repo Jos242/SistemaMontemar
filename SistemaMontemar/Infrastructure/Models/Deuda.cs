@@ -11,7 +11,9 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(DeudaMetaData))]
     public partial class Deuda
     {
         public int Id { get; set; }
@@ -26,7 +28,15 @@ namespace Infrastructure.Models
             set { }
         }
         public int Estado { get; set; }
-    
+        public Dictionary<int, string> Estados
+        {
+            get
+            {
+                return new Dictionary<int, string> { { 0, "Not payed" }, { 1, "Payed" } };
+            }
+            set { }
+        }
+
         public virtual AsignacionPlan AsignacionPlan { get; set; }
     }
 }

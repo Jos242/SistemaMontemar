@@ -29,7 +29,7 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos!" + ex.Message;
+                TempData["Message"] = "Data error! " + ex.Message;
                 return RedirectToAction("Default", "Error");
             }
         }
@@ -49,7 +49,7 @@ namespace Web.Controllers
                 planCobro = _ServicePlanCobro.GetPlanCobroById(Convert.ToInt32(id));
                 if (planCobro == null)
                 {
-                    TempData["Message"] = "No existe la planCobro solicitada";
+                    TempData["Message"] = "No Payment plan found";
                     TempData["Redirect"] = "PlanCobro";
                     TempData["Redirect-Action"] = "Index";
                     // Redireccion a la captura del Error
@@ -60,7 +60,7 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos!" + ex.Message;
+                TempData["Message"] = "Data error! " + ex.Message;
                 return RedirectToAction("Default", "Error");
             }
         }

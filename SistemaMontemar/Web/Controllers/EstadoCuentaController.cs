@@ -26,7 +26,7 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos!" + ex.Message;
+                TempData["Message"] = "Data error! " + ex.Message;
                 return RedirectToAction("Default", "Error");
             }
         }
@@ -48,8 +48,8 @@ namespace Web.Controllers
                 asignacion = _ServiceAsignacionPlan.GetAsignacionById(Convert.ToInt32(id));
                 if (asignacion == null)
                 {
-                    TempData["Message"] = "No existe la AsignacionPlan solicitada";
-                    TempData["Redirect"] = "AsignacionPlan";
+                    TempData["Message"] = "No Account Status found";
+                    TempData["Redirect"] = "EstadoCuenta";
                     TempData["Redirect-Action"] = "Index";
                     // Redireccion a la captura del Error
                     return RedirectToAction("Default", "Error");
@@ -63,9 +63,9 @@ namespace Web.Controllers
             {
                 // Salvar el error en un archivo 
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
-                TempData["Redirect"] = "Libro";
-                TempData["Redirect-Action"] = "IndexAdmin";
+                TempData["Message"] = "Data error! " + ex.Message;
+                TempData["Redirect"] = "EstadoCuenta";
+                TempData["Redirect-Action"] = "Index";
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
             }

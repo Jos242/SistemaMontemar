@@ -28,7 +28,7 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos!" + ex.Message;
+                TempData["Message"] = "Data error! " + ex.Message;
                 return RedirectToAction("Default", "Error");
             }
         }
@@ -48,7 +48,7 @@ namespace Web.Controllers
                 residencia = _ServiceResidencia.GetResidenciaById(Convert.ToInt32(id));
                 if (residencia == null)
                 {
-                    TempData["Message"] = "No existe la residencia solicitada";
+                    TempData["Message"] = "No Residence found";
                     TempData["Redirect"] = "Residencia";
                     TempData["Redirect-Action"] = "Index";
                     // Redireccion a la captura del Error
@@ -59,7 +59,7 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos!" + ex.Message;
+                TempData["Message"] = "Data error! " + ex.Message;
                 return RedirectToAction("Default", "Error");
             }
         }
@@ -122,9 +122,9 @@ namespace Web.Controllers
             {
                 // Salvar el error en un archivo 
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
-                TempData["Redirect"] = "Libro";
-                TempData["Redirect-Action"] = "IndexAdmin";
+                TempData["Message"] = "Data error! " + ex.Message;
+                TempData["Redirect"] = "Residencia";
+                TempData["Redirect-Action"] = "Index";
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
             }

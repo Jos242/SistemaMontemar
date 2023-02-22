@@ -143,6 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EstadoCuentaController.cs" />
     <Compile Include="Controllers\PlanCobroController.cs" />
     <Compile Include="Controllers\ResidenciaController.cs" />
@@ -234,7 +235,7 @@
     <Content Include="bin\Web.dll" />
     <Content Include="bin\Web.pdb" />
     <Content Include="bin\WebGrease.dll" />
-    <Content Include="Content\bootstrap-tema.min.css" />
+    <Content Include="Content\bootstrap-flatly.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-Vapor.min.css" />
