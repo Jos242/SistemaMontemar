@@ -4,6 +4,7 @@ using Infrastructure.Repository;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -75,23 +76,7 @@ namespace Web.Controllers
         {
             IServiceUsuario _ServiceUsuario = new ServiceUsuario();
             IEnumerable<Usuario> lista = _ServiceUsuario.GetUsuarios();
-            return new SelectList(lista, "Id", "Nombre " + "Apellido01", idUsuario);
-        }
-
-        // POST: Residencia/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return new SelectList(lista, "Id", "FullName", idUsuario);
         }
 
         // GET: Residencia/Edit/5
@@ -102,17 +87,46 @@ namespace Web.Controllers
 
         // POST: Residencia/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Save(Residencia residencia, HttpPostedFileBase ImageFile)
         {
+            MemoryStream target = new MemoryStream();
+
+            IServiceResidencia _ServiceResidencia = new ServiceResidencia();
+
             try
             {
-                // TODO: Add update logic here
+                if (residencia.Imagen == null)
+                {
+                    if (ImageFile != null)
+                    {
+                        ImageFile.InputStream.CopyTo(target);
+                        residencia.Imagen = target.ToArray();
+                        ModelState.Remove("Imagen");
+                    }
+                }
+                if (ModelState.IsValid)
+                {
+                    Residencia oResidencia = _ServiceResidencia.Save(residencia);
+                }
+                else
+                {
+                    //Cargar la vista crear o actualizar
 
+                    ViewBag.idAutor = listUsuarios(residencia.IdUsuario);
+                    //Lógica para cagar vista correpondiente
+                    return View("Create", residencia);
+                }
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
             }
         }
 

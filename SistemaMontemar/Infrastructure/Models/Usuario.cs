@@ -32,6 +32,15 @@ namespace Infrastructure.Models
         public string Password { get; set; }
         public int DiaPagar { get; set; }
         public int Estado { get; set; }
+
+        public string FullName 
+        {
+            get
+            {
+                return Nombre + " " + Apellido01;
+            }
+            set { } 
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AsignacionPlan> AsignacionPlan { get; set; }

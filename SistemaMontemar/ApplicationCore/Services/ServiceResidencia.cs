@@ -20,5 +20,11 @@ namespace Infrastructure.Repository
             IRepositoryResidencia repository = new RepositoryResidencia();
             return repository.GetResidencias();
         }
+
+        public Residencia Save(Residencia residencia)
+        {
+            IRepositoryResidencia repository = new RepositoryResidencia();
+            return repository.Save(residencia);
+        }
     }
 }

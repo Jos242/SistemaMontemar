@@ -9,54 +9,44 @@
 <div>
     <h4>Residencia</h4>
     <hr />
-    <dl class="dl-horizontal">
 
-        <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(Model.Imagen)"
-             alt="Libro @Html.DisplayFor(model => model.Usuario.Nombre)"
-             class="img-fluid rounded-start" />
-        <dt>
-            @Html.DisplayNameFor(model => model.IdUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdUsuario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CantPersonas)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CantPersonas)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CantCarros)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CantCarros)
-        </dd>
-        w
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaAlquiler)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaAlquiler)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-
-    </dl>
+    <div class="row row-cols-1 g-3">
+        <div class="col">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(Model.Imagen)"
+                             alt="Libro @Html.DisplayFor(model => model.Usuario.Nombre)"
+                             class="img-fluid rounded-start" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <span class="card-title" style="font-size: 35px; font-weight: 500; line-height: 1.5"><b>@Html.DisplayNameFor(model => model.Id) @Html.DisplayFor(model => model.Id)</b></span>
+                            <p class="card-text" style="font-size: 18px;">
+                                <i class="fa-solid fa-circle-user"></i> <b>@Html.DisplayNameFor(model => model.Usuario):</b> @Html.DisplayFor(model => model.Usuario.FullName)
+                            </p>
+                            <p class="card-text" style="font-size: 18px;">
+                                <i class="fa-solid fa-person"></i> <b>@Html.DisplayNameFor(model => model.CantPersonas):</b> @Html.DisplayFor(model => model.CantPersonas)
+                            </p>
+                            <p class="card-text" style="font-size: 18px;">
+                                <i class="fa-solid fa-car"></i> <b>@Html.DisplayNameFor(model => model.CantCarros):</b> @Html.DisplayFor(model => model.CantCarros)
+                            </p>
+                            <p class="card-text" style="font-size: 18px;">
+                                <i class="fa-solid fa-calendar"></i> <b>@Html.DisplayNameFor(model => model.FechaAlquiler):</b> @Html.DisplayFor(model => model.FechaAlquiler)
+                            </p>
+                            <p class="card-text" style="font-size: 18px;">
+                                <i class="fa-solid fa-house"></i> <b>@Html.DisplayNameFor(model => model.Tipo):</b> @Html.DisplayFor(model => model.Tipos[Model.Tipo])
+                            </p>
+                            <p class="card-text" style="font-size: 18px;"   >
+                                <i class="fa-solid fa-circle-info"></i> <b>@Html.DisplayNameFor(model => model.Estado):</b> @Html.DisplayFor(model => model.Estados[Model.Estado])
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

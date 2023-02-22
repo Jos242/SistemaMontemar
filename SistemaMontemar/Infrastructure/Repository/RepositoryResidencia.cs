@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    oResidencia = ctx.Residencia.Where(r => r.Id == id).FirstOrDefault();
+                    oResidencia = ctx.Residencia.Where(r => r.Id == id).Include("Usuario").FirstOrDefault();
                 }
                 return oResidencia;
             }
@@ -63,6 +64,35 @@ namespace Infrastructure.Repository
                 Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
                 throw;
             }
+        }
+
+        public Residencia Save(Residencia residencia)
+        {
+            int retorno = 0;
+            Residencia oResidencia = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oResidencia = GetResidenciaById(residencia.Id);
+
+                if (oResidencia == null)
+                {
+                    ctx.Residencia.Add(residencia);
+
+                    retorno = ctx.SaveChanges();
+                }
+                else
+                {
+                    ctx.Residencia.Add(residencia);
+                    ctx.Entry(residencia).State = EntityState.Modified;
+                    retorno = ctx.SaveChanges();
+                }
+            }
+            if (retorno >= 0)
+                oResidencia = GetResidenciaById(residencia.Id);
+
+            return oResidencia;
         }
     }
 }

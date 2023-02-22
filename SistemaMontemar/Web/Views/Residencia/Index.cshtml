@@ -16,9 +16,9 @@
                                 <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(item.Imagen)"
                                      alt="Libro @Html.DisplayFor(modelItem => item.Usuario.Nombre)"
                                      class="img-fluid rounded-start" />
-                                <h4 class="card-title">N° Condominio: @Html.DisplayFor(modelItem => item.Id)</h4>
+                                <h4 class="card-title">@Html.DisplayNameFor(model => model.Id) @Html.DisplayFor(modelItem => item.Id)</h4>
                                 <h5 class="card-subtitle mb-2 text-muted"> <i class="fa-solid fa-circle-user"></i> @Html.DisplayFor(modelItem => item.Usuario.Nombre) @Html.DisplayFor(modelItem => item.Usuario.Apellido01)</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">@(item.Estado == 0 ? "In Construction" : "Inhabited")</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Estados[item.Estado])</h6>
                                 <div class="card-body">
                                     @* Accion Orden *@
                                 </div>

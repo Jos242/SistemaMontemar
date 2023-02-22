@@ -11,7 +11,9 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(ResidenciaMetaData))]
     public partial class Residencia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,9 +28,27 @@ namespace Infrastructure.Models
         public int CantCarros { get; set; }
         public System.DateTime FechaAlquiler { get; set; }
         public int Tipo { get; set; }
+
+        public Dictionary<int, string> Tipos
+        {
+            get
+            {
+                return new Dictionary<int, string> { { 0, "Small" }, { 1, "Medium" }, { 2, "Large" } };
+            }
+            set { }
+        }
         public byte[] Imagen { get; set; }
         public int Estado { get; set; }
-    
+
+        public Dictionary<int, string> Estados
+        {
+            get
+            {
+                return new Dictionary<int, string> { { 0, "In Construction" }, { 1, "Inhabited" } };
+            }
+            set { }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Incidentes> Incidentes { get; set; }
         public virtual Usuario Usuario { get; set; }
