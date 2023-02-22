@@ -56,4 +56,36 @@ namespace Infrastructure.Models
         [Display(Name = "Owner")]
         public virtual Usuario Usuario { get; set; }
     }
+
+    public partial class PlanCobroMetaData 
+    {
+        public int Id { get; set; }
+
+        [Display(Name = "Description")]
+        public string Descripcion { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:C}")]
+
+        [Display(Name = "Total Amount")]
+        public decimal Cobro { get; set; }
+
+
+        public virtual ICollection<AsignacionPlan> AsignacionPlan { get; set; }
+
+        [Display(Name = "Payments")]
+        public virtual ICollection<Rubro> Rubro { get; set; }
+    }
+
+    public partial class RubroMetaData {
+        public int Id { get; set; }
+
+        [Display(Name = "Description")]
+        public string Descripcion { get; set; }
+
+        [Display(Name = "Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public decimal Cobro { get; set; }
+        public virtual ICollection<PlanCobro> PlanCobro { get; set; }
+
+    }
 }
