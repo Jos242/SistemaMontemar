@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infrastructure.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace Infrastructure.Repository
 {
     public interface IRepositoryDeuda
     {
+        IEnumerable<Deuda> GetDeudas();
+        Deuda GetDeudaById(int id);
     }
 }

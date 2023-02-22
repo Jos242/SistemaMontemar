@@ -110,10 +110,14 @@
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IRepositoryDeuda.cs" />
+    <Compile Include="Repository\IRepositoryPago.cs" />
     <Compile Include="Repository\IRepositoryPlanCobro.cs" />
     <Compile Include="Repository\IRepositoryRubro.cs" />
     <Compile Include="Repository\IRepositoryUsuario.cs" />
     <Compile Include="Repository\IRepositoryResidencia.cs" />
+    <Compile Include="Repository\RepositoryDeuda.cs" />
+    <Compile Include="Repository\RepositoryPago.cs" />
     <Compile Include="Repository\RepositoryPlanCobro.cs" />
     <Compile Include="Repository\RepositoryRubro.cs" />
     <Compile Include="Repository\RepositoryUsuario.cs" />
