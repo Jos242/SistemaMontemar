@@ -27,11 +27,45 @@
         </dd>
 
         <dt style="font-size: 18px;">
-            @Html.DisplayNameFor(model => model.IdPlan)
+            Pagos
         </dt>
 
         <dd style="font-size: 18px;">
-            @Html.DisplayFor(model => model.IdPlan)
+            <ul style="font-size: 18px;">
+                @foreach (Infrastructure.Models.Pago item in ViewBag.Pagos)
+                {
+                    <li>
+                        <b>@Html.DisplayNameFor(modelItem => item.FechaPago):</b>
+                        @Html.DisplayFor(modelItem => item.Fecha) 
+                         |
+                        <b>@Html.DisplayNameFor(modelItem => item.Total):</b>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </li>
+                }
+
+            </ul>
+
+        </dd>
+
+        <dt style="font-size: 18px;">
+            Deudas
+        </dt>
+
+        <dd style="font-size: 18px;">
+            <ul style="font-size: 18px;">
+                @foreach (Infrastructure.Models.Deuda item in ViewBag.Deudas)
+                {
+                    <li>
+                        <b>@Html.DisplayNameFor(modelItem => item.FechaPago):</b>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                         | 
+                        <b>@Html.DisplayNameFor(modelItem => item.Estado):</b>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </li>
+                }
+
+            </ul>
+
         </dd>
 
         <dt style="font-size: 18px;">

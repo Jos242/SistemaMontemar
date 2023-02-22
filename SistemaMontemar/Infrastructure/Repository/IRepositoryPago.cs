@@ -10,6 +10,6 @@ namespace Infrastructure.Repository
     public interface IRepositoryPago
     {
         IEnumerable<Pago> GetPagos();
-        Pago GetPagoById(int id);
+        IEnumerable<Pago> GetPagoByResidencia(int id);
     }
 }

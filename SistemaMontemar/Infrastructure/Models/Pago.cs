@@ -17,6 +17,14 @@ namespace Infrastructure.Models
         public int Id { get; set; }
         public int IdAsignacion { get; set; }
         public System.DateTime FechaPago { get; set; }
+        public string Fecha
+        {
+            get
+            {
+                return FechaPago.ToString("dd/MM/yyyy");
+            }
+            set { }
+        }
         public decimal Total { get; set; }
     
         public virtual AsignacionPlan AsignacionPlan { get; set; }

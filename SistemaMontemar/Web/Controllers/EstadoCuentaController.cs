@@ -54,6 +54,9 @@ namespace Web.Controllers
                     // Redireccion a la captura del Error
                     return RedirectToAction("Default", "Error");
                 }
+
+                ViewBag.Pagos = listPagos(asignacion.IdResidencia);
+                ViewBag.Deudas = listDeudas(asignacion.IdResidencia);
                 return View(asignacion);
             }
             catch (Exception ex)
@@ -66,6 +69,20 @@ namespace Web.Controllers
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
             }
+        }
+
+        private IEnumerable<Pago> listPagos(int idResidencia)
+        {
+            IServicePago _ServicePago = new ServicePago();
+            IEnumerable<Pago> lista = _ServicePago.GetPagoByResidencia(idResidencia);
+            return lista;
+        }
+
+        private IEnumerable<Deuda> listDeudas(int idResidencia)
+        {
+            IServiceDeuda _ServiceDeuda = new ServiceDeuda();
+            IEnumerable<Deuda> lista = _ServiceDeuda.GetDeudaByResidencia(idResidencia);
+            return lista;
         }
 
         // GET: EstadoCuenta/Create

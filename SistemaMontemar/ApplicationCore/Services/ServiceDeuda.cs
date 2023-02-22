@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.Services
 {
-    public class ServiceDeuda
+    public class ServiceDeuda : IServiceDeuda
     {
-        public Deuda GetDeudaById(int id)
+        public IEnumerable<Deuda> GetDeudaByResidencia(int id)
         {
             IRepositoryDeuda repository = new RepositoryDeuda();
-            return repository.GetDeudaById(id);
+            return repository.GetDeudaByResidencia(id);
         }
 
         public IEnumerable<Deuda> GetDeudas()

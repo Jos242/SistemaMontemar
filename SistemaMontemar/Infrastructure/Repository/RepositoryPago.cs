@@ -12,19 +12,29 @@ namespace Infrastructure.Repository
 {
     public class RepositoryPago : IRepositoryPago
     {
-        public Pago GetPagoById(int id)
+        public IEnumerable<Pago> GetPagoByResidencia(int id)
         {
-            Pago oPago = null;
+            IEnumerable<Pago> lista = null;
             try
             {
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    oPago = ctx.Pago.Where(p => p.Id == id).Include("AsignacionPago").FirstOrDefault();
+                    lista = ctx.Pago.Join(ctx.AsignacionPlan,
+                                          p => p.IdAsignacion,
+                                          a => a.Id,
+                                          (p, a) => new { Pago = p, AsignacionPlan = a })
+                                    .Join(ctx.Residencia,
+                                          a => a.AsignacionPlan.IdResidencia,
+                                          r => r.Id,
+                                          (a, r) => new { Pago = a.Pago, Residencia = r })
+                                    .Where(e => e.Residencia.Id == id)
+                                    .Select(p => p.Pago)
+                                    .ToList();
                 }
 
-                return oPago;
+                return lista;
             }
             catch (DbUpdateException dbEx)
             {

@@ -10,6 +10,6 @@ namespace ApplicationCore.Services
     public interface IServicePago
     {
         IEnumerable<Pago> GetPagos();
-        Pago GetPagoById(int id);
+        IEnumerable<Pago> GetPagoByResidencia(int id);
     }
 }

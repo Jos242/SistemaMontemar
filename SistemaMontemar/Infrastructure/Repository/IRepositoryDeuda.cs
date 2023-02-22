@@ -10,6 +10,6 @@ namespace Infrastructure.Repository
     public interface IRepositoryDeuda
     {
         IEnumerable<Deuda> GetDeudas();
-        Deuda GetDeudaById(int id);
+        IEnumerable<Deuda> GetDeudaByResidencia(int id);
     }
 }

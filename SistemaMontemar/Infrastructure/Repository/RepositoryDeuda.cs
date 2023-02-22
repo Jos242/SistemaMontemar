@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using Web.Utils;
@@ -12,19 +13,29 @@ namespace Infrastructure.Repository
 {
     public class RepositoryDeuda : IRepositoryDeuda
     {
-        public Deuda GetDeudaById(int id)
+        public IEnumerable<Deuda> GetDeudaByResidencia(int id)
         {
-            Deuda oDeuda = null;
+            IEnumerable<Deuda> lista = null;
             try
             {
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    oDeuda = ctx.Deuda.Where(d => d.Id == id).Include("AsignacionPago").FirstOrDefault();
+                    lista = ctx.Deuda.Join(ctx.AsignacionPlan,
+                                          d => d.IdAsignacion,
+                                          a => a.Id,
+                                          (d, a) => new { Deuda = d, AsignacionPlan = a })
+                                    .Join(ctx.Residencia,
+                                          a => a.AsignacionPlan.IdResidencia,
+                                          r => r.Id,
+                                          (a, r) => new { Deuda = a.Deuda, Residencia = r })
+                                    .Where(e => e.Residencia.Id == id)
+                                    .Select(d => d.Deuda)
+                                    .ToList();
                 }
 
-                return oDeuda;
+                return lista;
             }
             catch (DbUpdateException dbEx)
             {

@@ -10,10 +10,10 @@ namespace ApplicationCore.Services
 {
     public class ServicePago : IServicePago
     {
-        public Pago GetPagoById(int id)
+        public IEnumerable<Pago> GetPagoByResidencia(int id)
         {
             IRepositoryPago repository = new RepositoryPago();
-            return repository.GetPagoById(id);
+            return repository.GetPagoByResidencia(id);
         }
 
         public IEnumerable<Pago> GetPagos()
