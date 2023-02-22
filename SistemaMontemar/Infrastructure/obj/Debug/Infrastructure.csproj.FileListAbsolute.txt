@@ -12,3 +12,17 @@ C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\o
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.dll
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.pdb
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\Infrastructure.dll.config
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\Infrastructure.dll
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\Infrastructure.pdb
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\EntityFramework.dll
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\EntityFramework.SqlServer.dll
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\log4net.dll
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\EntityFramework.xml
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\EntityFramework.SqlServer.xml
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\bin\Debug\log4net.xml
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.csproj.AssemblyReference.cache
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.dll
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Infrastructure\obj\Debug\Infrastructure.pdb

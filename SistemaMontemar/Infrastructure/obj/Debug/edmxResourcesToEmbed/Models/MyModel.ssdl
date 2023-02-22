@@ -89,10 +89,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdUsuario" Type="int" />
-    <Property Name="CantPersonas" Type="int" />
-    <Property Name="CantCarros" Type="int" />
-    <Property Name="FechaAlquiler" Type="date" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="CantPersonas" Type="int" Nullable="false" />
+    <Property Name="CantCarros" Type="int" Nullable="false" />
+    <Property Name="FechaAlquiler" Type="date" Nullable="false" />
     <Property Name="Tipo" Type="int" Nullable="false" />
     <Property Name="Imagen" Type="varbinary(max)" Nullable="false" />
     <Property Name="Estado" Type="int" Nullable="false" />
@@ -236,7 +236,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Residencia_Usuario">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
     <End Role="Residencia" Type="Self.Residencia" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuario">
