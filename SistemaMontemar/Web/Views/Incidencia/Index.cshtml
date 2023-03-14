@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Infrastructure.Models.Incidencia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Incidences</h2>
+
+<p>
+    <button id="a" class="btn btn-primary" onclick="create()">Create</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mensaje)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mensaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estados[item.Estado])
+            </td>
+            @{
+                string buttonClass = item.Estado == 1 ? "btn btn-success" : "btn btn-danger";
+            }
+            <td>
+                <button class="@buttonClass" onclick="change(@item.Id)">Change Status</button>
+            </td>
+        </tr>
+    }
+
+</table>
+@* Modal *@
+<div class="modal" tabindex="-1" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalle Libro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Información Libro</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal *@
+
+@section Scripts{
+    <script type="text/javascript">
+        function create() {
+            $.ajax({
+                method: 'POST',
+                url: '/Incidencia/AjaxCreate',
+                data: {},
+                success: function (response) {
+                    $('.modal-body').html('');
+                    $('.modal-body').html(response);
+                    $('#myModal').modal('show');
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+        function change(item) {
+            $.ajax({
+                method: 'POST',
+                url: '/Incidencia/Save',
+                data: { 'incidencia': item },
+                success: function (response) {
+                    $("#a").toggleClass('btn-primary')
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+    </script>
+}

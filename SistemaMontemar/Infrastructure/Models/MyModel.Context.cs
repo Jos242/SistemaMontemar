@@ -28,7 +28,7 @@ namespace Infrastructure.Models
         public virtual DbSet<Area> Area { get; set; }
         public virtual DbSet<AsignacionPlan> AsignacionPlan { get; set; }
         public virtual DbSet<Deuda> Deuda { get; set; }
-        public virtual DbSet<Incidentes> Incidentes { get; set; }
+        public virtual DbSet<Incidencia> Incidencia { get; set; }
         public virtual DbSet<Informacion> Informacion { get; set; }
         public virtual DbSet<Pago> Pago { get; set; }
         public virtual DbSet<PlanCobro> PlanCobro { get; set; }

@@ -29,13 +29,13 @@
     <Property Name="FechaPago" Type="date" Nullable="false" />
     <Property Name="Estado" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Incidentes">
+  <EntityType Name="Incidencia">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdResidencia" Type="int" Nullable="false" />
-    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="Mensaje" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Fecha" Type="date" Nullable="false" />
     <Property Name="Estado" Type="int" Nullable="false" />
   </EntityType>
@@ -163,15 +163,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Incidentes_Residencia">
-    <End Role="Residencia" Type="Self.Residencia" Multiplicity="1" />
-    <End Role="Incidentes" Type="Self.Incidentes" Multiplicity="*" />
+  <Association Name="FK_Incidencia_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Incidencia" Type="Self.Incidencia" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Residencia">
+      <Principal Role="Usuario">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Incidentes">
-        <PropertyRef Name="IdResidencia" />
+      <Dependent Role="Incidencia">
+        <PropertyRef Name="IdUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -263,7 +263,7 @@
     <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AsignacionPlan" EntityType="Self.AsignacionPlan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Deuda" EntityType="Self.Deuda" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Incidentes" EntityType="Self.Incidentes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Incidencia" EntityType="Self.Incidencia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Informacion" EntityType="Self.Informacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PlanCobro" EntityType="Self.PlanCobro" Schema="dbo" store:Type="Tables" />
@@ -285,9 +285,9 @@
       <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />
       <End Role="Deuda" EntitySet="Deuda" />
     </AssociationSet>
-    <AssociationSet Name="FK_Incidentes_Residencia" Association="Self.FK_Incidentes_Residencia">
-      <End Role="Residencia" EntitySet="Residencia" />
-      <End Role="Incidentes" EntitySet="Incidentes" />
+    <AssociationSet Name="FK_Incidencia_Usuario" Association="Self.FK_Incidencia_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Incidencia" EntitySet="Incidencia" />
     </AssociationSet>
     <AssociationSet Name="FK_Pago_AsignacionPlan" Association="Self.FK_Pago_AsignacionPlan">
       <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />

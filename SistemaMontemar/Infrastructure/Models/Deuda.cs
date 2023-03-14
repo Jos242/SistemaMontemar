@@ -14,19 +14,12 @@ namespace Infrastructure.Models
     using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(DeudaMetaData))]
+
     public partial class Deuda
     {
         public int Id { get; set; }
         public int IdAsignacion { get; set; }
         public System.DateTime FechaPago { get; set; }
-        public string Fecha
-        {
-            get
-            {
-                return FechaPago.ToString("dd/MM/yyyy");
-            }
-            set { }
-        }
         public int Estado { get; set; }
         public Dictionary<int, string> Estados
         {

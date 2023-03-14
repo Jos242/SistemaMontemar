@@ -50,8 +50,6 @@ namespace Infrastructure.Models
         }
 
 
-        public virtual ICollection<Incidentes> Incidentes { get; set; }
-
 
         [Display(Name = "Owner")]
         public virtual Usuario Usuario { get; set; }
@@ -118,15 +116,9 @@ namespace Infrastructure.Models
         public int IdAsignacion { get; set; }
 
         [Display(Name = "Debt Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime FechaPago { get; set; }
-        public string Fecha
-        {
-            get
-            {
-                return FechaPago.ToString("dd/MM/yyyy");
-            }
-            set { }
-        }
 
         [Display(Name = "Status")]
         public int Estado { get; set; }
@@ -148,21 +140,33 @@ namespace Infrastructure.Models
         public int IdAsignacion { get; set; }
 
         [Display(Name = "Payment Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime FechaPago { get; set; }
 
-        [Display(Name = "Status")]
-        public string Fecha
-        {
-            get
-            {
-                return FechaPago.ToString("dd/MM/yyyy");
-            }
-            set { }
-        }
-
         [Display(Name = "Total")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Total { get; set; }
 
         public virtual AsignacionPlan AsignacionPlan { get; set; }
+    }
+
+    public partial class IncidenciaMetdaData
+    {
+        public int Id { get; set; }
+        public int IdUsuario { get; set; }
+
+        [Display(Name = "Message")]
+        public string Mensaje { get; set; }
+
+        [Display(Name = "Incidence Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        public System.DateTime Fecha { get; set; }
+
+        [Display(Name = "Status")]
+        public int Estado { get; set; }
+
+        public virtual Usuario Usuario { get; set; }
     }
 }

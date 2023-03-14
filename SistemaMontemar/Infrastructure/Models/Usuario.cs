@@ -17,7 +17,7 @@ namespace Infrastructure.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.AsignacionPlan = new HashSet<AsignacionPlan>();
+            this.Incidencia = new HashSet<Incidencia>();
             this.Reservacion = new HashSet<Reservacion>();
             this.Residencia = new HashSet<Residencia>();
         }
@@ -33,17 +33,17 @@ namespace Infrastructure.Models
         public int DiaPagar { get; set; }
         public int Estado { get; set; }
 
-        public string FullName 
+        public string FullName
         {
             get
             {
                 return Nombre + " " + Apellido01;
             }
-            set { } 
+            set { }
         }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AsignacionPlan> AsignacionPlan { get; set; }
+        public virtual ICollection<Incidencia> Incidencia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservacion> Reservacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

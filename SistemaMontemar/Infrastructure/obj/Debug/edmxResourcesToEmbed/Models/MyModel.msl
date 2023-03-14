@@ -33,12 +33,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Incidentes">
-      <EntityTypeMapping TypeName="SistemaMontemarModel.Incidentes">
-        <MappingFragment StoreEntitySet="Incidentes">
+    <EntitySetMapping Name="Incidencia">
+      <EntityTypeMapping TypeName="SistemaMontemarModel.Incidencia">
+        <MappingFragment StoreEntitySet="Incidencia">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="IdResidencia" ColumnName="IdResidencia" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
         </MappingFragment>

@@ -34,13 +34,13 @@
           <Property Name="FechaPago" Type="date" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Incidentes">
+        <EntityType Name="Incidencia">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdResidencia" Type="int" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="Mensaje" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
         </EntityType>
@@ -168,15 +168,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Incidentes_Residencia">
-          <End Role="Residencia" Type="Self.Residencia" Multiplicity="1" />
-          <End Role="Incidentes" Type="Self.Incidentes" Multiplicity="*" />
+        <Association Name="FK_Incidencia_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Incidencia" Type="Self.Incidencia" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Residencia">
+            <Principal Role="Usuario">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Incidentes">
-              <PropertyRef Name="IdResidencia" />
+            <Dependent Role="Incidencia">
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -268,7 +268,7 @@
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AsignacionPlan" EntityType="Self.AsignacionPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deuda" EntityType="Self.Deuda" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Incidentes" EntityType="Self.Incidentes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Incidencia" EntityType="Self.Incidencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Informacion" EntityType="Self.Informacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlanCobro" EntityType="Self.PlanCobro" Schema="dbo" store:Type="Tables" />
@@ -290,9 +290,9 @@
             <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />
             <End Role="Deuda" EntitySet="Deuda" />
           </AssociationSet>
-          <AssociationSet Name="FK_Incidentes_Residencia" Association="Self.FK_Incidentes_Residencia">
-            <End Role="Residencia" EntitySet="Residencia" />
-            <End Role="Incidentes" EntitySet="Incidentes" />
+          <AssociationSet Name="FK_Incidencia_Usuario" Association="Self.FK_Incidencia_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Incidencia" EntitySet="Incidencia" />
           </AssociationSet>
           <AssociationSet Name="FK_Pago_AsignacionPlan" Association="Self.FK_Pago_AsignacionPlan">
             <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />
@@ -363,16 +363,16 @@
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AsignacionPlan" Relationship="Self.FK_Deuda_AsignacionPlan" FromRole="Deuda" ToRole="AsignacionPlan" />
         </EntityType>
-        <EntityType Name="Incidentes">
+        <EntityType Name="Incidencia">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdResidencia" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Mensaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Residencia" Relationship="Self.FK_Incidentes_Residencia" FromRole="Incidentes" ToRole="Residencia" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Incidencia_Usuario" FromRole="Incidencia" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Informacion">
           <Key>
@@ -429,7 +429,6 @@
           <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AsignacionPlan" Relationship="Self.FK_AsignacionPlan_Residencia" FromRole="Residencia" ToRole="AsignacionPlan" />
-          <NavigationProperty Name="Incidentes" Relationship="Self.FK_Incidentes_Residencia" FromRole="Residencia" ToRole="Incidentes" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Residencia_Usuario" FromRole="Residencia" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Rubro">
@@ -463,6 +462,7 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DiaPagar" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Incidencia" Relationship="Self.FK_Incidencia_Usuario" FromRole="Usuario" ToRole="Incidencia" />
           <NavigationProperty Name="Reservacion" Relationship="Self.FK_Reservacion_Usuario" FromRole="Usuario" ToRole="Reservacion" />
           <NavigationProperty Name="Residencia" Relationship="Self.FK_Residencia_Usuario" FromRole="Usuario" ToRole="Residencia" />
           <NavigationProperty Name="TipoUsuario" Relationship="Self.FK_Usuario_TipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
@@ -527,15 +527,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Incidentes_Residencia">
-          <End Role="Residencia" Type="Self.Residencia" Multiplicity="1" />
-          <End Role="Incidentes" Type="Self.Incidentes" Multiplicity="*" />
+        <Association Name="FK_Incidencia_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Incidencia" Type="Self.Incidencia" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Residencia">
+            <Principal Role="Usuario">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Incidentes">
-              <PropertyRef Name="IdResidencia" />
+            <Dependent Role="Incidencia">
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -583,7 +583,7 @@
           <EntitySet Name="Area" EntityType="Self.Area" />
           <EntitySet Name="AsignacionPlan" EntityType="Self.AsignacionPlan" />
           <EntitySet Name="Deuda" EntityType="Self.Deuda" />
-          <EntitySet Name="Incidentes" EntityType="Self.Incidentes" />
+          <EntitySet Name="Incidencia" EntityType="Self.Incidencia" />
           <EntitySet Name="Informacion" EntityType="Self.Informacion" />
           <EntitySet Name="Pago" EntityType="Self.Pago" />
           <EntitySet Name="PlanCobro" EntityType="Self.PlanCobro" />
@@ -612,9 +612,9 @@
             <End Role="AsignacionPlan" EntitySet="AsignacionPlan" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK_Incidentes_Residencia" Association="Self.FK_Incidentes_Residencia">
-            <End Role="Residencia" EntitySet="Residencia" />
-            <End Role="Incidentes" EntitySet="Incidentes" />
+          <AssociationSet Name="FK_Incidencia_Usuario" Association="Self.FK_Incidencia_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Incidencia" EntitySet="Incidencia" />
           </AssociationSet>
           <AssociationSet Name="FK_Reservacion_Usuario" Association="Self.FK_Reservacion_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -671,12 +671,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Incidentes">
-            <EntityTypeMapping TypeName="SistemaMontemarModel.Incidentes">
-              <MappingFragment StoreEntitySet="Incidentes">
+          <EntitySetMapping Name="Incidencia">
+            <EntityTypeMapping TypeName="SistemaMontemarModel.Incidencia">
+              <MappingFragment StoreEntitySet="Incidencia">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdResidencia" ColumnName="IdResidencia" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
