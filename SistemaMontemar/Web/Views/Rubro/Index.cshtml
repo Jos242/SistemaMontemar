@@ -1,17 +1,20 @@
-﻿@model IEnumerable<Infrastructure.Models.PlanCobro>
+﻿@model IEnumerable<Infrastructure.Models.Rubro>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Payment Plans</h2>
-<button type="button" class="btn btn-primary">@Html.ActionLink("Create New Payment Plan", "Create")</button>
+<h2>Payments</h2>
+
+<p>
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Create New Payment", "Create")</button>
+</p>
 <table class="table">
     <tr>
-        <th style="font-size: 18px;">
+        <th>
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
-        <th style="font-size: 18px;">
+        <th>
             @Html.DisplayNameFor(model => model.Cobro)
         </th>
         <th></th>
@@ -19,17 +22,16 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td style="font-size: 18px;">
+        <td>
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
-        <td style="font-size: 18px;">
+        <td>
             @Html.DisplayFor(modelItem => item.Cobro)
         </td>
-        <td style="font-size: 18px;">
+        <td>
             <button type="button" class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
             <button type="button" class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
         </td>
-       
     </tr>
 }
 

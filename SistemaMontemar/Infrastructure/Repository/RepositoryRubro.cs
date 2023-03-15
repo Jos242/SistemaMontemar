@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -63,6 +64,46 @@ namespace Infrastructure.Repository
                 Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
                 throw;
             }
+        }
+
+        public Rubro Save(Rubro rubro)
+        {
+            int retorno = 0;
+            Rubro oRubro = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oRubro = GetRubroById((int)rubro.Id);
+                IRepositoryRubro _RepositoryRubro = new RepositoryRubro();
+
+                if (oRubro == null)
+                {
+                    //Insertar Rubro
+                    ctx.Rubro.Add(rubro);
+                    //SaveChanges
+                    //guarda todos los cambios realizados en el contexto de la base de datos.
+                    retorno = ctx.SaveChanges();
+                    //retorna número de filas afectadas
+                }
+                else
+                {
+                    //Registradas: 1,2,3
+                    //Actualizar: 1,3,4
+
+                    //Actualizar Rubro
+                    ctx.Rubro.Add(rubro);
+                    ctx.Entry(rubro).State = EntityState.Modified;
+                    retorno = ctx.SaveChanges();
+
+                    
+                }
+            }
+
+            if (retorno >= 0)
+                oRubro = GetRubroById((int)rubro.Id);
+
+            return oRubro;
         }
 
     }

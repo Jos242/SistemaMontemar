@@ -62,7 +62,10 @@ namespace Infrastructure.Models
         [Display(Name = "Description")]
         public string Descripcion { get; set; }
 
+
         [DisplayFormat(DataFormatString = "{0:C}")]
+
+        [RegularExpression(@"^[0-9]+(.[0-9]{1,2})?$", ErrorMessage = "Numbers only, with 2 decimals")]
 
         [Display(Name = "Total Amount")]
         public decimal Cobro { get; set; }
@@ -82,7 +85,7 @@ namespace Infrastructure.Models
         public string Descripcion { get; set; }
 
         [Display(Name = "Amount")]
-        [DisplayFormat(DataFormatString = "{0:C}")]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         public decimal Cobro { get; set; }
         public virtual ICollection<PlanCobro> PlanCobro { get; set; }
 

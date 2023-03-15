@@ -11,5 +11,6 @@ namespace ApplicationCore.Services
     {
         IEnumerable<Rubro> GetRubros();
         Rubro GetRubroById(int id);
+        Rubro Save(Rubro rubro);
     }
 }
