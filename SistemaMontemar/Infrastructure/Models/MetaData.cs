@@ -60,20 +60,23 @@ namespace Infrastructure.Models
         public int Id { get; set; }
 
         [Display(Name = "Description")]
+        [Required(ErrorMessage = "{0} is required")]
         public string Descripcion { get; set; }
 
 
         [DisplayFormat(DataFormatString = "{0:C}")]
 
-        [RegularExpression(@"^[0-9]+(.[0-9]{1,2})?$", ErrorMessage = "Numbers only, with 2 decimals")]
+        [RegularExpression(@"^[0-9]+(,[0-9]{1,2})?$", ErrorMessage = "Numbers only, with 2 decimals")]
 
         [Display(Name = "Total Amount")]
+        [Required(ErrorMessage = "{0} is required")]
         public decimal Cobro { get; set; }
 
 
         public virtual ICollection<AsignacionPlan> AsignacionPlan { get; set; }
 
         [Display(Name = "Payments")]
+        [Required(ErrorMessage = "{0} is required")]
         public virtual ICollection<Rubro> Rubro { get; set; }
     }
 
@@ -82,10 +85,13 @@ namespace Infrastructure.Models
         public int Id { get; set; }
 
         [Display(Name = "Description")]
+        [Required(ErrorMessage = "{0} is required")]
         public string Descripcion { get; set; }
 
         [Display(Name = "Amount")]
         [DisplayFormat(DataFormatString = "{0:C2}")]
+        [Required(ErrorMessage = "{0} is required")]
+        [RegularExpression(@"^[0-9]+(,[0-9]{1,2})?$", ErrorMessage = "Numbers only, with 2 decimals")]
         public decimal Cobro { get; set; }
         public virtual ICollection<PlanCobro> PlanCobro { get; set; }
 
@@ -160,7 +166,7 @@ namespace Infrastructure.Models
         public int IdUsuario { get; set; }
 
         [Display(Name = "Message")]
-        [Required(ErrorMessage = "{0} required data")]
+        [Required(ErrorMessage = "{0} is required")]
         public string Mensaje { get; set; }
 
         [Display(Name = "Incident Date")]

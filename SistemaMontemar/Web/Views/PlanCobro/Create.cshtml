@@ -29,14 +29,14 @@
 
                 @Html.DropDownList("selectedRubros",
                 (MultiSelectList)ViewBag.idRubro,
-                htmlAttributes: new { @class = "form-control", multiple = "multiple"})
+                htmlAttributes: new { @class = "form-control", multiple = "multiple", id= "selectedRubros", onchange="getValues()" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="resultado">
             @Html.LabelFor(model => model.Cobro, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Cobro, new { htmlAttributes = new { @class = "form-control",@id = "Cobro" } })
+                @Html.EditorFor(model => model.Cobro, new { htmlAttributes = new { @class = "form-control", id = "Cobro" } })
                 @Html.ValidationMessageFor(model => model.Cobro, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,5 +51,32 @@
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-   
+
+<script type="text/javascript">
+    function getValues() {
+        var multiselectList = document.getElementById('selectedRubros');
+
+        // create an empty array to hold the selected values
+        var selectedValues = [];
+
+        // loop through the options and add selected values to the array
+        for (var i = 0; i < multiselectList.options.length; i++) {
+            var option = multiselectList.options[i];
+            if (option.selected) {
+                selectedValues.push(option.value);
+            }
+        }
+
+        $.ajax({
+            method: 'POST',
+            url: '/PlanCobro/AjaxResultado',
+            data: { 'list': selectedValues },
+            success: function (response) {
+                $('#Cobro').val(response)
+            }, error: function (xhr, status, error) {
+                console.log('Error' + error + ',No Error' + xhr.status);
+            }
+        })  
+    }     
+</script>
 }

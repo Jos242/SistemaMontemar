@@ -10,48 +10,76 @@
 @using (Html.BeginForm("Save", "PlanCobro", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Payment Plan</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h4>Payment Plan</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rubro, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("selectedRubros",
+               (MultiSelectList)ViewBag.idRubro,
+               htmlAttributes: new { @class = "form-control", multiple = "multiple", id = "selectedRubros", onchange = "getValues()" })
+
+            </div>
+        </div>
+
+        <div class="form-group" id="resultado">
+            @Html.LabelFor(model => model.Cobro, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cobro, new { htmlAttributes = new { @class = "form-control", @id = "Cobro"} })
+                @Html.ValidationMessageFor(model => model.Cobro, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a href="@Url.Action("Index", "PlanCobro", null)" class="btn btn-outline-dark"><i class="fa-solid fa-reply"></i> Go Back</a>
+                <input type="submit" value="Update" class="btn btn-outline-success" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Rubro, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("selectedRubros",
-           (MultiSelectList)ViewBag.idRubro,
-           htmlAttributes: new { @class = "form-control", multiple = "multiple" })
-
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Cobro, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Cobro, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Cobro, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br />
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <a href="@Url.Action("Index", "PlanCobro", null)" class="btn btn-outline-dark"><i class="fa-solid fa-reply"></i> Go Back</a>
-            <input type="submit" value="Update" class="btn btn-outline-success" />
-        </div>
-    </div>
-</div>
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+    function getValues() {
+        var multiselectList = document.getElementById('selectedRubros');
+
+        // create an empty array to hold the selected values
+        var selectedValues = [];
+
+        // loop through the options and add selected values to the array
+        for (var i = 0; i < multiselectList.options.length; i++) {
+            var option = multiselectList.options[i];
+            if (option.selected) {
+                selectedValues.push(option.value);
+            }
+        }
+
+        $.ajax({
+            method: 'POST',
+            url: '/PlanCobro/AjaxResultado',
+            data: { 'list': selectedValues },
+            success: function (response) {
+                $('#Cobro').val(response)
+            }, error: function (xhr, status, error) {
+                console.log('Error' + error + ',No Error' + xhr.status);
+            }
+        })  
+    }
+    </script>
 }

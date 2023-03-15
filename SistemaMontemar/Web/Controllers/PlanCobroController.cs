@@ -68,10 +68,28 @@ namespace Web.Controllers
             }
         }
 
+        public decimal AjaxResultado(List<string> list)
+        {
+            IServiceRubro _ServiceRubro = new ServiceRubro();
+
+            decimal res = 0;
+
+            foreach (string item in list)
+            {
+                Rubro rubro = _ServiceRubro.GetRubroById(Convert.ToInt32(item));
+                res += rubro.Cobro;
+            }
+
+            PlanCobro plan = new PlanCobro();
+
+            plan.Cobro = res;
+
+            return res;
+        }
+
         // GET: PlanCobro/Create
         public ActionResult Create()
         {
-            
             ViewBag.idRubro = listaRubros();
 
             return View();
