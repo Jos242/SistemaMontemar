@@ -11,5 +11,7 @@ namespace ApplicationCore.Services
     {
         IEnumerable<PlanCobro> GetPlanCobros();
         PlanCobro GetPlanCobroById(int id);
+
+        PlanCobro Save(PlanCobro planCobro, string[] selectedRubros);
     }
 }

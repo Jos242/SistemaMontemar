@@ -21,5 +21,11 @@ namespace ApplicationCore.Services
             IRepositoryPlanCobro repository = new RepositoryPlanCobro();
             return repository.GetPlanCobros();
         }
+
+        public PlanCobro Save(PlanCobro planCobro, string[] selectedRubros)
+        {
+            IRepositoryPlanCobro repository = new RepositoryPlanCobro();
+            return repository.Save(planCobro, selectedRubros);
+        }
     }
 }

@@ -5,7 +5,7 @@
 }
 
 <h2>Payment Plans</h2>
-
+<button type="button" class="btn btn-primary">@Html.ActionLink("Create New Payment Plan", "Create")</button>
 <table class="table">
     <tr>
         <th style="font-size: 18px;">
@@ -27,7 +27,9 @@
         </td>
         <td style="font-size: 18px;">
             <button type="button" class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
+            <button type="button" class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
         </td>
+       
     </tr>
 }
 
