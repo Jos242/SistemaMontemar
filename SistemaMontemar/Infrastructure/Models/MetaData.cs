@@ -169,4 +169,45 @@ namespace Infrastructure.Models
 
         public virtual Usuario Usuario { get; set; }
     }
+
+    public partial class UsuarioMetaData
+    {
+        public int Id { get; set; }
+        public int IdTipoUsuario { get; set; }
+
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Display(Name = "Name")]
+        public string Nombre { get; set; }
+
+        [Display(Name = "Last Name")]
+        public string Apellido01 { get; set; }
+        public string Apellido02 { get; set; }
+
+        [Display(Name = "Phone Number")]
+        public string Telefono { get; set; }
+        public string Password { get; set; }
+
+        [Display(Name = "Pay Day")]
+        public int DiaPagar { get; set; }
+
+        [Display(Name = "Status")]
+        public int Estado { get; set; }
+
+        [Display(Name = "Name")]
+        public string FullName
+        {
+            get
+            {
+                return Nombre + " " + Apellido01;
+            }
+            set { }
+        }
+
+        public virtual ICollection<Incidencia> Incidencia { get; set; }
+        public virtual ICollection<Reservacion> Reservacion { get; set; }
+        public virtual ICollection<Residencia> Residencia { get; set; }
+        public virtual TipoUsuario TipoUsuario { get; set; }
+    }
 }

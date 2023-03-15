@@ -7,7 +7,7 @@
 <h2>Incidences</h2>
 
 <p>
-    <button id="a" class="btn btn-primary" onclick="create()">Create</button>
+    <button class="btn btn-primary" onclick="create()">Report Incident</button>
 </p>
 <table class="table">
     <tr>
@@ -25,42 +25,38 @@
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mensaje)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estados[item.Estado])
-            </td>
-            @{
-                string buttonClass = item.Estado == 1 ? "btn btn-success" : "btn btn-danger";
-            }
-            <td>
-                <button class="@buttonClass" onclick="change(@item.Id)">Change Status</button>
-            </td>
-        </tr>
-    }
-
+    <tbody id="resultado">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.FullName)
+                </td>
+                <td style="max-width: 300px">
+                    @Html.DisplayFor(modelItem => item.Mensaje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estados[item.Estado])
+                </td>
+                <td>
+                    <button class="btn @(item.Estado == 1 ? "btn-secondary" : "btn-success")" onclick="change(@item.Id)" @(item.Estado == 1 ? "disabled" : "")>@(item.Estado == 1 ? "Completed" : "Complete")</button>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 @* Modal *@
 <div class="modal" tabindex="-1" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Detalle Libro</h5>
+                <h5 class="modal-title">Report Incident</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Información Libro</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -68,7 +64,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>>
 @* Modal *@
 
 @section Scripts{
@@ -87,13 +83,14 @@
                 }
             })
         }
-        function change(item) {
+        function change(idIncidencia) {
             $.ajax({
                 method: 'POST',
-                url: '/Incidencia/Save',
-                data: { 'incidencia': item },
+                url: '/Incidencia/AjaxCambiar',
+                data: { 'idIncidencia': idIncidencia },
                 success: function (response) {
-                    $("#a").toggleClass('btn-primary')
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
                 }, error: function (xhr, status, error) {
                     console.log('Error' + error + ',No Error' + xhr.status);
                 }

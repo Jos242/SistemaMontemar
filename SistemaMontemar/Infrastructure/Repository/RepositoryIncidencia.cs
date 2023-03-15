@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Web.Utils;
 
 namespace Infrastructure.Repository
@@ -79,15 +80,15 @@ namespace Infrastructure.Repository
                 if (oIncidencia == null)
                 {
                     ctx.Incidencia.Add(incidencia);
-
                     retorno = ctx.SaveChanges();
                 }
                 else
                 {
-                    ctx.Incidencia.Add(incidencia);
-                    ctx.Entry(incidencia).State = EntityState.Modified;
+                    oIncidencia = ctx.Incidencia.Single(x => x.Id == incidencia.Id);
+                    oIncidencia.Estado = incidencia.Estado;
                     retorno = ctx.SaveChanges();
                 }
+
             }
             if (retorno >= 0)
                 oIncidencia = GetIncidenciaById(incidencia.Id);

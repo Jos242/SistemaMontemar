@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Infrastructure.Models.Incidencia>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mensaje)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estados[item.Estado])
+        </td>
+        <td>
+            <button class="btn @(item.Estado == 1 ? "btn-secondary" : "btn-success")" onclick="change(@item.Id)" @(item.Estado == 1 ? "disabled" : "")>@(item.Estado == 1 ? "Completed" : "Complete")</button>
+        </td>
+    </tr>
+}

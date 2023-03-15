@@ -53,6 +53,21 @@ namespace Web.Controllers
         {
             return PartialView("_PartialViewCreate");
         }
+        public ActionResult AjaxCambiar(int idIncidencia)
+        {
+            IServiceIncidencia _ServiceIncidencia = new ServiceIncidencia();
+            IEnumerable<Incidencia> lista = null;
+
+            Incidencia oIncidencia = _ServiceIncidencia.GetIncidenciaById(idIncidencia);
+
+            oIncidencia.Estado = 1;
+
+            Incidencia save = _ServiceIncidencia.Save(oIncidencia);
+
+            lista = _ServiceIncidencia.GetIncidencias();
+
+            return PartialView("_PartialViewEstado", lista);
+        }
 
         [HttpPost]
         public ActionResult Save(Incidencia incidencia)
@@ -71,16 +86,9 @@ namespace Web.Controllers
 
                     oIncidencia = _ServiceIncidencia.GetIncidenciaById(incidencia.Id);
 
-                    if (oIncidencia == null)
-                    {
-                        incidencia.IdUsuario = ((Usuario)Session["User"]).Id;
-                        incidencia.Estado = 0;
-                        incidencia.Fecha = DateTime.Now;
-                    }
-                    else
-                    {
-                        incidencia.Estado = incidencia.Estado == 0 ? 1 : 0;
-                    }
+                    incidencia.IdUsuario = ((Usuario)Session["User"]).Id;
+                    incidencia.Estado = 0;
+                    incidencia.Fecha = DateTime.Now;
 
                     Incidencia save = _ServiceIncidencia.Save(incidencia);
                 }
@@ -95,7 +103,7 @@ namespace Web.Controllers
                 // Salvar el error en un archivo 
                 Log.Error(ex, MethodBase.GetCurrentMethod());
                 TempData["Message"] = "Data error! " + ex.Message;
-                TempData["Redirect"] = "Residencia";
+                TempData["Redirect"] = "Incidencia";
                 TempData["Redirect-Action"] = "Index";
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
