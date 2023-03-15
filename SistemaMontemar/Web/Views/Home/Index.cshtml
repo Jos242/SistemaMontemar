@@ -13,7 +13,7 @@
     {
         <div class="col-md-4 mt-3">
             @{ 
-                string hola = informacion.Key == 0 ? "bg-primary" : informacion.Key == 1 ? "bg-success" : informacion.Key == 2 ? "bg-danger" : informacion.Key == 3 ? "bg-warning" : "bg-info";
+                string hola = informacion.Key == 1 ? "bg-primary" : informacion.Key == 2 ? "bg-success" : informacion.Key == 3 ? "bg-danger" : informacion.Key == 4 ? "bg-warning" : informacion.Key == 5 ? "bg-info" : "bg-dark";
             }
             <div class="card text-white @hola mb-3" style="max-width: 450px;">
                 <div class="card-header"><h2>@informacion.Value</h2></div>

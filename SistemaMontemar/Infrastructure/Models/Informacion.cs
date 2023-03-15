@@ -24,7 +24,7 @@ namespace Infrastructure.Models
         {
             get
             {
-                return new Dictionary<int, string> { { 0, "Notices" }, { 1, "News" }, { 2, "Rules" }, { 3, "Proceedings " }, { 4, "Financial State" } };
+                return new Dictionary<int, string> { { 1, "Notices" }, { 2, "News" }, { 3, "Rules" }, { 4, "Proceedings " }, { 5, "Financial State" }, { 6, "Security Updates" } };
             }
             set { }
         }

@@ -27,7 +27,7 @@
                 @Html.DisplayFor(modelItem => item.Residencia.Usuario.FullName)
             </td>
             <td style="font-size: 18px;">
-                <button type="button" class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
+                <a href="@Url.Action("Details", "EstadoCuenta", new { id = item.Id })" class="btn btn-info"><i class="fa-solid fa-circle-info"></i> Details</a>
             </td>
         </tr>
     }

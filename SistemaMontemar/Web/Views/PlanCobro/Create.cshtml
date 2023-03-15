@@ -29,7 +29,7 @@
 
                 @Html.DropDownList("selectedRubros",
                 (MultiSelectList)ViewBag.idRubro,
-                htmlAttributes: new { @class = "form-control", multiple = "multiple", id="selectedRubros" })
+                htmlAttributes: new { @class = "form-control", multiple = "multiple"})
             </div>
         </div>
 
@@ -40,32 +40,16 @@
                 @Html.ValidationMessageFor(model => model.Cobro, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <a href="@Url.Action("Index", "PlanCobro", null)" class="btn btn-outline-dark"><i class="fa-solid fa-reply"></i> Go Back</a>
+                <input type="submit" value="Create" class="btn btn-outline-info" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
-    $(function () {
-        $("#selectedRubros").change(function () {
-            var totalCost = 0;
-            $("#selectedRubros option:selected").each(function () {
-                var rubro = JSON.parse($(this).val());
-                totalCost += rubro.Cobro;
-            });
-            $("#Cobro").val(totalCost.toFixed(2));
-        });
-    });
-</script>
    
 }

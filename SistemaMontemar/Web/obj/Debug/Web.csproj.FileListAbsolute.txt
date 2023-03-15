@@ -60,8 +60,6 @@ F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMon
 F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.csproj.CopyComplete
 F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.dll
 F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.pdb
-C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.csproj.AssemblyReference.cache
-C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.csproj.CoreCompileInputs.cache
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\Web.dll.config
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\Web.dll
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\Web.pdb
@@ -82,8 +80,12 @@ C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\M
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\Microsoft.Managed.Core.targets
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Buffers.dll
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Memory.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Numerics.Vectors.dll
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Text.Encoding.CodePages.dll
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Threading.Tasks.Extensions.dll
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\vbc.exe
@@ -97,11 +99,8 @@ C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\Applicat
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\ApplicationCore.dll.config
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\Infrastructure.pdb
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\Infrastructure.dll.config
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.csproj.AssemblyReference.cache
+C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.csproj.CoreCompileInputs.cache
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.csproj.CopyComplete
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.dll
 C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.pdb
-C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Buffers.dll
-C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Memory.dll
-C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Numerics.Vectors.dll
-C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\ahern\Documents\GitHub\SistemaMontemar\SistemaMontemar\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml

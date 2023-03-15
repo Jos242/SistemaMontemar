@@ -22,7 +22,7 @@ namespace Web.Controllers
             {
                 IServiceIncidencia _ServiceIncidencia = new ServiceIncidencia();
                 lista = _ServiceIncidencia.GetIncidencias();
-                ViewBag.status = -2;
+                ViewBag.status = -69;
                 return View(lista);
             }
             catch (Exception ex)
@@ -68,6 +68,8 @@ namespace Web.Controllers
                 Incidencia save = _ServiceIncidencia.Save(oIncidencia);
 
                 lista = _ServiceIncidencia.GetIncidencias();
+
+                ViewBag.status = -69;
             }
             else
             {
@@ -104,7 +106,7 @@ namespace Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Session["User"] = new ServiceUsuario().GetUsuarioById(9);
+                    Session["User"] = new ServiceUsuario().GetUsuarioById(1);
 
                     oIncidencia = _ServiceIncidencia.GetIncidenciaById(incidencia.Id);
 

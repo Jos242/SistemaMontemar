@@ -5,7 +5,10 @@
 }
 
 <h2>Payment Plans</h2>
-<button type="button" class="btn btn-primary">@Html.ActionLink("Create New Payment Plan", "Create")</button>
+
+<p>
+    <a href="@Url.Action("Create", "PlanCobro", null)" class="btn btn-primary">Create New Payment Plan</a>
+</p>
 <table class="table">
     <tr>
         <th style="font-size: 18px;">
@@ -17,20 +20,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td style="font-size: 18px;">
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td style="font-size: 18px;">
-            @Html.DisplayFor(modelItem => item.Cobro)
-        </td>
-        <td style="font-size: 18px;">
-            <button type="button" class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
-            <button type="button" class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
-        </td>
-       
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="font-size: 18px;">
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td style="font-size: 18px;">
+                @Html.DisplayFor(modelItem => item.Cobro)
+            </td>
+            <td style="font-size: 18px;">
+                <a href="@Url.Action("Details", "PlanCobro", new { id = item.Id })" class="btn btn-info"><i class="fa-solid fa-circle-info"></i> Details</a>
+                <a href="@Url.Action("Edit", "PlanCobro", new { id = item.Id })" class="btn btn-warning"><i class="fa-solid fa-pen"></i> Edit</a>
+            </td>
+
+        </tr>
+    }
 
 </table>
