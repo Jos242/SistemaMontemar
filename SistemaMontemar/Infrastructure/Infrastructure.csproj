@@ -115,6 +115,7 @@
     <Compile Include="Repository\IRepositoryAsignacionPlan.cs" />
     <Compile Include="Repository\IRepositoryDeuda.cs" />
     <Compile Include="Repository\IRepositoryIncidencia.cs" />
+    <Compile Include="Repository\IRepositoryInformacion.cs" />
     <Compile Include="Repository\IRepositoryPago.cs" />
     <Compile Include="Repository\IRepositoryPlanCobro.cs" />
     <Compile Include="Repository\IRepositoryRubro.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Repository\RepositoryAsignacionPlan.cs" />
     <Compile Include="Repository\RepositoryDeuda.cs" />
     <Compile Include="Repository\RepositoryIncidencia.cs" />
+    <Compile Include="Repository\RepositoryInformacion.cs" />
     <Compile Include="Repository\RepositoryPago.cs" />
     <Compile Include="Repository\RepositoryPlanCobro.cs" />
     <Compile Include="Repository\RepositoryRubro.cs" />

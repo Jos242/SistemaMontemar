@@ -157,9 +157,10 @@ namespace Infrastructure.Models
         public int IdUsuario { get; set; }
 
         [Display(Name = "Message")]
+        [Required(ErrorMessage = "{0} required data")]
         public string Mensaje { get; set; }
 
-        [Display(Name = "Incidence Date")]
+        [Display(Name = "Incident Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime Fecha { get; set; }
@@ -209,5 +210,29 @@ namespace Infrastructure.Models
         public virtual ICollection<Reservacion> Reservacion { get; set; }
         public virtual ICollection<Residencia> Residencia { get; set; }
         public virtual TipoUsuario TipoUsuario { get; set; }
+    }
+
+    public partial class InformacionMetaData
+    {
+        public int Id { get; set; }
+
+        [Display(Name = "Title")]
+        [Required(ErrorMessage = "{0} is required")]
+        public string Titulo { get; set; }
+
+        [Display(Name = "Description")]
+        [Required(ErrorMessage = "{0} is required")]
+        public string Descripcion { get; set; }
+
+        [Display(Name = "Type")]
+        public int Tipo { get; set; }
+        public Dictionary<int, string> Tipos
+        {
+            get
+            {
+                return new Dictionary<int, string> { { 0, "Notices" }, { 1, "Announcements" }, { 2, "Rules" }, { 3, "Proceedings " }, { 4, "Financial State" } };
+            }
+            set { }
+        }
     }
 }

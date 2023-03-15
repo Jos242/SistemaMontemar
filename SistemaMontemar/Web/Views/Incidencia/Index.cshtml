@@ -4,50 +4,57 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Incidences</h2>
+<h2>Incidents</h2>
 
 <p>
     <button class="btn btn-primary" onclick="create()">Report Incident</button>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mensaje)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
-        <th></th>
-    </tr>
-    <tbody id="resultado">
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Usuario.FullName)
-                </td>
-                <td style="max-width: 300px">
-                    @Html.DisplayFor(modelItem => item.Mensaje)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fecha)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Estados[item.Estado])
-                </td>
-                <td>
-                    <button class="btn @(item.Estado == 1 ? "btn-secondary" : "btn-success")" onclick="change(@item.Id)" @(item.Estado == 1 ? "disabled" : "")>@(item.Estado == 1 ? "Completed" : "Complete")</button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<div id="resultado">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mensaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            @{
+                int status = ViewBag.status;
+            }
+            <th>
+                <button class="btn btn-outline-primary" onclick="change(@status)">@Html.DisplayNameFor(model => model.Estado)  <i class="@(status==0?"fa-solid fa-arrow-up":status==-1?"fa-solid fa-arrow-down":"")"></i></button>
+            </th>
+            <th></th>
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.FullName)
+                    </td>
+                    <td style="max-width: 300px">
+                        @Html.DisplayFor(modelItem => item.Mensaje)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estados[item.Estado])
+                    </td>
+                    <td>
+                        <button class="btn @(item.Estado == 1 ? "btn-secondary" : "btn-success")" onclick="change(@item.Id)" @(item.Estado == 1 ? "disabled" : "")>@(item.Estado == 1 ? "Completed" : "Complete")</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
 @* Modal *@
 <div class="modal" tabindex="-1" id="myModal">
     <div class="modal-dialog">
@@ -59,12 +66,12 @@
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
             </div>
         </div>
     </div>
-</div>>
+</div>
 @* Modal *@
 
 @section Scripts{

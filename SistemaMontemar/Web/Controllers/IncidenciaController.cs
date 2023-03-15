@@ -22,6 +22,7 @@ namespace Web.Controllers
             {
                 IServiceIncidencia _ServiceIncidencia = new ServiceIncidencia();
                 lista = _ServiceIncidencia.GetIncidencias();
+                ViewBag.status = -2;
                 return View(lista);
             }
             catch (Exception ex)
@@ -58,13 +59,34 @@ namespace Web.Controllers
             IServiceIncidencia _ServiceIncidencia = new ServiceIncidencia();
             IEnumerable<Incidencia> lista = null;
 
-            Incidencia oIncidencia = _ServiceIncidencia.GetIncidenciaById(idIncidencia);
+            if (idIncidencia > 0)
+            {
+                Incidencia oIncidencia = _ServiceIncidencia.GetIncidenciaById(idIncidencia);
 
-            oIncidencia.Estado = 1;
+                oIncidencia.Estado = 1;
 
-            Incidencia save = _ServiceIncidencia.Save(oIncidencia);
+                Incidencia save = _ServiceIncidencia.Save(oIncidencia);
 
-            lista = _ServiceIncidencia.GetIncidencias();
+                lista = _ServiceIncidencia.GetIncidencias();
+            }
+            else
+            {
+                lista = _ServiceIncidencia.GetIncidencias();
+                IEnumerable<Incidencia> listaC = lista.Where(x => x.Estado == 1);
+                IEnumerable<Incidencia> listaN = lista.Where(x => x.Estado == 0);
+
+                if(idIncidencia == 0)
+                {
+                    lista = listaC.Concat(listaN);
+                    ViewBag.status = -1;
+                } 
+                else
+                {
+                    lista = listaN.Concat(listaC);
+                    ViewBag.status = 0;
+                }
+            }
+
 
             return PartialView("_PartialViewEstado", lista);
         }
@@ -94,8 +116,9 @@ namespace Web.Controllers
                 }
                 else
                 {
-                    return View("Create", incidencia);
+                    return PartialView("_PartialViewCreate", incidencia);
                 }
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

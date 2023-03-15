@@ -53,6 +53,7 @@
     <Compile Include="Services\IServiceAsignacionPlan.cs" />
     <Compile Include="Services\IServiceDeuda.cs" />
     <Compile Include="Services\IServiceIncidencia.cs" />
+    <Compile Include="Services\IServiceInformacion.cs" />
     <Compile Include="Services\IServicePago.cs" />
     <Compile Include="Services\IServicePlanCobro.cs" />
     <Compile Include="Services\IServiceResidencia.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Services\ServiceAsignacionPlan.cs" />
     <Compile Include="Services\ServiceDeuda.cs" />
     <Compile Include="Services\ServiceIncidencia.cs" />
+    <Compile Include="Services\ServiceInformacion.cs" />
     <Compile Include="Services\ServicePago.cs" />
     <Compile Include="Services\ServicePlanCobro.cs" />
     <Compile Include="Services\ServiceResidencia.cs" />

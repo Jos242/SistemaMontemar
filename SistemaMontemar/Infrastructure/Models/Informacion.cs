@@ -11,12 +11,22 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(InformacionMetaData))]
     public partial class Informacion
     {
         public int Id { get; set; }
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         public int Tipo { get; set; }
+        public Dictionary<int, string> Tipos
+        {
+            get
+            {
+                return new Dictionary<int, string> { { 0, "Notices" }, { 1, "News" }, { 2, "Rules" }, { 3, "Proceedings " }, { 4, "Financial State" } };
+            }
+            set { }
+        }
     }
 }
