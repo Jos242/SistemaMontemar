@@ -1,18 +1,18 @@
-﻿@model Infrastructure.Models.PlanCobro
+﻿@model Infrastructure.Models.Rubro
 
 @{
-    ViewBag.Title = "Create New Payment Plan";
+    ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Save", "PlanCobro", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Save", "Rubro", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>Payment Plan</h4>
+        <h4>Payment</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -24,19 +24,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Rubro, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-
-                @Html.DropDownList("selectedRubros",
-                (MultiSelectList)ViewBag.idRubro,
-                htmlAttributes: new { @class = "form-control", multiple = "multiple", id="selectedRubros" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Cobro, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Cobro, new { htmlAttributes = new { @class = "form-control",@id = "Cobro" } })
+                @Html.EditorFor(model => model.Cobro, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Cobro, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -55,17 +45,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
-    $(function () {
-        $("#selectedRubros").change(function () {
-            var totalCost = 0;
-            $("#selectedRubros option:selected").each(function () {
-                var rubro = JSON.parse($(this).val());
-                totalCost += rubro.Cobro;
-            });
-            $("#Cobro").val(totalCost.toFixed(2));
-        });
-    });
-</script>
-   
 }
