@@ -111,6 +111,7 @@
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepositoryAsignacionPlan.cs" />
     <Compile Include="Repository\IRepositoryDeuda.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Repository\IRepositoryInformacion.cs" />
     <Compile Include="Repository\IRepositoryPago.cs" />
     <Compile Include="Repository\IRepositoryPlanCobro.cs" />
+    <Compile Include="Repository\IRepositoryReservacion.cs" />
     <Compile Include="Repository\IRepositoryRubro.cs" />
     <Compile Include="Repository\IRepositoryUsuario.cs" />
     <Compile Include="Repository\IRepositoryResidencia.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="Repository\RepositoryInformacion.cs" />
     <Compile Include="Repository\RepositoryPago.cs" />
     <Compile Include="Repository\RepositoryPlanCobro.cs" />
+    <Compile Include="Repository\RepositoryReservacion.cs" />
     <Compile Include="Repository\RepositoryRubro.cs" />
     <Compile Include="Repository\RepositoryUsuario.cs" />
     <Compile Include="Repository\RepositoryResidencia.cs" />
@@ -157,6 +160,14 @@
     <None Include="Models\MyModel.edmx.diagram">
       <DependentUpon>MyModel.edmx</DependentUpon>
     </None>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\Models\MyModel.csdl" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\Models\MyModel.msl" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\Models\MyModel.ssdl" />
+    <None Include="obj\Debug\Infrastructure.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\Infrastructure.csproj.CopyComplete" />
+    <None Include="obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache" />
     <None Include="packages.config" />
     <None Include="Scripts\bootstrap.bundle.js.map" />
     <None Include="Scripts\bootstrap.bundle.min.js.map" />
@@ -171,6 +182,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\Infrastructure.dll" />
+    <Content Include="bin\Debug\Infrastructure.pdb" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -198,6 +211,18 @@
       <DependentUpon>MyModel.edmx</DependentUpon>
       <LastGenOutput>MyModel.cs</LastGenOutput>
     </Content>
+    <Content Include="obj\Debug\Infrastructure.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Infrastructure.dll" />
+    <Content Include="obj\Debug\Infrastructure.pdb" />
+    <Content Include="obj\Debug\TempPE\Models.Model1.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model1.Context1.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model1.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model1.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model11.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model11.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.MyModel.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.MyModel.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.MyModel.Designer.cs.dll" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -210,6 +235,9 @@
     <Content Include="Scripts\jquery-3.6.3.slim.js" />
     <Content Include="Scripts\jquery-3.6.3.slim.min.js" />
     <Content Include="Scripts\sweetalert.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

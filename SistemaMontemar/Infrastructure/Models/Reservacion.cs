@@ -11,7 +11,9 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(ReservacionMetaData))]
     public partial class Reservacion
     {
         public int Id { get; set; }
@@ -23,5 +25,14 @@ namespace Infrastructure.Models
     
         public virtual Area Area { get; set; }
         public virtual Usuario Usuario { get; set; }
+
+        public Dictionary<int, string> Estados
+        {
+            get
+            {
+                return new Dictionary<int, string> { { 0, "Pending" }, { 1, "Approved" }, { 2, "Rejected" } };
+            }
+            set { }
+        }
     }
 }

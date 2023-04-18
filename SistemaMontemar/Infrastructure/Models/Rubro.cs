@@ -23,7 +23,11 @@ namespace Infrastructure.Models
         }
     
         public int Id { get; set; }
+
+        [UIHint("StringEditor")]
         public string Descripcion { get; set; }
+
+        [UIHint("DecimalEditor")]
         public decimal Cobro { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

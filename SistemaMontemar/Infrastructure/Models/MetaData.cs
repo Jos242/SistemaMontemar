@@ -244,4 +244,26 @@ namespace Infrastructure.Models
             set { }
         }
     }
+
+    public partial class ReservacionMetaData 
+    {
+        public int Id { get; set; }
+        public int IdUsuario { get; set; }
+        public int IdArea { get; set; }
+
+        [Display(Name = "Start Date & Hour")]
+        public System.DateTime FechaInicio { get; set; }
+
+        [Display(Name = "Finish Date & Hour")]
+        public System.DateTime FechaFinal { get; set; }
+
+        [Display(Name = "Status")]
+        public int Estado { get; set; }
+
+        public virtual Area Area { get; set; }
+        public virtual Usuario Usuario { get; set; }
+
+    }
+
+
 }
