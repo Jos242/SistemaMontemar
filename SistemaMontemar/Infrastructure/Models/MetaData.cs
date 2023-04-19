@@ -253,10 +253,10 @@ namespace Infrastructure.Models
         [Display(Name = "Area Requested")]
         public int IdArea { get; set; }
 
-        [Display(Name = "Start Date & Hour")]
+        [Display(Name = "Start Date & Time")]
         public System.DateTime FechaInicio { get; set; }
 
-        [Display(Name = "Finish Date & Hour")]
+        [Display(Name = "End Time")]
         public System.DateTime FechaFinal { get; set; }
 
         [Display(Name = "Status")]

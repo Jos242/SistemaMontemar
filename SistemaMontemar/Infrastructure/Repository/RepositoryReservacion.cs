@@ -95,5 +95,37 @@ namespace Infrastructure.Repository
 
             return oReservacion;
         }
+
+        public bool RevisarFechas(DateTime start, DateTime end, int area) 
+        {
+            bool hay = true;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+
+                    // if true entonces si hay reservacion en esas horas
+                    hay = ctx.Reservacion.Any(r => r.Estado == 1 &&
+                         ((r.FechaInicio <= start && r.FechaFinal >= start && r.IdArea == area) ||
+                          (r.FechaInicio <= end && r.FechaFinal >= end && r.IdArea == area) ||
+                          (r.FechaInicio >= start && r.FechaFinal <= end && r.IdArea == area)));
+                }
+                return hay;
+                
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
     }
 }

@@ -106,19 +106,14 @@ namespace Web.Controllers
             return View();
         }
 
-        private SelectList listaAreas(ICollection<Area> areas = null)
+        private SelectList listaAreas(int idArea = 0)
         {
             IServiceArea _ServiceArea = new ServiceArea();
             IEnumerable<Area> lista = _ServiceArea.GetAreas();
-            //Seleccionar rubros
-            int[] listaAreasSelect = null;
-            if (areas != null)
-            {
-                listaAreasSelect = areas.Select(c => c.Id).ToArray();
-            }
-
-            return new SelectList(lista, "Id", "Descripcion", listaAreasSelect);
+            return new SelectList(lista, "Id", "Descripcion", idArea);
         }
+
+
 
         // POST: Reservacion/Create
         [HttpPost]
@@ -150,6 +145,15 @@ namespace Web.Controllers
                 if (ModelState.IsValid)
                 {
                     Session["User"] = new ServiceUsuario().GetUsuarioById(1);
+
+                    bool hayReservaciones = _ServiceReservacion.RevisarFechas(reservacion.FechaInicio, reservacion.FechaFinal, reservacion.IdArea);
+                    if (hayReservaciones)
+                    {
+                        ModelState.AddModelError(string.Empty, "The selected dates overlap with an existing reservation.");
+                        ViewBag.idArea = listaAreas();
+                        return View("Create", reservacion);
+                    }
+
 
                     oReservacion = _ServiceReservacion.GetReservacionById(reservacion.Id);
 
