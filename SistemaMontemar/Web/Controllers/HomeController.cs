@@ -14,6 +14,12 @@ namespace Pruebin.Controllers
     {
         public ActionResult Index()
         {
+
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.NotificationMessage = TempData["mensaje"];
+            }
+            Log.Info("Inicio");
             IEnumerable<Informacion> lista = null;
             try
             {
