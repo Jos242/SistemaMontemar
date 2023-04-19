@@ -26,7 +26,7 @@
                 int status = ViewBag.status;
             }
             <th>
-                <button class="btn btn-outline-primary" onclick="change(@status)">@Html.DisplayNameFor(model => model.Estado)  <i class="@(status==0?"fa-solid fa-arrow-up":status==-1?"fa-solid fa-arrow-down":"")"></i></button>
+                <button class="btn btn-outline-primary" onclick="change(@status, 0)">@Html.DisplayNameFor(model => model.Estado)  <i class="@(status==0?"fa-solid fa-arrow-up":status==-1?"fa-solid fa-arrow-down":"")"></i></button>
             </th>
             <th></th>
         </tr>

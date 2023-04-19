@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Infrastructure.Models.Reservacion>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaFinal)
+        </th>
+        @{
+            int status = ViewBag.status;
+        }
+        <th>
+            <button class="btn btn-outline-primary" onclick="change(@status, 0)">@Html.DisplayNameFor(model => model.Estado)  <i class="@(status==0?"fa-solid fa-ban":status==-1?"fa-solid fa-check":status==-2?"fa-solid fa-hourglass-start":"")"></i></button>
+        </th>
+        <th></th>
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estados[item.Estado])
+            </td>
+            <td>
+                <button type="button" class="btn @(item.Estado != 0 ? "btn-secondary" : "btn-success")" onclick="change(@item.Id, 1)" @(item.Estado != 0 ? "disabled" : "")>@(item.Estado == 1 ? "Approved" : "Approve")</button>
+                <button type="button" class="btn @(item.Estado != 0 ? "btn-secondary" : "btn-danger")" onclick="change(@item.Id, 2)" @(item.Estado != 0 ? "disabled" : "")>@(item.Estado == 2 ? "Rejected" : "Reject")</button>
+            </td>
+        </tr>
+    }
+
+</table>

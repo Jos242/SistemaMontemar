@@ -299,6 +299,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
+    <Content Include="Scripts\flatpickr.min.css" />
+    <Content Include="Scripts\flatpickr.min.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
     <Content Include="Scripts\jquery-3.6.3.slim.js" />
@@ -360,11 +362,14 @@
     <Content Include="Views\EditorTemplates\StringEditor.cshtml" />
     <Content Include="Views\EditorTemplates\DecimalEditor.cshtml" />
     <Content Include="Views\Reservacion\Index.cshtml" />
+    <Content Include="Views\Reservacion\_PartialViewEstado.cshtml" />
+    <Content Include="Views\Reservacion\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Scripts\flatpickr\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>

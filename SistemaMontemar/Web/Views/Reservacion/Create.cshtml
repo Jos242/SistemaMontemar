@@ -1,0 +1,98 @@
+﻿@model Infrastructure.Models.Reservacion
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Save", "Reservacion", FormMethod.Post, null)) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Reservacion</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdArea, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model=>model.IdArea,
+                (SelectList)ViewBag.idArea,
+                htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdArea, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FechaInicio, new { @id = "myDatePicker", @type = "text" })
+            @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FechaFinal, new { @id = "myDatePicker2", @type = "text", @disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.FechaFinal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/flatpickr.min.js"></script>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        var myDatePicker = document.getElementById('myDatePicker');
+        var myDatePicker2 = document.getElementById('myDatePicker2');
+
+        var tomorrow = new Date();
+        tomorrow.setDate(new Date().getDate() + 1);
+
+        flatpickr(myDatePicker, {
+            enableTime: true,
+            dateFormat: "F d, Y H:i",
+            time_24hr: true,
+            enableSeconds: false,
+            minDate: tomorrow,
+            defaultDate: tomorrow,
+            defaultHour: 12,
+            onChange: function (selectedDates) {
+                myDatePicker2.disabled = false;
+                myDatePicker2._flatpickr.set('minDate', selectedDates[0]);
+                myDatePicker2._flatpickr.set("maxDate", new Date(selectedDates[0].setHours(22, 0, 0, 0)));
+            }
+        });
+
+        flatpickr(myDatePicker2, {
+            enableTime: true,
+            dateFormat: "F d, Y H:i",
+            time_24hr: true,
+            enableSeconds: false,
+            minDate: tomorrow,
+            defaultDate: tomorrow,
+            defaultHour: 12
+        });
+
+    </script>
+}

@@ -249,6 +249,8 @@ namespace Infrastructure.Models
     {
         public int Id { get; set; }
         public int IdUsuario { get; set; }
+
+        [Display(Name = "Area Requested")]
         public int IdArea { get; set; }
 
         [Display(Name = "Start Date & Hour")]
