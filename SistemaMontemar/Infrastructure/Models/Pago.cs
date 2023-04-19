@@ -21,7 +21,7 @@ namespace Infrastructure.Models
         public int IdAsignacion { get; set; }
         public System.DateTime FechaPago { get; set; }
         public decimal Total { get; set; }
-    
+
         public virtual AsignacionPlan AsignacionPlan { get; set; }
     }
 }

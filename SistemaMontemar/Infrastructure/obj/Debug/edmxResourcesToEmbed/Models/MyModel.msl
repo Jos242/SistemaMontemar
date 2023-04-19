@@ -15,6 +15,7 @@
     <EntitySetMapping Name="AsignacionPlan">
       <EntityTypeMapping TypeName="SistemaMontemarModel.AsignacionPlan">
         <MappingFragment StoreEntitySet="AsignacionPlan">
+          <ScalarProperty Name="Anio" ColumnName="Anio" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IdResidencia" ColumnName="IdResidencia" />
           <ScalarProperty Name="IdPlan" ColumnName="IdPlan" />

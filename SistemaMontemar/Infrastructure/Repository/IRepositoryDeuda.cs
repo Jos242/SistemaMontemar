@@ -11,5 +11,6 @@ namespace Infrastructure.Repository
     {
         IEnumerable<Deuda> GetDeudas();
         IEnumerable<Deuda> GetDeudaByResidencia(int id);
+        Deuda Save(Deuda deuda);
     }
 }

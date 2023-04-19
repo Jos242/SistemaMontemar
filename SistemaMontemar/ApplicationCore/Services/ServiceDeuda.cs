@@ -21,5 +21,11 @@ namespace ApplicationCore.Services
             IRepositoryDeuda repository = new RepositoryDeuda();
             return repository.GetDeudas();
         }
+
+        public Deuda Save(Deuda deuda)
+        {
+            IRepositoryDeuda repository = new RepositoryDeuda();
+            return repository.Save(deuda);
+        }
     }
 }

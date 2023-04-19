@@ -77,5 +77,24 @@ namespace Infrastructure.Repository
                 throw;
             }
         }
+
+        public Deuda Save(Deuda deuda)
+        {
+            int retorno = 0;
+            Deuda oDeuda = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+
+                ctx.Deuda.Add(deuda);
+                retorno = ctx.SaveChanges();
+
+            }
+            if (retorno >= 0)
+                oDeuda = deuda;
+
+            return oDeuda;
+        }
     }
 }

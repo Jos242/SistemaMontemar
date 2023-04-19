@@ -21,7 +21,7 @@ namespace Infrastructure.Models
         {
             this.PlanCobro = new HashSet<PlanCobro>();
         }
-    
+
         public int Id { get; set; }
 
         [UIHint("StringEditor")]
@@ -29,7 +29,7 @@ namespace Infrastructure.Models
 
         [UIHint("DecimalEditor")]
         public decimal Cobro { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlanCobro> PlanCobro { get; set; }
     }

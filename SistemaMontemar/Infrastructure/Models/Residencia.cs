@@ -22,7 +22,7 @@ namespace Infrastructure.Models
         {
             this.AsignacionPlan = new HashSet<AsignacionPlan>();
         }
-    
+
         public int Id { get; set; }
         public int IdUsuario { get; set; }
         public int CantPersonas { get; set; }

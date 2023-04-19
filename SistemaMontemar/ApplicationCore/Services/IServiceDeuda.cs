@@ -11,5 +11,6 @@ namespace ApplicationCore.Services
     {
         IEnumerable<Deuda> GetDeudas();
         IEnumerable<Deuda> GetDeudaByResidencia(int id);
+        Deuda Save(Deuda deuda);
     }
 }

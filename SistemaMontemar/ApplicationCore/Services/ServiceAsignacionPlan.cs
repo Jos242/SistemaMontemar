@@ -16,10 +16,22 @@ namespace ApplicationCore.Services
             return repository.GetAsignacionById(id);
         }
 
+        public IEnumerable<AsignacionPlan> GetAsignacionByResidencia(int idResidencia)
+        {
+            IRepositoryAsignacionPlan repository = new RepositoryAsignacionPlan();
+            return repository.GetAsignacionByResidencia(idResidencia);
+        }
+
         public IEnumerable<AsignacionPlan> GetEstadoCuentas()
         {
             IRepositoryAsignacionPlan repository = new RepositoryAsignacionPlan();
             return repository.GetEstadoCuentas();
+        }
+
+        public AsignacionPlan Save(AsignacionPlan asignacionPlan)
+        {
+            IRepositoryAsignacionPlan repository = new RepositoryAsignacionPlan();
+            return repository.Save(asignacionPlan);
         }
     }
 }

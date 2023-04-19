@@ -11,5 +11,7 @@ namespace Infrastructure.Repository
     {
         IEnumerable<AsignacionPlan> GetEstadoCuentas();
         AsignacionPlan GetAsignacionById(int id);
+        AsignacionPlan Save(AsignacionPlan asignacionPlan);
+        IEnumerable<AsignacionPlan> GetAsignacionByResidencia(int idResidencia);
     }
 }

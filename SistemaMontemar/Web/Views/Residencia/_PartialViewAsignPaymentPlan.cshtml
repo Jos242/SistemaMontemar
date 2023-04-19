@@ -1,0 +1,85 @@
+﻿@model Infrastructure.Models.AsignacionPlan
+
+
+<h4>Payment Plan</h4>
+<hr />
+<dl class="dl-horizontal" id="resultado">
+    <dt style="font-size: 18px;">
+        <i class="fa-solid fa-circle-info"></i>
+        @Html.DisplayNameFor(model => model.PlanCobro.Descripcion):
+    </dt>
+
+    <dd style="font-size: 18px;">
+        @Html.DisplayFor(model => model.PlanCobro.Descripcion)
+    </dd>
+
+    <dt style="font-size: 18px;">
+        <i class="fa-solid fa-money-bill"></i>
+        @Html.DisplayNameFor(model => model.PlanCobro.Cobro):
+    </dt>
+
+    <dd style="font-size: 18px;">
+        @Html.DisplayFor(model => model.PlanCobro.Cobro)
+    </dd>
+    <dt style="font-size: 18px;">
+        <i class="fa-solid fa-circle-check"></i>
+        <b>@Html.DisplayNameFor(model => model.PlanCobro.Rubro):</b>
+    </dt>
+    <dd style="font-size: 18px;">
+        <ul style="font-size: 18px;">
+            @foreach (var r in Model.PlanCobro.Rubro)
+            {
+                <li>
+                    <b>@r.Descripcion</b>  :
+                    @Html.DisplayFor(modelItem => r.Cobro)
+                </li>
+            }
+
+        </ul>
+
+    </dd>
+</dl>
+
+@using (Html.BeginForm("SaveAsignacionPlan", "Residencia", FormMethod.Post, null))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Asign Payment Plan</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.Id, new { value = Model.Id })
+    @Html.HiddenFor(model => model.IdResidencia, new { value = Model.IdResidencia })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mes, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Mes, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Mes, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Anio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Anio, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Anio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdPlan, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.IdPlan,
+           (SelectList)ViewBag.idPlanCobro,
+           htmlAttributes: new { @class = "form-control", @onchange = "getPlanCobro(this.value);" })
+            @Html.ValidationMessageFor(model => model.IdPlan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Asign" class="btn btn-outline-primary" />
+        </div>
+    </div>
+</div>
+}

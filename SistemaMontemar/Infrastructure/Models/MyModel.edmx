@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SistemaMontemarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SistemaMontemarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Area">
           <Key>
             <PropertyRef Name="Id" />
@@ -24,6 +24,7 @@
           <Property Name="IdPlan" Type="int" Nullable="false" />
           <Property Name="Mes" Type="int" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="Anio" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Deuda">
           <Key>
@@ -323,8 +324,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SistemaMontemarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -352,6 +352,7 @@
           <NavigationProperty Name="Residencia" Relationship="Self.FK_AsignacionPlan_Residencia" FromRole="AsignacionPlan" ToRole="Residencia" />
           <NavigationProperty Name="Deuda" Relationship="Self.FK_Deuda_AsignacionPlan" FromRole="AsignacionPlan" ToRole="Deuda" />
           <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_AsignacionPlan" FromRole="AsignacionPlan" ToRole="Pago" />
+          <Property Name="Anio" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Deuda">
           <Key>
@@ -653,6 +654,7 @@
           <EntitySetMapping Name="AsignacionPlan">
             <EntityTypeMapping TypeName="SistemaMontemarModel.AsignacionPlan">
               <MappingFragment StoreEntitySet="AsignacionPlan">
+                <ScalarProperty Name="Anio" ColumnName="Anio" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdResidencia" ColumnName="IdResidencia" />
                 <ScalarProperty Name="IdPlan" ColumnName="IdPlan" />

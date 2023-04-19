@@ -6,27 +6,77 @@
 <h2>Residences</h2>
 <div class="row">
     <div class="col-lg">
-        <div id="resultado" class="row">
+        <div class="row">
             @foreach (var item in Model)
             {
                 <div class="col-sm-6">
-                    <div class="card">
-                        <a href="@Url.Action("Details", "Residencia", new { id = item.Id })" class="btn btn-primary">
+                    <div class="card bg-primary l mb-3">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                            <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(item.Imagen)"
+                                    alt="Libro @Html.DisplayFor(modelItem => item.Usuario.Nombre)"
+                                    class="img-fluid rounded-start" />
+                            <h4 class="card-title"style="color: white;">@Html.DisplayNameFor(model => model.Id) @Html.DisplayFor(modelItem => item.Id)</h4>
+                            <h5 class="card-subtitle mb-2 text-muted"> <i class="fa-solid fa-circle-user"></i> @Html.DisplayFor(modelItem => item.Usuario.FullName)</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Estados[item.Estado])</h6>
                             <div class="card-body">
-                                <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(item.Imagen)"
-                                     alt="Libro @Html.DisplayFor(modelItem => item.Usuario.Nombre)"
-                                     class="img-fluid rounded-start" />
-                                <h4 class="card-title">@Html.DisplayNameFor(model => model.Id) @Html.DisplayFor(modelItem => item.Id)</h4>
-                                <h5 class="card-subtitle mb-2 text-muted"> <i class="fa-solid fa-circle-user"></i> @Html.DisplayFor(modelItem => item.Usuario.FullName)</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Estados[item.Estado])</h6>
-                                <div class="card-body">
-                                    @* Accion Orden *@
-                                </div>
+                                <a href="@Url.Action("Details", "Residencia", new { id = item.Id })" class="btn btn-info">Details</a>
+                                <button class="btn btn-secondary" onclick="asignar(@item.Id)">Asign Payment Plan</button>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             }
         </div>
     </div>
 </div>
+
+@* Modal *@
+<div class="modal" tabindex="-1" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal *@
+
+@section Scripts{
+    <script type="text/javascript">
+        function asignar(idResidencia) {
+            $.ajax({
+                method: 'POST',
+                url: '/Residencia/AjaxAsignarPlan',
+                data: { 'idResidencia': idResidencia},
+                success: function (response) {
+                    $('.modal-body').html('');
+                    $('.modal-body').html(response);
+                    $('#myModal').modal('show');
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+
+        function getPlanCobro(idPlanCobro) {
+            $.ajax({
+                method: 'POST',
+                url: '/Residencia/AjaxGetPlanCobro',
+                data: { 'idPlanCobro': idPlanCobro },
+                success: function (response) {
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+    </script>
+}

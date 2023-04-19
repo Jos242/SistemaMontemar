@@ -22,7 +22,7 @@ namespace Infrastructure.Models
         public System.DateTime FechaInicio { get; set; }
         public System.DateTime FechaFinal { get; set; }
         public int Estado { get; set; }
-    
+
         public virtual Area Area { get; set; }
         public virtual Usuario Usuario { get; set; }
 

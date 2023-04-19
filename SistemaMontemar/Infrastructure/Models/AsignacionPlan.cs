@@ -23,13 +23,14 @@ namespace Infrastructure.Models
             this.Deuda = new HashSet<Deuda>();
             this.Pago = new HashSet<Pago>();
         }
-    
+
         public int Id { get; set; }
         public int IdResidencia { get; set; }
         public int IdPlan { get; set; }
         public int Mes { get; set; }
         public int Estado { get; set; }
-    
+        public int Anio { get; set; }
+
         public virtual PlanCobro PlanCobro { get; set; }
         public virtual Residencia Residencia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

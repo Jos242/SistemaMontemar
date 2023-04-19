@@ -13,7 +13,7 @@ namespace Infrastructure.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    [MetadataType(typeof(IncidenciaMetdaData))]
+    [MetadataType(typeof(IncidenciaMetaData))]
     public partial class Incidencia
     {
         public int Id { get; set; }

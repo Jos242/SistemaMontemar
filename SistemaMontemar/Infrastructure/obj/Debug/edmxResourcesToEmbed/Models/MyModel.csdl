@@ -24,6 +24,7 @@
     <NavigationProperty Name="Residencia" Relationship="Self.FK_AsignacionPlan_Residencia" FromRole="AsignacionPlan" ToRole="Residencia" />
     <NavigationProperty Name="Deuda" Relationship="Self.FK_Deuda_AsignacionPlan" FromRole="AsignacionPlan" ToRole="Deuda" />
     <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_AsignacionPlan" FromRole="AsignacionPlan" ToRole="Pago" />
+    <Property Name="Anio" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Deuda">
     <Key>

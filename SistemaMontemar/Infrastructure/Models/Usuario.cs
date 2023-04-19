@@ -23,7 +23,7 @@ namespace Infrastructure.Models
             this.Reservacion = new HashSet<Reservacion>();
             this.Residencia = new HashSet<Residencia>();
         }
-    
+
         public int Id { get; set; }
         public int IdTipoUsuario { get; set; }
         public string Email { get; set; }

@@ -360,6 +360,8 @@
     <Content Include="Views\EditorTemplates\StringEditor.cshtml" />
     <Content Include="Views\EditorTemplates\DecimalEditor.cshtml" />
     <Content Include="Views\Reservacion\Index.cshtml" />
+    <Content Include="Views\Residencia\_PartialViewGetPlanCobro.cshtml" />
+    <Content Include="Views\Residencia\_PartialViewAsignPaymentPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -160,7 +160,7 @@ namespace Infrastructure.Models
         public virtual AsignacionPlan AsignacionPlan { get; set; }
     }
 
-    public partial class IncidenciaMetdaData
+    public partial class IncidenciaMetaData
     {
         public int Id { get; set; }
         public int IdUsuario { get; set; }

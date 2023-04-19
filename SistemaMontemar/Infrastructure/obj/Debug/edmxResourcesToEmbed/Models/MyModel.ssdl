@@ -19,6 +19,7 @@
     <Property Name="IdPlan" Type="int" Nullable="false" />
     <Property Name="Mes" Type="int" Nullable="false" />
     <Property Name="Estado" Type="int" Nullable="false" />
+    <Property Name="Anio" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Deuda">
     <Key>

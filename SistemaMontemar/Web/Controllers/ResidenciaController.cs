@@ -33,6 +33,75 @@ namespace Web.Controllers
             }
         }
 
+        public ActionResult AjaxAsignarPlan(int idResidencia)
+        {
+            IServiceResidencia _ServiceResidencia = new ServiceResidencia();
+            IServicePlanCobro _ServicePlanCobro = new ServicePlanCobro();
+            IServiceAsignacionPlan _ServiceAsignacionPlan = new ServiceAsignacionPlan();
+            IServicePago _ServicePago = new ServicePago();
+
+            AsignacionPlan asignacionPlan = null;
+            Residencia residencia = _ServiceResidencia.GetResidenciaById(idResidencia);
+            AsignacionPlan asignacionPlanActual = _ServiceAsignacionPlan.GetAsignacionByResidencia(idResidencia).Where(a => a.Mes == DateTime.Now.Month && a.Anio == DateTime.Now.Year).FirstOrDefault();
+            if (asignacionPlanActual != null)
+            {
+                if (asignacionPlanActual.Estado == 1)
+                {
+                    AsignacionPlan asignacionPlanFuturo = _ServiceAsignacionPlan.GetAsignacionByResidencia(idResidencia).Where(a => a.Mes == (DateTime.Now.Month) + 1 && a.Anio == DateTime.Now.Year).FirstOrDefault();
+
+                    if (asignacionPlanFuturo == null)
+                    {
+                        asignacionPlan = new AsignacionPlan
+                        {
+                            Residencia = _ServiceResidencia.GetResidenciaById(idResidencia),
+                            PlanCobro = _ServicePlanCobro.GetPlanCobroById(1),
+                            Mes = (DateTime.Now.Month) + 1,
+                            Anio = DateTime.Now.Year,
+                            Estado = 0
+                        };
+                    }
+                    else
+                    {
+                        asignacionPlan = asignacionPlanFuturo;
+                    }
+                }
+                else
+                {
+                    asignacionPlan = asignacionPlanActual;
+                }
+            }
+            else
+            {
+                asignacionPlan = new AsignacionPlan
+                {
+                    Residencia = _ServiceResidencia.GetResidenciaById(idResidencia),
+                    PlanCobro = _ServicePlanCobro.GetPlanCobroById(1),
+                    Mes = (DateTime.Now.Month),
+                    Anio = DateTime.Now.Year,
+                    Estado = 0
+                };
+            }
+
+            ViewBag.idPlanCobro = listPlanCobros(asignacionPlan.IdPlan);
+
+            return PartialView("_PartialViewAsignPaymentPlan", asignacionPlan);
+        }
+
+        public ActionResult AjaxGetPlanCobro(int idPlanCobro)
+        {
+            IServicePlanCobro _ServicePlanCobro = new ServicePlanCobro();
+            PlanCobro planCobro = _ServicePlanCobro.GetPlanCobroById(idPlanCobro);
+
+            return PartialView("_PartialViewGetPlanCobro", planCobro);
+        }
+
+        private SelectList listPlanCobros(int idPlanCobro = 0)
+        {
+            IServicePlanCobro _ServicePlanCobro = new ServicePlanCobro();
+            IEnumerable<PlanCobro> lista = _ServicePlanCobro.GetPlanCobros();
+            return new SelectList(lista, "Id", "Descripcion", idPlanCobro);
+        }
+
         // GET: Residencia/Details/5
         public ActionResult Details(int? id)
         {
@@ -116,6 +185,30 @@ namespace Web.Controllers
                     //Lógica para cagar vista correpondiente
                     return View("Create", residencia);
                 }
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Data error! " + ex.Message;
+                TempData["Redirect"] = "Residencia";
+                TempData["Redirect-Action"] = "Index";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
+
+        // POST: Residencia/Edit/5
+        [HttpPost]
+        public ActionResult SaveAsignacionPlan(AsignacionPlan asignacionPlan)
+        {
+            IServiceAsignacionPlan _ServiceAsignacionPlan = new ServiceAsignacionPlan();
+
+            try
+            {
+                AsignacionPlan oAsignacionPlan = _ServiceAsignacionPlan.Save(asignacionPlan);
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
