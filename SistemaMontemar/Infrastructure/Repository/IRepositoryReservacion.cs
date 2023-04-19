@@ -12,5 +12,6 @@ namespace Infrastructure.Repository
         IEnumerable<Reservacion> GetReservacions();
         Reservacion GetReservacionById(int id);
         Reservacion Save(Reservacion reservacion);
+        bool RevisarFechas(DateTime start, DateTime end, int area);
     }
 }

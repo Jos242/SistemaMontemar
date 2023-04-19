@@ -12,5 +12,7 @@ namespace ApplicationCore.Services
         IEnumerable<Reservacion> GetReservacions();
         Reservacion GetReservacionById(int id);
         Reservacion Save(Reservacion reservacion);
+
+        bool RevisarFechas(DateTime start, DateTime end, int area);
     }
 }

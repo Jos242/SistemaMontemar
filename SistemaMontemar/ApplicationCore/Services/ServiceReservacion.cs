@@ -22,6 +22,12 @@ namespace ApplicationCore.Services
             return repository.GetReservacions();
         }
 
+        public bool RevisarFechas(DateTime start, DateTime end, int area)
+        {
+            IRepositoryReservacion repository = new RepositoryReservacion();
+            return repository.RevisarFechas(start, end, area);
+        }
+
         public Reservacion Save(Reservacion reservacion)
         {
             IRepositoryReservacion repository = new RepositoryReservacion();

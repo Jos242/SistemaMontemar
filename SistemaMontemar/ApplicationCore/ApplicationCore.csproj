@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IServiceArea.cs" />
     <Compile Include="Services\IServiceAsignacionPlan.cs" />
     <Compile Include="Services\IServiceDeuda.cs" />
     <Compile Include="Services\IServiceIncidencia.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Services\IServiceResidencia.cs" />
     <Compile Include="Services\IServiceRubro.cs" />
     <Compile Include="Services\IServiceUsuario.cs" />
+    <Compile Include="Services\ServiceArea.cs" />
     <Compile Include="Services\ServiceAsignacionPlan.cs" />
     <Compile Include="Services\ServiceDeuda.cs" />
     <Compile Include="Services\ServiceIncidencia.cs" />
