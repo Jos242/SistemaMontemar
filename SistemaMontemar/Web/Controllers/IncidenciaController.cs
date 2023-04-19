@@ -106,7 +106,7 @@ namespace Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Session["User"] = new ServiceUsuario().GetUsuarioById(1);
+                    //Session["User"] = new ServiceUsuario().GetUsuarioById(1);
 
                     oIncidencia = _ServiceIncidencia.GetIncidenciaById(incidencia.Id);
 

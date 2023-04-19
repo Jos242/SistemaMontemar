@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApplicationCore.Utils;
 
 namespace ApplicationCore.Services
 {
@@ -21,5 +22,20 @@ namespace ApplicationCore.Services
             IRepositoryUsuario repository = new RepositoryUsuario();
             return repository.GetUsuarios();
         }
+        public Usuario GetUsuario(string email, string password)
+        {
+            IRepositoryUsuario repository = new RepositoryUsuario();
+            // Encriptar el password para poder compararlo
+            string crytpPasswd = Cryptography.EncrypthAES(password);
+            return repository.GetUsuario(email, crytpPasswd);
+        }
+
+        public Usuario Save(Usuario usuario)
+        {
+            IRepositoryUsuario repository = new RepositoryUsuario();
+            usuario.Password = Cryptography.EncrypthAES(usuario.Password);
+            return repository.Save(usuario);
+        }
+
     }
 }

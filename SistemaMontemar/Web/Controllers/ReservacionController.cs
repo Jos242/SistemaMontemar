@@ -144,7 +144,7 @@ namespace Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Session["User"] = new ServiceUsuario().GetUsuarioById(1);
+                    //Session["User"] = new ServiceUsuario().GetUsuarioById(1);
 
                     bool hayReservaciones = _ServiceReservacion.RevisarFechas(reservacion.FechaInicio, reservacion.FechaFinal, reservacion.IdArea);
                     if (hayReservaciones)

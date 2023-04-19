@@ -37,6 +37,49 @@
                 <li class="nav-item">
                     @Html.ActionLink("Reservations", "Index", "Reservacion", null, new { @class = "nav-link" })
                 </li>
+
+                @* Información usuario *@
+                @{
+                    string nombre = "";
+                    string email = "User Profile";
+                    Infrastructure.Models.Usuario oUsuario;
+                    //Validar si existe en la sesión
+                    if (Session["User"] != null)
+                    {
+                        oUsuario = (Infrastructure.Models.Usuario)Session["User"];
+                        if (oUsuario != null)
+                        {
+                            nombre = $"{oUsuario.Nombre} {oUsuario.Apellido01}";
+                            email = oUsuario.Email;
+                        }
+                    }
+                }
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User Profile</a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            @if (Session["User"] != null)
+                            {
+                                <div class="dropdown-item">
+                                    @* Nombre Usuario *@
+                                    User: @nombre
+                                </div>
+                            }
+
+                            <div class="dropdown-divider"></div>
+                            @if (Session["User"] == null)
+                            {
+                                @Html.ActionLink("Login", "Index", "Login", null, new { @class = "dropdown-item" })
+                            }
+                            else
+                            {
+
+                                @Html.ActionLink("Logout", "Logout", "Login", null, new { @class = "dropdown-item " })
+                            }
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
