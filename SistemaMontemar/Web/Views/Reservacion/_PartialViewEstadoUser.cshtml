@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Infrastructure.Models.Reservacion>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaFinal)
+        </th>
+        @{
+            int status = ViewBag.status;
+        }
+        <th>
+            <button class="btn btn-outline-primary" onclick="change(@status, 0)">@Html.DisplayNameFor(model => model.Estado)  <i class="@(status==0?"fa-solid fa-ban":status==-1?"fa-solid fa-check":status==-2?"fa-solid fa-hourglass-start":"")"></i></button>
+        </th>
+        <th></th>
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estados[item.Estado])
+            </td>
+        </tr>
+    }
+
+</table>

@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Save", "Reservacion", FormMethod.Post, null)) 
+@using (Html.BeginForm("Save", "Reservacion", FormMethod.Post, null))
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
     <h4>Reservation</h4>
     <hr />
@@ -19,9 +19,9 @@
     <div class="form-group">
         @Html.LabelFor(model => model.IdArea, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model=>model.IdArea,
-                (SelectList)ViewBag.idArea,
-                htmlAttributes: new { @class = "form-control", style = "max-width: 189px;" })
+            @Html.DropDownListFor(model => model.IdArea,
+(SelectList)ViewBag.idArea,
+htmlAttributes: new { @class = "form-control", style = "max-width: 189px;" })
             @Html.ValidationMessageFor(model => model.IdArea, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -37,7 +37,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.FechaFinal, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextBoxFor(model => model.FechaFinal, new { @id = "myDatePicker2", @type = "text", title = "Your reservation can not span more than a single day, all public areas close at 10 PM"})
+            @Html.TextBoxFor(model => model.FechaFinal, new { @id = "myDatePicker2", @type = "text", title = "Your reservation can not span more than a single day, all public areas close at 10 PM" })
             @Html.ValidationMessageFor(model => model.FechaFinal, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -48,17 +48,35 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <br />
-            <input type="submit" value="Create" class="btn btn-success" />
+            @{
+                string index = "";
+                Infrastructure.Models.Usuario oUsuario;
+                //Validar si existe en la sesión
+                if (Session["User"] != null)
+                {
+                    oUsuario = (Infrastructure.Models.Usuario)Session["User"];
+                    if (oUsuario != null)
+                    {
+                        if (oUsuario.IdTipoUsuario == 1)
+                        {
+                            index = "Index";
+                        }
+                        else
+                        {
+                            index = "IndexUser";
+                        }
+                    }
+                }
+            }
+
+            <a href="@Url.Action(index, "Reservacion", null)" class="btn btn-outline-dark"><i class="fa-solid fa-reply"></i> Go Back</a>
+            <input type="submit" value="Create" class="btn btn-outline-info" />
         </div>
     </div>
 </div>
 
 <script src="~/Scripts/flatpickr.min.js"></script>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

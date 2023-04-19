@@ -31,6 +31,23 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
+        public ActionResult IndexUser()
+        {
+            IEnumerable<Reservacion> lista = null;
+            try
+            {
+                IServiceReservacion _ServiceReservacion = new ServiceReservacion();
+                lista = _ServiceReservacion.GetReservacions().Where(i => i.IdUsuario == ((Usuario)Session["User"]).Id);
+                ViewBag.status = -69;
+                return View(lista);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Data error! " + ex.Message;
+                return RedirectToAction("Default", "Error");
+            }
+        }
 
         public ActionResult AjaxCambiar(int idReservacion, int AccORjc)
         {
@@ -86,8 +103,15 @@ namespace Web.Controllers
                 }
             }
 
-
-            return PartialView("_PartialViewEstado", lista);
+            if (((Usuario)Session["User"]).IdTipoUsuario == 1)
+            {
+                return PartialView("_PartialViewEstado", lista);
+            }
+            else
+            {
+                lista = lista.Where(i => i.IdUsuario == ((Usuario)Session["User"]).Id);
+                return PartialView("_PartialViewEstadoUser", lista);
+            }
         }
 
         
@@ -144,8 +168,6 @@ namespace Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Session["User"] = new ServiceUsuario().GetUsuarioById(1);
-
                     bool hayReservaciones = _ServiceReservacion.RevisarFechas(reservacion.FechaInicio, reservacion.FechaFinal, reservacion.IdArea);
                     if (hayReservaciones)
                     {
@@ -168,7 +190,14 @@ namespace Web.Controllers
                     return View("Create", reservacion);
                 }
 
-                return RedirectToAction("Index");
+                if (((Usuario)Session["User"]).IdTipoUsuario == 1)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("IndexUser");
+                }
             }
             catch (Exception ex)
             {

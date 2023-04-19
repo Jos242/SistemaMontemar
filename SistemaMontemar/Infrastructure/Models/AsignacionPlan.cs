@@ -29,6 +29,14 @@ namespace Infrastructure.Models
         public int IdPlan { get; set; }
         public int Mes { get; set; }
         public int Estado { get; set; }
+        public Dictionary<int, string> Estados
+        {
+            get
+            {
+                return new Dictionary<int, string> { { 0, "Not Payed" }, { 1, "Payed" } };
+            }
+            set { }
+        }
         public int Anio { get; set; }
 
         public virtual PlanCobro PlanCobro { get; set; }

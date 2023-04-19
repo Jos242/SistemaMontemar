@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Infrastructure.Models.Incidencia>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Mensaje)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        @{
+            int status = ViewBag.status;
+        }
+        <th>
+            <button class="btn btn-outline-primary" onclick="change(@status)">@Html.DisplayNameFor(model => model.Estado)  <i class="@(status==0?"fa-solid fa-arrow-up":status==-1?"fa-solid fa-arrow-down":"")"></i></button>
+        </th>
+        <th></th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="max-width: 300px">
+                    @Html.DisplayFor(modelItem => item.Mensaje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estados[item.Estado])
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

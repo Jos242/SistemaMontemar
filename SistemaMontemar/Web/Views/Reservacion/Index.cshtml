@@ -64,20 +64,20 @@
     </table>
 </div>
 
-  @section Scripts{
-        <script type="text/javascript">
-            function change(idReservacion, AccORjc) {
-                $.ajax({
-                    method: 'POST',
-                    url: '/Reservacion/AjaxCambiar',
-                    data: { 'idReservacion': idReservacion, 'AccORjc': AccORjc },
-                    success: function (response) {
-                        $('#resultado').html('');
-                        $('#resultado').html(response);
-                    }, error: function (xhr, status, error) {
-                        console.log('Error' + error + ',No Error' + xhr.status);
-                    }
-                })
-            }
-        </script>
-    }
+@section Scripts{
+    <script type="text/javascript">
+        function change(idReservacion, AccORjc) {
+            $.ajax({
+                method: 'POST',
+                url: '/Reservacion/AjaxCambiar',
+                data: { 'idReservacion': idReservacion, 'AccORjc': AccORjc },
+                success: function (response) {
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+    </script>
+}

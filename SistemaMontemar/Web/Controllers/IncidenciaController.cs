@@ -32,6 +32,23 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
+        public ActionResult IndexUser()
+        {
+            IEnumerable<Incidencia> lista = null;
+            try
+            {
+                IServiceIncidencia _ServiceIncidencia = new ServiceIncidencia();
+                lista = _ServiceIncidencia.GetIncidencias().Where(i => i.IdUsuario == ((Usuario)Session["User"]).Id);
+                ViewBag.status = -69;
+                return View(lista);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Data error! " + ex.Message;
+                return RedirectToAction("Default", "Error");
+            }
+        }
 
         // GET: Incidencia/Details/5
         public ActionResult Details(int id)
@@ -89,8 +106,15 @@ namespace Web.Controllers
                 }
             }
 
-
-            return PartialView("_PartialViewEstado", lista);
+            if (((Usuario)Session["User"]).IdTipoUsuario == 1)
+            {
+                return PartialView("_PartialViewEstado", lista);
+            }
+            else
+            {
+                lista = lista.Where(i => i.IdUsuario == ((Usuario)Session["User"]).Id);
+                return PartialView("_PartialViewEstadoUser", lista);
+            }
         }
 
         [HttpPost]
@@ -106,8 +130,6 @@ namespace Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Session["User"] = new ServiceUsuario().GetUsuarioById(1);
-
                     oIncidencia = _ServiceIncidencia.GetIncidenciaById(incidencia.Id);
 
                     incidencia.IdUsuario = ((Usuario)Session["User"]).Id;
@@ -121,7 +143,14 @@ namespace Web.Controllers
                     return PartialView("_PartialViewCreate", incidencia);
                 }
 
-                return RedirectToAction("Index");
+                if (((Usuario)Session["User"]).IdTipoUsuario == 1)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("IndexUser");
+                }
             }
             catch (Exception ex)
             {

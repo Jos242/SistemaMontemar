@@ -21,6 +21,7 @@ namespace Infrastructure.Models
         public int CantCarros { get; set; }
 
         [Display(Name = "Date Bought")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime FechaAlquiler { get; set; }
 
         [Display(Name = "House Size")]
@@ -106,6 +107,7 @@ namespace Infrastructure.Models
 
         public int IdPlan { get; set; }
 
+        [Display(Name = "Date")]
         public int Mes { get; set; }
 
         public int Estado { get; set; }

@@ -9,34 +9,68 @@
                 <li class="nav-item">
                     @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
                 </li>
+                @{
+                    string nombre = "";
+                    bool admin = false;
+                    Infrastructure.Models.Usuario oUsuario;
+                    //Validar si existe en la sesión
+                    if (Session["User"] != null)
+                    {
+                        oUsuario = (Infrastructure.Models.Usuario)Session["User"];
+                        if (oUsuario != null)
+                        {
+                            if (oUsuario.IdTipoUsuario == 1)
+                            {
+                                admin = true;
+                            }
+                            else
+                            {
+                                admin = false;
+                            }
+                        }
+                    }
 
-                <li class="nav-item">
-                    @Html.ActionLink("Residences", "Index", "Residencia", null, new { @class = "nav-link" })
-                </li>
+                    if (admin)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Residences", "Index", "Residencia", null, new { @class = "nav-link" })
+                        </li>
 
-                <li class="nav-item">
-                    @Html.ActionLink("Payment Plans", "Index", "PlanCobro", null, new { @class = "nav-link" })
-                </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Payment Plans", "Index", "PlanCobro", null, new { @class = "nav-link" })
+                        </li>
 
-                <li class="nav-item">
-                    @Html.ActionLink("Account Status", "Index", "EstadoCuenta", null, new { @class = "nav-link" })
-                </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Account Status", "Index", "EstadoCuenta", null, new { @class = "nav-link" })
+                        </li>
 
-                <li class="nav-item">
-                    @Html.ActionLink("Incidents", "Index", "Incidencia", null, new { @class = "nav-link" })
-                </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Incidents", "Index", "Incidencia", null, new { @class = "nav-link" })
+                        </li>
 
-                <li class="nav-item">
-                    @Html.ActionLink("Announcement", "Index", "Informacion", null, new { @class = "nav-link" })
-                </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Announcement", "Index", "Informacion", null, new { @class = "nav-link" })
+                        </li>
 
-                <li class="nav-item">
-                    @Html.ActionLink("Payments", "Index", "Rubro", null, new { @class = "nav-link" })
-                </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Payments", "Index", "Rubro", null, new { @class = "nav-link" })
+                        </li>
 
-                <li class="nav-item">
-                    @Html.ActionLink("Reservations", "Index", "Reservacion", null, new { @class = "nav-link" })
-                </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Reservations", "Index", "Reservacion", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Incidents", "IndexUser", "Incidencia", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("Reservations", "IndexUser", "Reservacion", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                }
             </ul>
         </div>
     </div>

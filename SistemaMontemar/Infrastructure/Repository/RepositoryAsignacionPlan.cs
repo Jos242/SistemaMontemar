@@ -48,7 +48,7 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    lista = ctx.AsignacionPlan.Where(a => a.IdResidencia == idResidencia).Include("Residencia.Usuario").Include("PlanCobro.Rubro").ToList();
+                    lista = ctx.AsignacionPlan.Where(a => a.IdResidencia == idResidencia).Include("Residencia.Usuario").Include("PlanCobro.Rubro").Include("Pago").Include("Deuda").ToList();
                 }
                 return lista;
             }
