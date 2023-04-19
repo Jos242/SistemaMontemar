@@ -39,6 +39,33 @@ namespace Infrastructure.Repository
             }
         }
 
+        public Residencia GetResidenciaByIdUsuario(int idUsuario)
+        {
+            Residencia oResidencia = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+
+                    oResidencia = ctx.Residencia.Where(r => r.IdUsuario == idUsuario).Include("Usuario").FirstOrDefault();
+                }
+                return oResidencia;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
         public IEnumerable<Residencia> GetResidencias()
         {
             IEnumerable<Residencia> lista = null;

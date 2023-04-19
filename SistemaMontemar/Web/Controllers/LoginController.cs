@@ -38,14 +38,14 @@ namespace Web.Controllers
                         Log.Info($"Accede{oUsuario.Nombre} {oUsuario.Apellido01} " +
                             $"con el rol {oUsuario.IdTipoUsuario}");
                         TempData["mensaje"] = Util.SweetAlertHelper.Mensaje("Login",
-                            "Usuario autenticado", Util.SweetAlertMessageType.success);
+                            "User authorized", Util.SweetAlertMessageType.success);
                         return RedirectToAction("Index", "Home");
                     }
                     else
                     {
                         Log.Warn($"Intento de inicio de sesion{usuario.Email}");
                         ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Login",
-                            "Usuario no válido", Util.SweetAlertMessageType.warning);
+                            "User not found", Util.SweetAlertMessageType.warning);
                     }
                 }
             }

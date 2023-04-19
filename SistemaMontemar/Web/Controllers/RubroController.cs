@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -14,6 +15,7 @@ namespace Web.Controllers
     public class RubroController : Controller
     {
         // GET: Rubro
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Index()
         {
             IEnumerable<Rubro> lista = null;
@@ -32,6 +34,7 @@ namespace Web.Controllers
         }
 
         // GET: Rubro/Details/5
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Details(int? id)
         {
             ServiceRubro _ServiceRubro = new ServiceRubro();
@@ -85,6 +88,7 @@ namespace Web.Controllers
         }
 
         // GET: Rubro/Edit/5
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Edit(int? id)
         {
             ServiceRubro _ServiceRubro = new ServiceRubro();
@@ -123,6 +127,7 @@ namespace Web.Controllers
 
         // POST: Rubro/Edit/5
         [HttpPost]
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Save(Rubro rubro)
         {
             //Gestión de archivos

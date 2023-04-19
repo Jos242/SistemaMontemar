@@ -1,5 +1,6 @@
 ﻿using ApplicationCore.Services;
 using Infrastructure.Models;
+using Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,15 @@ namespace Web.Controllers
         public ActionResult Index()
         {
             IServiceAsignacionPlan _ServiceAsignacionPlan = new ServiceAsignacionPlan();
-            IEnumerable<AsignacionPlan> listAsignacionPlan = _ServiceAsignacionPlan.GetAsignacionByResidencia(1);
+            IServiceResidencia _ServiceResidencia = new ServiceResidencia();
+
+            Residencia residencia = _ServiceResidencia.GetResidenciaByIdUsuario(((Usuario)Session["User"]).Id);
+
+            IEnumerable<AsignacionPlan> listAsignacionPlan = _ServiceAsignacionPlan.GetAsignacionByResidencia(residencia.Id);
             listAsignacionPlan = listAsignacionPlan.OrderBy(x => x.Anio);
 
-            ViewBag.Pagos = listPagos(1);
-            ViewBag.Deudas = listDeudas(1);
+            ViewBag.Pagos = listPagos(residencia.Id);
+            ViewBag.Deudas = listDeudas(residencia.Id);
 
             return View(listAsignacionPlan);
         }

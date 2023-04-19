@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -15,6 +16,7 @@ namespace Web.Controllers
     public class IncidenciaController : Controller
     {
         // GET: Incidencia
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Index()
         {
             IEnumerable<Incidencia> lista = null;

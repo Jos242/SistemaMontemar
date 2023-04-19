@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -14,6 +15,7 @@ namespace Web.Controllers
     public class EstadoCuentaController : Controller
     {
         // GET: EstadoCuenta
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Index()
         {
             IEnumerable<AsignacionPlan> lista = null;
@@ -32,6 +34,7 @@ namespace Web.Controllers
         }
 
         // GET: EstadoCuenta/Details/5
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Details(int? id)
         {
             IServiceAsignacionPlan _ServiceAsignacionPlan = new ServiceAsignacionPlan();

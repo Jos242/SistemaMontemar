@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -17,6 +18,7 @@ namespace Web.Controllers
     public class InformacionController : Controller
     {
         // GET: Informacion
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Index()
         {
             IEnumerable<Informacion> lista = null;
@@ -41,6 +43,7 @@ namespace Web.Controllers
         }
 
         // GET: Informacion/Create
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Create()
         {
             ViewBag.Tipos = tipoLista();
@@ -61,6 +64,8 @@ namespace Web.Controllers
 
             return list;
         }
+
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Edit(int? id)
         {
             IServiceInformacion _ServiceInformacion = new ServiceInformacion();
@@ -114,6 +119,7 @@ namespace Web.Controllers
         }
 
         // GET: Informacion/Edit/5
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Save(Informacion informacion)
         {
             MemoryStream target = new MemoryStream();

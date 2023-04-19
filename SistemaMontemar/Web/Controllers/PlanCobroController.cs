@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using System.Xml.Schema;
+using Web.Security;
 using Web.Utils;
 
 
@@ -20,6 +21,7 @@ namespace Web.Controllers
     public class PlanCobroController : Controller
     {
         // GET: PlanCobro
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Index()
         {
             IEnumerable<PlanCobro> lista = null;
@@ -38,6 +40,7 @@ namespace Web.Controllers
         }
 
         // GET: PlanCobro/Details/5
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Details(int? id)
         {
             ServicePlanCobro _ServicePlanCobro = new ServicePlanCobro();
@@ -68,6 +71,7 @@ namespace Web.Controllers
             }
         }
 
+        [CustomAuthorize((int)Roles.Administrador)]
         public decimal AjaxResultado(List<string> list)
         {
             IServiceRubro _ServiceRubro = new ServiceRubro();
@@ -88,6 +92,7 @@ namespace Web.Controllers
         }
 
         // GET: PlanCobro/Create
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Create()
         {
             ViewBag.idRubro = listaRubros();
@@ -109,9 +114,10 @@ namespace Web.Controllers
             return new MultiSelectList(lista, "Id", "Descripcion", "Cobro", listaRubrosSelect);
         }
 
-      
+
 
         // GET: PlanCobro/Edit/5
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Edit(int? id)
         {
             ServicePlanCobro _ServicePlanCobro = new ServicePlanCobro();
@@ -152,6 +158,7 @@ namespace Web.Controllers
 
         // POST: PlanCobro/Edit/5
         [HttpPost]
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Save(PlanCobro planCobro, string[] selectedRubros)
         {
             //Gestión de archivos

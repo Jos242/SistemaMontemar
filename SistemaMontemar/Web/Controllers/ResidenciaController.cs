@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -16,6 +17,7 @@ namespace Web.Controllers
     public class ResidenciaController : Controller
     {
         // GET: Residencia
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Index()
         {
             IEnumerable<Residencia> lista = null;
@@ -33,6 +35,7 @@ namespace Web.Controllers
             }
         }
 
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult AjaxAsignarPlan(int idResidencia)
         {
             IServiceResidencia _ServiceResidencia = new ServiceResidencia();
@@ -87,6 +90,7 @@ namespace Web.Controllers
             return PartialView("_PartialViewAsignPaymentPlan", asignacionPlan);
         }
 
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult AjaxGetPlanCobro(int idPlanCobro)
         {
             IServicePlanCobro _ServicePlanCobro = new ServicePlanCobro();
@@ -103,6 +107,7 @@ namespace Web.Controllers
         }
 
         // GET: Residencia/Details/5
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Details(int? id)
         {
             ServiceResidencia _ServiceResidencia = new ServiceResidencia();
@@ -134,6 +139,7 @@ namespace Web.Controllers
         }
 
         // GET: Residencia/Create
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Create()
         {
             ViewBag.idUsuario = listUsuarios();
@@ -156,6 +162,7 @@ namespace Web.Controllers
 
         // POST: Residencia/Edit/5
         [HttpPost]
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Save(Residencia residencia, HttpPostedFileBase ImageFile)
         {
             MemoryStream target = new MemoryStream();
@@ -201,6 +208,7 @@ namespace Web.Controllers
 
         // POST: Residencia/Edit/5
         [HttpPost]
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult SaveAsignacionPlan(AsignacionPlan asignacionPlan)
         {
             IServiceAsignacionPlan _ServiceAsignacionPlan = new ServiceAsignacionPlan();

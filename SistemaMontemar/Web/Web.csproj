@@ -152,6 +152,7 @@
     <Compile Include="Controllers\ResidenciaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RubroController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Enum\Enum.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -372,6 +373,13 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\UnAuthorized.cshtml" />
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Residencia\_PartialViewGetPlanCobro.cshtml" />
+    <Content Include="Views\Residencia\_PartialViewAsignPaymentPlan.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Incidencia\IndexUser.cshtml" />
+    <Content Include="Views\Incidencia\_PartialViewEstadoUser.cshtml" />
+    <Content Include="Views\Reservacion\_PartialViewEstadoUser.cshtml" />
+    <Content Include="Views\Reservacion\IndexUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,6 +1,6 @@
 ﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-        @Html.ActionLink("Montemar", "Index", "Home", null, new { @class = "navbar-brand"})
+        @Html.ActionLink("Montemar", "Index", "Home", null, new { @class = "navbar-brand" })
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,9 +9,10 @@
                 <li class="nav-item">
                     @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
                 </li>
+
                 @{
                     string nombre = "";
-                    bool admin = false;
+                    int admin = 0;
                     Infrastructure.Models.Usuario oUsuario;
                     //Validar si existe en la sesión
                     if (Session["User"] != null)
@@ -19,18 +20,11 @@
                         oUsuario = (Infrastructure.Models.Usuario)Session["User"];
                         if (oUsuario != null)
                         {
-                            if (oUsuario.IdTipoUsuario == 1)
-                            {
-                                admin = true;
-                            }
-                            else
-                            {
-                                admin = false;
-                            }
+                            admin = oUsuario.IdTipoUsuario;
                         }
                     }
 
-                    if (admin)
+                    if (admin == 1)
                     {
                         <li class="nav-item">
                             @Html.ActionLink("Residences", "Index", "Residencia", null, new { @class = "nav-link" })
@@ -60,7 +54,7 @@
                             @Html.ActionLink("Reservations", "Index", "Reservacion", null, new { @class = "nav-link" })
                         </li>
                     }
-                    else
+                    else if (admin == 2)
                     {
                         <li class="nav-item">
                             @Html.ActionLink("Incidents", "IndexUser", "Incidencia", null, new { @class = "nav-link" })
@@ -71,6 +65,47 @@
                         </li>
                     }
                 }
+
+                @* Información usuario *@
+                @{
+                    string email = "User Profile";
+                    //Validar si existe en la sesión
+                    if (Session["User"] != null)
+                    {
+                        oUsuario = (Infrastructure.Models.Usuario)Session["User"];
+                        if (oUsuario != null)
+                        {
+                            nombre = $"{oUsuario.Nombre} {oUsuario.Apellido01}";
+                            email = oUsuario.Email;
+                        }
+                    }
+                }
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User Profile</a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            @if (Session["User"] != null)
+                            {
+                                <div class="dropdown-item">
+                                    @* Nombre Usuario *@
+                                    @Html.ActionLink("User: "+nombre, "Index", "Usuario", null, new { @class = "dropdown-item" })
+                                </div>
+                            }
+
+                            <div class="dropdown-divider"></div>
+                            @if (Session["User"] == null)
+                            {
+                                @Html.ActionLink("Login", "Index", "Login", null, new { @class = "dropdown-item" })
+                            }
+                            else
+                            {
+
+                                @Html.ActionLink("Logout", "Logout", "Login", null, new { @class = "dropdown-item " })
+                            }
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
