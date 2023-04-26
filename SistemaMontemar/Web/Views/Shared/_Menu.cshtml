@@ -53,6 +53,14 @@
                         <li class="nav-item">
                             @Html.ActionLink("Reservations", "Index", "Reservacion", null, new { @class = "nav-link" })
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reports</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Earnings Report", "graficoPagos", "PlanCobro", null, new { @class = "dropdown-item" })
+                                </li>
+                            </ul>
+                        </li>
                     }
                     else if (admin == 2)
                     {
@@ -89,7 +97,7 @@
                             {
                                 <div class="dropdown-item">
                                     @* Nombre Usuario *@
-                                    @Html.ActionLink("User: "+nombre, "Index", "InformacionPersonal", null, new { @class = "dropdown-item" })
+                                    @Html.ActionLink("User: " + nombre, "Index", "Usuario", null, new { @class = "dropdown-item" })
                                 </div>
                             }
 

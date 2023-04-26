@@ -155,15 +155,48 @@ namespace Web.Controllers
         }
 
         // GET: Residencia/Edit/5
-        public ActionResult Edit(int id)
+        [CustomAuthorize((int)Roles.Administrador)]
+        public ActionResult Edit(int? id)
         {
-            return View();
+            ServiceResidencia _ServiceResidencia = new ServiceResidencia();
+            Residencia residencia = null;
+
+            try
+            {
+                // Si va null
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                residencia = _ServiceResidencia.GetResidenciaById(Convert.ToInt32(id));
+                if (residencia == null)
+                {
+                    TempData["Message"] = "No payment plan found";
+                    TempData["Redirect"] = "Residencia";
+                    TempData["Redirect-Action"] = "Index";
+                    // Redireccion a la captura del Error
+                    return RedirectToAction("Default", "Error");
+                }
+                ViewBag.idUsuario = listUsuarios(residencia.IdUsuario);
+                return View(residencia);
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Residencia";
+                TempData["Redirect-Action"] = "Index";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
         }
 
         // POST: Residencia/Edit/5
         [HttpPost]
         [CustomAuthorize((int)Roles.Administrador)]
-        public ActionResult Save(Residencia residencia, HttpPostedFileBase ImageFile)
+        public ActionResult Save(Residencia residencia)
         {
             MemoryStream target = new MemoryStream();
 
@@ -171,14 +204,24 @@ namespace Web.Controllers
 
             try
             {
-                if (residencia.Imagen == null)
+                string imagePath = "";
+                switch (residencia.Tipo)
                 {
-                    if (ImageFile != null)
-                    {
-                        ImageFile.InputStream.CopyTo(target);
-                        residencia.Imagen = target.ToArray();
-                        ModelState.Remove("Imagen");
-                    }
+                    case 0:
+                        imagePath = Server.MapPath("~/Images/small.jpg");
+                        residencia.Imagen = System.IO.File.ReadAllBytes(imagePath);
+                        break;
+                    case 1:
+                        imagePath = Server.MapPath("~/Images/medium.jpg");
+                        residencia.Imagen = System.IO.File.ReadAllBytes(imagePath);
+                        break;
+                    case 2:
+                        imagePath = Server.MapPath("~/Images/large.jpg");
+                        residencia.Imagen = System.IO.File.ReadAllBytes(imagePath);
+                        break;
+                    default:
+                        residencia.Imagen = null;
+                        break;
                 }
                 if (ModelState.IsValid)
                 {
@@ -187,10 +230,17 @@ namespace Web.Controllers
                 else
                 {
                     //Cargar la vista crear o actualizar
-
                     ViewBag.idAutor = listUsuarios(residencia.IdUsuario);
-                    //Lógica para cagar vista correpondiente
-                    return View("Create", residencia);
+                    if (residencia.Id > 0)
+                    {
+                        return (ActionResult)View("Edit", residencia);
+                    }
+                    else
+                    {
+                        
+                        return View("Create", residencia);
+                    }
+                    
                 }
                 return RedirectToAction("Index");
             }

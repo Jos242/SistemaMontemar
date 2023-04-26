@@ -12,6 +12,7 @@ namespace Infrastructure.Models
         [Display(Name = "House N°")]
         public int Id { get; set; }
 
+        [Display(Name = "Resident")]
         public int IdUsuario { get; set; }
 
         [Display(Name = "Inhabitants")]

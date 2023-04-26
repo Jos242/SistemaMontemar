@@ -4,6 +4,9 @@
     ViewBag.Title = "Index";
 }
 <h2>Residences</h2>
+<p>
+    <a href="@Url.Action("Create", "Residencia", null)" class="btn btn-primary">Create New Residence</a>
+</p>
 <div class="row">
     <div class="col-lg">
         <div class="row">
@@ -21,6 +24,7 @@
                             <div class="card-body">
                                 <a href="@Url.Action("Details", "Residencia", new { id = item.Id })" class="btn btn-info">Details</a>
                                 <button class="btn btn-secondary" onclick="asignar(@item.Id)">Asign Payment Plan</button>
+                                <a href="@Url.Action("Edit", "Residencia", new { id = item.Id })" class="btn btn-warning">Edit</a>
                             </div>
                         </div>
                     </div>

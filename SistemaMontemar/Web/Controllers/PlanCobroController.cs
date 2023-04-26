@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 using System.Xml.Schema;
 using Web.Security;
 using Web.Utils;
-
+using Web.ViewModel;
 
 namespace Web.Controllers
 {
@@ -201,6 +201,24 @@ namespace Web.Controllers
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
             }
+        }
+
+        public ActionResult graficoPagos()
+        {
+            //Documentación chartjs https://www.chartjs.org/docs/latest/
+            IServicePago _ServicePago = new ServicePago();
+            ViewModelGrafico grafico = new ViewModelGrafico();
+            _ServicePago.GetPagoDate(out string etiquetas, out string valores);
+            grafico.Etiquetas = etiquetas;
+            grafico.Valores = valores;
+            int cantidadValores = valores.Split(',').Length;
+            grafico.Colores = string.Join(",", grafico.GenerateColors(cantidadValores));
+            grafico.titulo = "Pagos por fecha";
+            grafico.tituloEtiquetas = "Earning by Month";
+            //Tipos de gráficos: bar, bubble, doughnut, pie, line, polarArea
+            grafico.tipo = "pie";
+            ViewBag.grafico = grafico;
+            return View();
         }
 
         // GET: PlanCobro/Delete/5

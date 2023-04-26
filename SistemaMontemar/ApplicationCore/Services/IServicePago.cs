@@ -11,5 +11,7 @@ namespace ApplicationCore.Services
     {
         IEnumerable<Pago> GetPagos();
         IEnumerable<Pago> GetPagoByResidencia(int id);
+
+        void GetPagoDate(out string etiquetas, out string valores);
     }
 }
