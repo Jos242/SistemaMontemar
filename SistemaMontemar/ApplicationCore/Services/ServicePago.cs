@@ -21,5 +21,14 @@ namespace ApplicationCore.Services
             IRepositoryPago repository = new RepositoryPago();
             return repository.GetPagos();
         }
+
+        public void GetPagoDate(out string etiquetas1, out string valores1)
+        {
+            IRepositoryPago repository = new RepositoryPago();
+
+            repository.GetPagoDate(out string etiquetas, out string valores);
+            etiquetas1 = etiquetas;
+            valores1 = valores;
+        }
     }
 }

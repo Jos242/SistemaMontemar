@@ -86,3 +86,4 @@ F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMon
 F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.csproj.CopyComplete
 F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.dll
 F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Web\obj\Debug\Web.pdb
+F:\Documentos\Documents\2023\UTN\1 Cuatrimestre\Progra web 2\Proyecto\SistemaMontemar\SistemaMontemar\Web\bin\Images\large.jpg

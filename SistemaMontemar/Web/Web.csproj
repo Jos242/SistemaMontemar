@@ -165,6 +165,7 @@
     <Compile Include="Utils\Log.cs" />
     <Compile Include="Utils\SweetAlertHelper.cs" />
     <Compile Include="Utils\Util.cs" />
+    <Compile Include="ViewModel\ViewModelGrafico.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -277,6 +278,11 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <None Include="Images\large.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Images\medium.jpg" />
+    <Content Include="Images\small.jpg" />
     <Content Include="obj\Debug\Web.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Web.dll" />
     <Content Include="obj\Debug\Web.pdb" />
@@ -307,6 +313,7 @@
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
     <Content Include="Scripts\flatpickr.min.css" />
     <Content Include="Scripts\flatpickr.min.js" />
+    <Content Include="Scripts\graficoChartJS.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
     <Content Include="Scripts\jquery-3.6.3.slim.js" />
@@ -380,6 +387,8 @@
     <Content Include="Views\Incidencia\_PartialViewEstadoUser.cshtml" />
     <Content Include="Views\Reservacion\_PartialViewEstadoUser.cshtml" />
     <Content Include="Views\Reservacion\IndexUser.cshtml" />
+    <Content Include="Views\PlanCobro\graficoPagos.cshtml" />
+    <Content Include="Views\Residencia\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
