@@ -54,7 +54,7 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title mb-2">Residence</h3>
+                <h3 class="card-title mb-2">Residence: #@Html.DisplayFor(modelItem => Model.FirstOrDefault().Residencia.Id)</h3>
                 <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(Model.FirstOrDefault().Residencia.Imagen)"
                      alt="Libro @Html.DisplayFor(modelItem => Model.FirstOrDefault().Residencia.Usuario.Nombre)"
                      class="img-fluid rounded mb-3" />

@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Infrastructure.Models.Deuda>
+
+@{
+    ViewBag.Title = "ReporteDeudas";
+}
+
+<h2>Debt Report</h2>
+
+<p>
+    <a href="@Url.Action("CreatePdfReporteDeudas", "Reporte", null)" class="btn btn-outline-success">PDF Report</a>
+</p>
+
+<div id="resultado">
+    <div class="row">
+
+        <div class="col-sm-2">
+            Debt Total: @Model.Count()
+        </div>
+        <div class="col-sm-4">
+            @Html.LabelFor(model => model.FirstOrDefault().AsignacionPlan.Residencia.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    var idResidenciaList = (IEnumerable<SelectListItem>)ViewBag.idResidencia;
+                    var idResidencia = new List<SelectListItem>
+                                    {
+                        new SelectListItem { Value = "0", Text = "None" }
+                    };
+                    idResidencia.AddRange(idResidenciaList);
+                }
+                @Html.DropDownListFor(model => model.FirstOrDefault().AsignacionPlan.Residencia.Id,
+                idResidencia,
+                htmlAttributes: new { @class = "form-control", @onchange = "filtrar(1, this.value);" })
+            </div>
+        </div>
+        <div class="col-sm-3">
+            Month
+            <div class="col-md-10">
+                @{
+                    var mesList = (IEnumerable<SelectListItem>)ViewBag.mes;
+                    var mes = new List<SelectListItem>
+                                        {
+                        new SelectListItem { Value = "0", Text = "None" }
+                    };
+                    mes.AddRange(mesList);
+                }
+                @Html.DropDownListFor(model => model.FirstOrDefault().AsignacionPlan.Mes,
+                mes,
+                htmlAttributes: new { @class = "form-control", @onchange = "filtrar(2, this.value);" })
+            </div>
+        </div>
+        <div class="col-sm-3">
+            Year
+            <div class="col-md-10">
+                @{
+                    var anioList = (IEnumerable<SelectListItem>)ViewBag.anio;
+                    var anio = new List<SelectListItem>
+                                        {
+                        new SelectListItem { Value = "0", Text = "None" }
+                    };
+                    anio.AddRange(anioList);
+                }
+                @Html.DropDownListFor(model => model.FirstOrDefault().AsignacionPlan.Anio,
+                anio,
+                htmlAttributes: new { @class = "form-control", @onchange = "filtrar(3, this.value);" })
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AsignacionPlan.IdResidencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AsignacionPlan.IdPlan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AsignacionPlan.Mes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AsignacionPlan.PlanCobro.Cobro)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AsignacionPlan.IdResidencia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AsignacionPlan.PlanCobro.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AsignacionPlan.Anio) - @Html.DisplayFor(modelItem => item.AsignacionPlan.Mes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AsignacionPlan.PlanCobro.Cobro)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function filtrar(id,value) {
+            $.ajax({
+                method: 'POST',
+                url: '/Reporte/AjaxFiltrar',
+                data: { 'id': id, 'value': value },
+                success: function (response) {
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+    </script>
+}

@@ -13,6 +13,60 @@ namespace Infrastructure.Repository
 {
     public class RepositoryDeuda : IRepositoryDeuda
     {
+        public Deuda GetDeudaByAsignacionPlan(int id)
+        {
+            Deuda oDeuda = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+
+                    oDeuda = ctx.Deuda.Include("AsignacionPlan").Where(u => u.IdAsignacion == id).FirstOrDefault();
+                }
+                return oDeuda;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
+        public Deuda GetDeudaById(int id)
+        {
+            Deuda oDeuda = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+
+                    oDeuda = ctx.Deuda.Include("AsignacionPlan").Where(u => u.Id == id).FirstOrDefault();
+                }
+                return oDeuda;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
         public IEnumerable<Deuda> GetDeudaByResidencia(int id)
         {
             IEnumerable<Deuda> lista = null;
@@ -32,6 +86,8 @@ namespace Infrastructure.Repository
                                           (a, r) => new { Deuda = a.Deuda, Residencia = r })
                                     .Where(e => e.Residencia.Id == id)
                                     .Select(d => d.Deuda)
+                                    .Include("AsignacionPlan.Residencia")
+                                    .Include("AsignacionPlan.PlanCobro")
                                     .ToList();
                 }
 
@@ -60,7 +116,7 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    lista = ctx.Deuda.ToList();
+                    lista = ctx.Deuda.Include("AsignacionPlan.Residencia").Include("AsignacionPlan.PlanCobro").ToList();
                 }
                 return lista;
             }
@@ -86,8 +142,16 @@ namespace Infrastructure.Repository
             using (MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
-
-                ctx.Deuda.Add(deuda);
+                oDeuda = GetDeudaById(deuda.Id);
+                if (oDeuda == null)
+                {
+                    ctx.Deuda.Add(deuda);
+                }
+                else
+                {
+                    oDeuda = ctx.Deuda.Single(x => x.Id == deuda.Id);
+                    oDeuda.Estado = deuda.Estado;
+                }
                 retorno = ctx.SaveChanges();
 
             }

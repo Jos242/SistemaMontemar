@@ -10,6 +10,7 @@ namespace Infrastructure.Repository
     public interface IRepositoryAsignacionPlan
     {
         IEnumerable<AsignacionPlan> GetEstadoCuentas();
+        IEnumerable<AsignacionPlan> GetAsignaciones();
         AsignacionPlan GetAsignacionById(int id);
         AsignacionPlan Save(AsignacionPlan asignacionPlan);
         IEnumerable<AsignacionPlan> GetAsignacionByResidencia(int idResidencia);

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Infrastructure.Models.AsignacionPlan>
+
+@{
+    ViewBag.Title = "IndexUser";
+}
+
+<h2>Monthly Payment and Debts</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPlan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanCobro.Cobro)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanCobro.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anio) - @Html.DisplayFor(modelItem => item.Mes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanCobro.Cobro)
+            </td>
+            <td>
+                <button class="btn btn-success" onclick="change(@item.Id)">@(item.Estado == 1 ? "Payed" : "Pay")</button>
+            </td>
+        </tr>
+    }
+</table>
+
+@section Scripts{
+    <script type="text/javascript">
+        function change(idAsignacionPlan) {
+            $.ajax({
+                method: 'POST',
+                url: '/EstadoCuenta/Save',
+                data: { 'idAsignacionPlan': idAsignacionPlan },
+                success: function (response) {
+
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+    </script>
+}

@@ -67,6 +67,34 @@ namespace Infrastructure.Repository
             }
         }
 
+        public IEnumerable<AsignacionPlan> GetAsignaciones()
+        {
+            IEnumerable<AsignacionPlan> lista = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+
+                    lista = ctx.AsignacionPlan.Include("PlanCobro").Include("Residencia.Usuario").ToList();
+                }
+                return lista;
+            }
+
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
         public IEnumerable<AsignacionPlan> GetEstadoCuentas()
         {
             IEnumerable<AsignacionPlan> lista = null;
@@ -76,7 +104,7 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    lista = ctx.AsignacionPlan.GroupBy(h => h.IdResidencia).Select(g => g.FirstOrDefault()).Include(h => h.Residencia.Usuario).ToList();
+                    lista = ctx.AsignacionPlan.GroupBy(h => h.IdResidencia).Select(g => g.FirstOrDefault()).Include(h => h.Residencia.Usuario).Include("PlanCobro").ToList();
                 }
                 return lista;
             }
@@ -112,10 +140,10 @@ namespace Infrastructure.Repository
                 }
                 else
                 {
-                    ctx.AsignacionPlan.Add(asignacionPlan);
-                    ctx.Entry(asignacionPlan).State = EntityState.Modified;
-                    retorno = ctx.SaveChanges();
+                    oAsignacionPlan = ctx.AsignacionPlan.Single(x => x.Id == asignacionPlan.Id);
+                    oAsignacionPlan.Estado = asignacionPlan.Estado;
                 }
+                retorno = ctx.SaveChanges();
 
             }
             if (retorno >= 0)

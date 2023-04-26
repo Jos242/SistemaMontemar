@@ -25,21 +25,30 @@ namespace Web.Controllers
             Usuario oUsuario = null;
             try
             {
+                ModelState.Remove("IdTipoUsuario");
                 ModelState.Remove("Nombre");
                 ModelState.Remove("Apellido01");
-                ModelState.Remove("Apellido02");
-                ModelState.Remove("IdTipoUsuario");
+                ModelState.Remove("Telefono");
                 if (ModelState.IsValid)
                 {
                     oUsuario = _ServiceUsuario.GetUsuario(usuario.Email, usuario.Password);
-                    if (oUsuario != null || oUsuario.Estado == 0)
+                    if (oUsuario != null)
                     {
-                        Session["User"] = oUsuario;
-                        Log.Info($"Accede{oUsuario.Nombre} {oUsuario.Apellido01} " +
-                            $"con el rol {oUsuario.IdTipoUsuario}");
-                        TempData["mensaje"] = Util.SweetAlertHelper.Mensaje("Login",
-                            "User authorized", Util.SweetAlertMessageType.success);
-                        return RedirectToAction("Index", "Home");
+                        if (oUsuario.Estado == 1)
+                        {
+                            Session["User"] = oUsuario;
+                            Log.Info($"Accede{oUsuario.Nombre} {oUsuario.Apellido01} " +
+                                $"con el rol {oUsuario.IdTipoUsuario}");
+                            TempData["mensaje"] = Util.SweetAlertHelper.Mensaje("Login",
+                                "User authorized", Util.SweetAlertMessageType.success);
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            Log.Warn($"Intento de inicio de sesion{usuario.Email}");
+                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Login",
+                                "User Disabled", Util.SweetAlertMessageType.warning);
+                        }
                     }
                     else
                     {

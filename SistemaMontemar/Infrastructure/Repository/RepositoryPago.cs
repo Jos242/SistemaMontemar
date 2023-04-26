@@ -13,6 +13,60 @@ namespace Infrastructure.Repository
 {
     public class RepositoryPago : IRepositoryPago
     {
+        public Pago GetPagoByAsignacionPlan(int id)
+        {
+            Pago oPago = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+
+                    oPago = ctx.Pago.Include("AsignacionPlan").Where(u => u.IdAsignacion == id).FirstOrDefault();
+                }
+                return oPago;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
+        public Pago GetPagoById(int id)
+        {
+            Pago oPago = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+
+                    oPago = ctx.Pago.Include("AsignacionPlan").Where(u => u.Id == id).FirstOrDefault();
+                }
+                return oPago;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
         public IEnumerable<Pago> GetPagoByResidencia(int id)
         {
             IEnumerable<Pago> lista = null;
@@ -129,6 +183,32 @@ namespace Infrastructure.Repository
                 Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
                 throw;
             }
+        }
+
+        public Pago Save(Pago pago)
+        {
+            int retorno = 0;
+            Pago oPago = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oPago = GetPagoById(pago.Id);
+                if (oPago == null)
+                {
+                    ctx.Pago.Add(pago);
+                }
+                else
+                {
+                    oPago = ctx.Pago.Single(x => x.Id == pago.Id);
+                }
+                retorno = ctx.SaveChanges();
+
+            }
+            if (retorno >= 0)
+                oPago = pago;
+
+            return oPago;
         }
     }
 }

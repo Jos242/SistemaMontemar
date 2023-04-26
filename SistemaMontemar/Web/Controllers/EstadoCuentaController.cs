@@ -32,6 +32,22 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
+        public ActionResult IndexUser()
+        {
+            IEnumerable<AsignacionPlan> lista = null;
+            try
+            {
+                IServiceAsignacionPlan _ServiceAsignacionPlan = new ServiceAsignacionPlan();
+                lista = _ServiceAsignacionPlan.GetAsignaciones().Where(x => x.Residencia.IdUsuario == ((Usuario)Session["User"]).Id && x.Estado == 0);
+                return View(lista);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Data error! " + ex.Message;
+                return RedirectToAction("Default", "Error");
+            }
+        }
 
         // GET: EstadoCuenta/Details/5
         [CustomAuthorize((int)Roles.Administrador)]
@@ -111,9 +127,47 @@ namespace Web.Controllers
         }
 
         // GET: EstadoCuenta/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Save(int idAsignacionPlan)
         {
-            return View();
+            IServiceAsignacionPlan _ServiceAsignacionPlan = new ServiceAsignacionPlan();
+            IServiceDeuda _ServiceDeuda = new ServiceDeuda();
+            IServicePago _ServicePago = new ServicePago();
+            try
+            {
+                AsignacionPlan asignacionPlan = _ServiceAsignacionPlan.GetAsignacionById(idAsignacionPlan);
+                Deuda deuda = _ServiceDeuda.GetDeudaByAsignacionPlan(idAsignacionPlan);
+
+                if (ModelState.IsValid)
+                {
+                    asignacionPlan.Estado = 1;
+                    deuda.Estado = 1;
+
+                    AsignacionPlan saveA = _ServiceAsignacionPlan.Save(asignacionPlan);
+                    Deuda saveD = _ServiceDeuda.Save(deuda);
+
+                    Pago pago = new Pago
+                    {
+                        Id = 0,
+                        IdAsignacion = idAsignacionPlan,
+                        FechaPago = DateTime.Now,
+                        Total = asignacionPlan.PlanCobro.Cobro
+                    };
+
+                    Pago saveP = _ServicePago.Save(pago);
+                }
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Data error! " + ex.Message;
+                TempData["Redirect"] = "EstadoCuenta";
+                TempData["Redirect-Action"] = "IndexUser";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
         }
 
         // POST: EstadoCuenta/Edit/5

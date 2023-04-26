@@ -106,6 +106,7 @@ namespace Infrastructure.Models
         [Display(Name = "House N°")]
         public int IdResidencia { get; set; }
 
+        [Display(Name = "Payment Plan")]
         public int IdPlan { get; set; }
 
         [Display(Name = "Date")]
@@ -191,22 +192,27 @@ namespace Infrastructure.Models
         public int IdTipoUsuario { get; set; }
 
         [Display(Name = "Email")]
+        [Required(ErrorMessage = "{0} is required")]
         public string Email { get; set; }
 
         [Display(Name = "Name")]
+        [Required(ErrorMessage = "{0} is required")]
         public string Nombre { get; set; }
 
         [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "{0} is required")]
         public string Apellido01 { get; set; }
 
         [Display(Name = "Second Last Name")]
         public string Apellido02 { get; set; }
 
         [Display(Name = "Phone Number")]
+        [Required(ErrorMessage = "{0} is required")]
         [RegularExpression(@"^[0-9]{8}?$", ErrorMessage = "{0} must be a number and 8 digits")]
         public string Telefono { get; set; }
 
         [Display(Name = "Password")]
+        [Required(ErrorMessage = "{0} is required")]
         public string Password { get; set; }
 
         [Display(Name = "Pay Day")]

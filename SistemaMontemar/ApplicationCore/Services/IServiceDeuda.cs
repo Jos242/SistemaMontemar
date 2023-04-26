@@ -10,7 +10,9 @@ namespace ApplicationCore.Services
     public interface IServiceDeuda
     {
         IEnumerable<Deuda> GetDeudas();
+        Deuda GetDeudaById(int id);
         IEnumerable<Deuda> GetDeudaByResidencia(int id);
+        Deuda GetDeudaByAsignacionPlan(int id);
         Deuda Save(Deuda deuda);
     }
 }

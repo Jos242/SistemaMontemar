@@ -30,5 +30,23 @@ namespace ApplicationCore.Services
             etiquetas1 = etiquetas;
             valores1 = valores;
         }
+
+        public Pago GetPagoById(int id)
+        {
+            IRepositoryPago repository = new RepositoryPago();
+            return repository.GetPagoById(id);
+        }
+
+        public Pago Save(Pago pago)
+        {
+            IRepositoryPago repository = new RepositoryPago();
+            return repository.Save(pago);
+        }
+
+        public Pago GetPagoByAsignacionPlan(int id)
+        {
+            IRepositoryPago repository = new RepositoryPago();
+            return repository.GetPagoByAsignacionPlan(id);
+        }
     }
 }

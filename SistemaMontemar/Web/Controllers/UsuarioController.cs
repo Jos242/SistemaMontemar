@@ -106,7 +106,7 @@ namespace Web.Controllers
                 // Salvar el error en un archivo 
                 Log.Error(ex, MethodBase.GetCurrentMethod());
                 TempData["Message"] = "Data error! " + ex.Message;
-                TempData["Redirect"] = "Reservacion";
+                TempData["Redirect"] = "Usuario";
                 TempData["Redirect-Action"] = "Index";
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");

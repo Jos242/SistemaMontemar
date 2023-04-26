@@ -10,6 +10,18 @@ namespace ApplicationCore.Services
 {
     public class ServiceDeuda : IServiceDeuda
     {
+        public Deuda GetDeudaByAsignacionPlan(int id)
+        {
+            IRepositoryDeuda repository = new RepositoryDeuda();
+            return repository.GetDeudaByAsignacionPlan(id);
+        }
+
+        public Deuda GetDeudaById(int id)
+        {
+            IRepositoryDeuda repository = new RepositoryDeuda();
+            return repository.GetDeudaById(id);
+        }
+
         public IEnumerable<Deuda> GetDeudaByResidencia(int id)
         {
             IRepositoryDeuda repository = new RepositoryDeuda();

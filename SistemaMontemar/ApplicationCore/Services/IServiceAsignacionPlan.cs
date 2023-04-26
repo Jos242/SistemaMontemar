@@ -10,6 +10,7 @@ namespace ApplicationCore.Services
     public interface IServiceAsignacionPlan
     {
         IEnumerable<AsignacionPlan> GetEstadoCuentas();
+        IEnumerable<AsignacionPlan> GetAsignaciones();
         AsignacionPlan GetAsignacionById(int id);
         AsignacionPlan Save(AsignacionPlan asignacionPlan);
         IEnumerable<AsignacionPlan> GetAsignacionByResidencia(int idResidencia);

@@ -11,6 +11,9 @@ namespace Infrastructure.Repository
     {
         IEnumerable<Pago> GetPagos();
         IEnumerable<Pago> GetPagoByResidencia(int id);
+        Pago GetPagoById(int id);
+        Pago Save(Pago pago);
+        Pago GetPagoByAsignacionPlan(int id);
 
         void GetPagoDate(out string etiquetas, out string valores);
     }

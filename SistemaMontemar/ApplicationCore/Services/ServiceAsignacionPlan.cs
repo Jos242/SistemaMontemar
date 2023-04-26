@@ -22,6 +22,12 @@ namespace ApplicationCore.Services
             return repository.GetAsignacionByResidencia(idResidencia);
         }
 
+        public IEnumerable<AsignacionPlan> GetAsignaciones()
+        {
+            IRepositoryAsignacionPlan repository = new RepositoryAsignacionPlan();
+            return repository.GetAsignaciones();
+        }
+
         public IEnumerable<AsignacionPlan> GetEstadoCuentas()
         {
             IRepositoryAsignacionPlan repository = new RepositoryAsignacionPlan();

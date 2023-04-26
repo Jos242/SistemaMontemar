@@ -31,7 +31,15 @@
                         </li>
 
                         <li class="nav-item">
+                            @Html.ActionLink("Users", "Index", "Usuario", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item">
                             @Html.ActionLink("Payment Plans", "Index", "PlanCobro", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("Monthly Payment", "IndexUser", "EstadoCuenta", null, new { @class = "nav-link" })
                         </li>
 
                         <li class="nav-item">
@@ -57,6 +65,7 @@
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reports</a>
                             <ul class="dropdown-menu">
                                 <li>
+                                    @Html.ActionLink("Debt Report", "ReporteDeudas", "Reporte", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("Earnings Report", "graficoPagos", "PlanCobro", null, new { @class = "dropdown-item" })
                                 </li>
                             </ul>
@@ -64,6 +73,10 @@
                     }
                     else if (admin == 2)
                     {
+                        <li class="nav-item">
+                            @Html.ActionLink("Monthly Payment", "IndexUser", "EstadoCuenta", null, new { @class = "nav-link" })
+                        </li>
+
                         <li class="nav-item">
                             @Html.ActionLink("Incidents", "IndexUser", "Incidencia", null, new { @class = "nav-link" })
                         </li>
@@ -97,7 +110,7 @@
                             {
                                 <div class="dropdown-item">
                                     @* Nombre Usuario *@
-                                    @Html.ActionLink("User: " + nombre, "Index", "Usuario", null, new { @class = "dropdown-item" })
+                                    @Html.ActionLink("User: " + nombre, "Index", "InformacionPersonal", null, new { @class = "dropdown-item" })
                                 </div>
                             }
 
