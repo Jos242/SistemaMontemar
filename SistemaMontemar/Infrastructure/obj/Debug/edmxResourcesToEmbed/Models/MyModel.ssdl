@@ -123,7 +123,7 @@
     <Property Name="Nombre" Type="nvarchar" MaxLength="200" />
     <Property Name="Apellido01" Type="nvarchar" MaxLength="200" />
     <Property Name="Apellido02" Type="nvarchar" MaxLength="200" />
-    <Property Name="Telefono" Type="nchar" MaxLength="20" />
+    <Property Name="Telefono" Type="int" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DiaPagar" Type="int" Nullable="false" />
     <Property Name="Estado" Type="int" Nullable="false" />

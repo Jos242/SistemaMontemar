@@ -160,8 +160,6 @@ namespace Web.Controllers
         // GET: Reservacion/Edit/5
         public ActionResult Save(Reservacion reservacion)
         {
-            MemoryStream target = new MemoryStream();
-
             IServiceReservacion _ServiceReservacion = new ServiceReservacion();
 
             Reservacion oReservacion = null;

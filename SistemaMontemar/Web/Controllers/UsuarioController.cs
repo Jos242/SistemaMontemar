@@ -4,41 +4,49 @@ using Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Security;
+using Web.Utils;
 
 namespace Web.Controllers
 {
     public class UsuarioController : Controller
     {
         // GET: Usuario
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Index()
         {
-            IServiceAsignacionPlan _ServiceAsignacionPlan = new ServiceAsignacionPlan();
-            IServiceResidencia _ServiceResidencia = new ServiceResidencia();
-
-            Residencia residencia = _ServiceResidencia.GetResidenciaByIdUsuario(((Usuario)Session["User"]).Id);
-
-            IEnumerable<AsignacionPlan> listAsignacionPlan = _ServiceAsignacionPlan.GetAsignacionByResidencia(residencia.Id);
-            listAsignacionPlan = listAsignacionPlan.OrderBy(x => x.Anio);
-
-            ViewBag.Pagos = listPagos(residencia.Id);
-            ViewBag.Deudas = listDeudas(residencia.Id);
-
-            return View(listAsignacionPlan);
-        }
-        private IEnumerable<Pago> listPagos(int idResidencia)
-        {
-            IServicePago _ServicePago = new ServicePago();
-            IEnumerable<Pago> lista = _ServicePago.GetPagoByResidencia(idResidencia);
-            return lista;
+            IEnumerable<Usuario> lista = null;
+            try
+            {
+                IServiceUsuario _ServiceUsuario = new ServiceUsuario();
+                lista = _ServiceUsuario.GetUsuarios();
+                return View(lista);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Data error! " + ex.Message;
+                return RedirectToAction("Default", "Error");
+            }
         }
 
-        private IEnumerable<Deuda> listDeudas(int idResidencia)
+        public ActionResult AjaxCambiar(int idUsuario)
         {
-            IServiceDeuda _ServiceDeuda = new ServiceDeuda();
-            IEnumerable<Deuda> lista = _ServiceDeuda.GetDeudaByResidencia(idResidencia);
-            return lista;
+            IServiceUsuario _ServiceUsuario = new ServiceUsuario();
+            IEnumerable<Usuario> lista = null;
+
+            Usuario oUsuario = _ServiceUsuario.GetUsuarioById(idUsuario);
+
+            oUsuario.Estado = oUsuario.Estado == 1 ? 0 : 1;
+
+            Usuario save = _ServiceUsuario.Save(oUsuario);
+
+            lista = _ServiceUsuario.GetUsuarios();
+
+            return PartialView("_PartialViewEstado", lista);
         }
 
         // GET: Usuario/Details/5
@@ -48,6 +56,7 @@ namespace Web.Controllers
         }
 
         // GET: Usuario/Create
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Create()
         {
             return View();
@@ -70,9 +79,38 @@ namespace Web.Controllers
         }
 
         // GET: Usuario/Edit/5
-        public ActionResult Edit(int id)
+        [CustomAuthorize((int)Roles.Administrador)]
+        public ActionResult Save(Usuario usuario)
         {
-            return View();
+            IServiceUsuario _ServiceUsuario = new ServiceUsuario();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    usuario.DiaPagar = DateTime.Now.Day;
+                    usuario.Estado = 1;
+
+                    Usuario save = _ServiceUsuario.Save(usuario);
+                }
+                else
+                {
+
+                    return View("Create", usuario);
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Data error! " + ex.Message;
+                TempData["Redirect"] = "Reservacion";
+                TempData["Redirect-Action"] = "Index";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
         }
 
         // POST: Usuario/Edit/5

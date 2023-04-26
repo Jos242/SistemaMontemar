@@ -26,14 +26,32 @@ namespace Infrastructure.Models
 
         public int Id { get; set; }
         public int IdTipoUsuario { get; set; }
+
+        public Dictionary<int, string> Rol
+        {
+            get
+            {
+                return new Dictionary<int, string> { { 1, "Administrator" }, { 2, "Resident" } };
+            }
+            set { }
+        }
         public string Email { get; set; }
         public string Nombre { get; set; }
         public string Apellido01 { get; set; }
         public string Apellido02 { get; set; }
-        public string Telefono { get; set; }
+        public int Telefono { get; set; }
         public string Password { get; set; }
         public int DiaPagar { get; set; }
         public int Estado { get; set; }
+
+        public Dictionary<int, string> Estados
+        {
+            get
+            {
+                return new Dictionary<int, string> { { 0, "Disabled" }, { 1, "Active" } };
+            }
+            set { }
+        }
 
         public string FullName
         {

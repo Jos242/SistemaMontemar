@@ -122,8 +122,6 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Save(Incidencia incidencia)
         {
-            MemoryStream target = new MemoryStream();
-
             IServiceIncidencia _ServiceIncidencia = new ServiceIncidencia();
 
             Incidencia oIncidencia = null;

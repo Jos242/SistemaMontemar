@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="09cc53736a714d3abcb296bb4476f129" Name="Diagram1">
+      <Diagram DiagramId="0b66268b2c484fa28b1df6de852ed83d" Name="Diagram1">
         <EntityTypeShape EntityType="SistemaMontemarModel.Area" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaMontemarModel.AsignacionPlan" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaMontemarModel.AsignacionPlan" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaMontemarModel.Deuda" Width="1.5" PointX="9.75" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaMontemarModel.Incidencia" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaMontemarModel.Informacion" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />

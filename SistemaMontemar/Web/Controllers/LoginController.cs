@@ -32,7 +32,7 @@ namespace Web.Controllers
                 if (ModelState.IsValid)
                 {
                     oUsuario = _ServiceUsuario.GetUsuario(usuario.Email, usuario.Password);
-                    if (oUsuario != null)
+                    if (oUsuario != null || oUsuario.Estado == 0)
                     {
                         Session["User"] = oUsuario;
                         Log.Info($"Accede{oUsuario.Nombre} {oUsuario.Apellido01} " +

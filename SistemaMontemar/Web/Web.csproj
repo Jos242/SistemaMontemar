@@ -146,6 +146,7 @@
     <Compile Include="Controllers\EstadoCuentaController.cs" />
     <Compile Include="Controllers\IncidenciaController.cs" />
     <Compile Include="Controllers\InformacionController.cs" />
+    <Compile Include="Controllers\InformacionPersonalController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PlanCobroController.cs" />
     <Compile Include="Controllers\ReservacionController.cs" />
@@ -375,11 +376,14 @@
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Residencia\_PartialViewGetPlanCobro.cshtml" />
     <Content Include="Views\Residencia\_PartialViewAsignPaymentPlan.cshtml" />
-    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\InformacionPersonal\Index.cshtml" />
     <Content Include="Views\Incidencia\IndexUser.cshtml" />
     <Content Include="Views\Incidencia\_PartialViewEstadoUser.cshtml" />
     <Content Include="Views\Reservacion\_PartialViewEstadoUser.cshtml" />
     <Content Include="Views\Reservacion\IndexUser.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\_PartialViewEstado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

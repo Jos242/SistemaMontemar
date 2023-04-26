@@ -20,11 +20,11 @@
     <Property Name="IdPlan" Type="Int32" Nullable="false" />
     <Property Name="Mes" Type="Int32" Nullable="false" />
     <Property Name="Estado" Type="Int32" Nullable="false" />
+    <Property Name="Anio" Type="Int32" Nullable="false" />
     <NavigationProperty Name="PlanCobro" Relationship="Self.FK_AsignacionPlan_PlanCobro" FromRole="AsignacionPlan" ToRole="PlanCobro" />
     <NavigationProperty Name="Residencia" Relationship="Self.FK_AsignacionPlan_Residencia" FromRole="AsignacionPlan" ToRole="Residencia" />
     <NavigationProperty Name="Deuda" Relationship="Self.FK_Deuda_AsignacionPlan" FromRole="AsignacionPlan" ToRole="Deuda" />
     <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_AsignacionPlan" FromRole="AsignacionPlan" ToRole="Pago" />
-    <Property Name="Anio" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Deuda">
     <Key>
@@ -131,7 +131,7 @@
     <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Apellido01" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Apellido02" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Telefono" Type="Int32" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DiaPagar" Type="Int32" Nullable="false" />
     <Property Name="Estado" Type="Int32" Nullable="false" />

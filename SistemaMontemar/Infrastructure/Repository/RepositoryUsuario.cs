@@ -55,7 +55,8 @@ namespace Infrastructure.Repository
                     }
                     else
                     {
-                        ctx.Entry(usuario).State = EntityState.Modified;
+                        oUsuario = ctx.Usuario.Single(x => x.Id == usuario.Id);
+                        oUsuario.Estado = usuario.Estado;
                     }
                     retorno = ctx.SaveChanges();
                 }
@@ -91,6 +92,7 @@ namespace Infrastructure.Repository
                 }
                 if (oUsuario != null)
                     oUsuario = GetUsuarioById(oUsuario.Id);
+
                 return oUsuario;
             }
             catch (DbUpdateException dbEx)

@@ -185,6 +185,8 @@ namespace Infrastructure.Models
     public partial class UsuarioMetaData
     {
         public int Id { get; set; }
+
+        [Display(Name = "Rol")]
         public int IdTipoUsuario { get; set; }
 
         [Display(Name = "Email")]
@@ -195,10 +197,15 @@ namespace Infrastructure.Models
 
         [Display(Name = "Last Name")]
         public string Apellido01 { get; set; }
+
+        [Display(Name = "Second Last Name")]
         public string Apellido02 { get; set; }
 
         [Display(Name = "Phone Number")]
+        [RegularExpression(@"^[0-9]{8}?$", ErrorMessage = "{0} must be a number and 8 digits")]
         public string Telefono { get; set; }
+
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Display(Name = "Pay Day")]
